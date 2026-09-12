@@ -25,7 +25,7 @@ const instrumentSerif = Instrument_Serif({
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zana.dev"),
+  metadataBase: new URL("https://zanarajab.vercel.app"),
   title: "Zana Rajab Abdulrahman — Flutter Developer & Mobile Engineer",
   description:
     "Computer Science graduate from Duhok, Iraq. Flutter developer, QA engineer, team leader, and graphic designer. Built and published Crown Barber on the Apple App Store. Open to remote work.",
@@ -43,12 +43,12 @@ export const metadata: Metadata = {
   openGraph: {
     type:      "website",
     locale:    "en_US",
-    url:       "https://zana.dev",
+    url:       "https://zanarajab.vercel.app",
     siteName:  "Zana Rajab Abdulrahman",
     title:     "Zana Rajab Abdulrahman — Flutter Developer",
     description:
       "Flutter developer, QA engineer & team leader from Kurdistan, Iraq.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Zana Rajab Abdulrahman Portfolio" }],
   },
   twitter: {
     card:        "summary_large_image",
@@ -79,7 +79,7 @@ const jsonLd = {
     addressRegion:    "Kurdistan Region",
     addressCountry:   "IQ",
   },
-  url: "https://zana.dev",
+  url: "https://zanarajab.vercel.app",
   sameAs: [
     "https://github.com/zanamzirii",
     "https://linkedin.com/in/zanarajab",

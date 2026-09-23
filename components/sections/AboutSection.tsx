@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, GraduationCap, Download } from "lucide-react";
+import { MapPin, GraduationCap } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { siteData } from "@/lib/data";
@@ -20,7 +20,7 @@ const infoChips = [
 ];
 
 export function AboutSection() {
-  const { personal, links } = siteData;
+  const { personal } = siteData;
 
   return (
     <section id="about" className="py-20 md:py-32">
@@ -131,15 +131,20 @@ export function AboutSection() {
               ))}
             </motion.div>
 
-            {/* Download CV */}
+            {/* Contact CTA */}
             <motion.div
               variants={fadeUp}
               transition={{ ...smoothTransition, delay: 0.24 }}
               className="mt-8"
             >
-              <Button variant="outline" size="lg" href={links.cv} external>
-                <Download className="h-4 w-4" />
-                Download CV
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => {
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                Let&rsquo;s Work Together →
               </Button>
             </motion.div>
           </motion.div>

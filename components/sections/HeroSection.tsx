@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, ExternalLink, MessageCircle, Download, ArrowDown } from "lucide-react";
+import { Github, Linkedin, ExternalLink, MessageCircle, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { siteData } from "@/lib/data";
 import { fadeUp, fadeIn, staggerContainer, smoothTransition } from "@/lib/animations";
@@ -50,7 +50,7 @@ const socials = [
 // ─── Hero Section ────────────────────────────────────────────────────────────
 
 export function HeroSection() {
-  const { personal, links } = siteData;
+  const { personal } = siteData;
 
   return (
     <section
@@ -141,9 +141,14 @@ export function HeroSection() {
           >
             See My Work
           </Button>
-          <Button variant="outline" size="lg" href={links.cv} external>
-            <Download className="h-4 w-4" />
-            Download CV
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={() => {
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Get In Touch
           </Button>
         </motion.div>
 

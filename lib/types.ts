@@ -18,7 +18,7 @@ export interface Links {
   github: string;
   linkedin: string;
   appStore: string;
-  cv: string;
+  cv?: string;
   whatsapp: string;
 }
 

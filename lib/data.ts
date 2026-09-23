@@ -26,7 +26,7 @@ I lead teams, design interfaces, edit video, and bring structure to complex
 problems.`,
     location: "Duhok, Kurdistan Region, Iraq",
     email: "zanarajababdulrahman@gmail.com",
-    phone: "+964 750 214 49 23",
+    phone: "+964 750 852 42 80",
     available: true,
     availabilityNote: "Open to remote work and suitable relocation",
   },
@@ -37,8 +37,7 @@ problems.`,
     github: "https://github.com/zanamzirii",
     linkedin: "https://linkedin.com/in/zanarajab",   // TODO: correct URL
     appStore: "https://apps.apple.com/us/app/crown-barber/id6785096600",
-    cv: "/cv/zana-cv.pdf",
-    whatsapp: "https://wa.me/9647502144923",
+    whatsapp: "https://wa.me/9647508524280",
   },
 
   // ─── Stats ──────────────────────────────────────────────────────────────────
@@ -119,9 +118,9 @@ engineering and design work done by me.`,
         website: "https://crown-barber-prod.web.app/",
       },
       images: [
-        "/images/crown-barber/mockup-1.png",
-        "/images/crown-barber/mockup-2.png",
-        "/images/crown-barber/mockup-3.png",
+        "/images/crown-barber/mockup-1.jpg",
+        "/images/crown-barber/mockup-2.jpg",
+        "/images/crown-barber/mockup-3.jpg",
       ],
       highlights: [
         "Published on Apple App Store — July 2026",

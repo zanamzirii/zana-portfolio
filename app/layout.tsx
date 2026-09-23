@@ -72,7 +72,7 @@ const jsonLd = {
   description:
     "Flutter developer and mobile engineer from Kurdistan, Iraq.",
   email:     "zanarajababdulrahman@gmail.com",
-  telephone: "+9647502144923",
+  telephone: "+9647508524280",
   address: {
     "@type":          "PostalAddress",
     addressLocality:  "Duhok",

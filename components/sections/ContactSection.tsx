@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, MessageCircle, Copy, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, MessageCircle, Copy, Check, Instagram } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { siteData } from "@/lib/data";
@@ -35,6 +35,7 @@ function useCopyToClipboard(text: string) {
 const socials = [
   { label: "GitHub",    href: siteData.links.github,   Icon: Github,        color: "hover:text-white"       },
   { label: "LinkedIn",  href: siteData.links.linkedin,  Icon: Linkedin,      color: "hover:text-[#0A66C2]"  },
+  { label: "Instagram", href: "https://www.instagram.com/zanarajab.builds", Icon: Instagram, color: "hover:text-[#E4405F]" },
   { label: "App Store", href: siteData.links.appStore,  Icon: ExternalLink,  color: "hover:text-accent"     },
   { label: "WhatsApp",  href: siteData.links.whatsapp,  Icon: MessageCircle, color: "hover:text-[#25D366]"  },
 ];

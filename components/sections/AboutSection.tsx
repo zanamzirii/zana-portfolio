@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, GraduationCap } from "lucide-react";
+import { MapPin, GraduationCap, Award, ShieldCheck } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { siteData } from "@/lib/data";
@@ -15,8 +15,10 @@ import {
 } from "@/lib/animations";
 
 const infoChips = [
-  { icon: MapPin,          text: siteData.personal.location },
-  { icon: GraduationCap,  text: "BSc Computer Science — 2026" },
+  { icon: MapPin,         text: siteData.personal.location },
+  { icon: GraduationCap,  text: "BSc Computer Science — Excellent Capstone" },
+  { icon: Award,          text: "Lead Mobile & Full-Stack Developer" },
+  { icon: ShieldCheck,    text: "Production Shipped & Store Approved" },
 ];
 
 export function AboutSection() {
@@ -95,22 +97,13 @@ export function AboutSection() {
               className="space-y-4 text-base text-textSecondary leading-relaxed"
             >
               <p>
-                I&rsquo;m a Computer Science graduate from Duhok, Kurdistan. I
-                started building because I wanted to solve real problems — and I
-                haven&rsquo;t stopped since. My work spans mobile development,
-                UI/UX design, QA engineering, and team leadership.
+                I&rsquo;m a Computer Science graduate from Duhok, Kurdistan. I build software from first principles — combining rigorous mobile engineering with human-centric UI/UX design, end-to-end video motion production, and high-stakes operational leadership.
               </p>
               <p>
-                Most recently I built{" "}
-                <span className="text-textPrimary font-medium">Crown Barber</span>{" "}
-                — a full Flutter &amp; Firebase app with four distinct user roles —
-                and shipped it live to the Apple App Store. I handled the entire
-                product lifecycle: design, code, QA, and release.
+                As <span className="text-textPrimary font-semibold">Lead Developer at Bahdinan Cars</span>, I architected an enterprise automotive marketplace across iOS, Android, and Web using Flutter, Riverpod, and 2nd Gen Firebase Cloud Functions. As <span className="text-textPrimary font-semibold">Founder of Crown Barber</span>, I engineered a capstone project from scratch and published it live to the Apple App Store, owning the entire product lifecycle from Figma wireframes to store approval.
               </p>
               <p>
-                I&rsquo;m looking for remote opportunities where I can keep
-                building serious things with serious people. I work fast, I care
-                about quality, and I don&rsquo;t stop until it&rsquo;s right.
+                I also direct client deliveries like <span className="text-textPrimary font-semibold">Time Cafe Zaxo</span> (software and custom physical QR stands) and coordinated 11 field agents across 817 km² on the Runaki Project with 18,000+ completed visits. I work fast, obsess over quality, and ship things that work.
               </p>
             </motion.div>
 

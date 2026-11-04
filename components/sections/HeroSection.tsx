@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, ExternalLink, MessageCircle, ArrowDown } from "lucide-react";
+import { Github, Linkedin, ExternalLink, MessageCircle, ArrowDown, Instagram, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { siteData } from "@/lib/data";
 import { fadeUp, fadeIn, staggerContainer, smoothTransition } from "@/lib/animations";
@@ -43,6 +43,7 @@ function RoleCycler({ roles }: { roles: string[] }) {
 const socials = [
   { label: "GitHub",    href: siteData.links.github,   Icon: Github,        hoverColor: "hover:text-white"       },
   { label: "LinkedIn",  href: siteData.links.linkedin,  Icon: Linkedin,      hoverColor: "hover:text-[#0A66C2]"  },
+  { label: "Instagram", href: "https://www.instagram.com/zanarajab.builds", Icon: Instagram, hoverColor: "hover:text-[#E4405F]" },
   { label: "App Store", href: siteData.links.appStore,  Icon: ExternalLink,  hoverColor: "hover:text-accent"     },
   { label: "WhatsApp",  href: siteData.links.whatsapp,  Icon: MessageCircle, hoverColor: "hover:text-[#25D366]"  },
 ];
@@ -139,10 +140,20 @@ export function HeroSection() {
               document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            See My Work
+            Explore Shipped Apps
           </Button>
           <Button
             variant="outline"
+            size="lg"
+            onClick={() => {
+              document.getElementById("creative")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            <Sparkles className="h-4 w-4 text-accent" />
+            Creative &amp; Design Studio
+          </Button>
+          <Button
+            variant="ghost"
             size="lg"
             onClick={() => {
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });

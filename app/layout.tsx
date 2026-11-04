@@ -26,15 +26,16 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zanarajab.vercel.app"),
-  title: "Zana Rajab Abdulrahman — Flutter Developer & Mobile Engineer",
+  title: "Zana Rajab Abdulrahman — Mobile App Developer & Team Leader",
   description:
-    "Computer Science graduate from Duhok, Iraq. Flutter developer, QA engineer, team leader, and graphic designer. Built and published Crown Barber on the Apple App Store. Open to remote work.",
+    "Computer Science graduate from Duhok, Iraq. Mobile App Developer, Team Leader, QA & Testing Engineer, and Graphic Designer & Video Editor. Shipped Crown Barber and Bahdinan Cars.",
   keywords: [
     "Zana Rajab Abdulrahman",
     "Flutter developer",
     "mobile app developer Kurdistan",
     "Firebase developer Iraq",
     "Crown Barber app",
+    "Bahdinan Cars app",
     "remote Flutter developer",
     "QA engineer Kurdistan",
     "UI/UX designer Iraq",
@@ -45,15 +46,15 @@ export const metadata: Metadata = {
     locale:    "en_US",
     url:       "https://zanarajab.vercel.app",
     siteName:  "Zana Rajab Abdulrahman",
-    title:     "Zana Rajab Abdulrahman — Flutter Developer",
+    title:     "Zana Rajab Abdulrahman — Mobile App Developer & Team Leader",
     description:
-      "Flutter developer, QA engineer & team leader from Kurdistan, Iraq.",
+      "Mobile App Developer, Team Leader, QA & Testing, Graphic Design & Video Editing from Kurdistan, Iraq.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Zana Rajab Abdulrahman Portfolio" }],
   },
   twitter: {
     card:        "summary_large_image",
-    title:       "Zana Rajab Abdulrahman — Flutter Developer",
-    description: "Flutter developer, QA engineer & team leader from Kurdistan, Iraq.",
+    title:       "Zana Rajab Abdulrahman — Mobile App Developer & Team Leader",
+    description: "Mobile App Developer, Team Leader, QA & Testing, Graphic Design & Video Editing from Kurdistan, Iraq.",
     images:      ["/og-image.png"],
   },
   robots: {
@@ -68,11 +69,11 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type":    "Person",
   name:       "Zana Rajab Abdulrahman",
-  jobTitle:   "Mobile Application Developer",
+  jobTitle:   "Mobile App Developer | Team Leader | QA & Testing",
   description:
-    "Flutter developer and mobile engineer from Kurdistan, Iraq.",
+    "Mobile app developer, team leader, QA engineer, and creative director from Kurdistan, Iraq.",
   email:     "zanarajababdulrahman@gmail.com",
-  telephone: "+9647508524280",
+  telephone: "+9647502144923",
   address: {
     "@type":          "PostalAddress",
     addressLocality:  "Duhok",

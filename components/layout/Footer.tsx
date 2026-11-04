@@ -1,4 +1,4 @@
-import { Github, Linkedin, ExternalLink, MessageCircle } from "lucide-react";
+import { Github, Linkedin, ExternalLink, MessageCircle, Instagram } from "lucide-react";
 import { siteData } from "@/lib/data";
 
 const socialLinks = [
@@ -11,6 +11,11 @@ const socialLinks = [
     label: "LinkedIn",
     href:  siteData.links.linkedin,
     Icon:  Linkedin,
+  },
+  {
+    label: "Instagram",
+    href:  "https://www.instagram.com/zanarajab.builds",
+    Icon:  Instagram,
   },
   {
     label: "App Store",

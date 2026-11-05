@@ -97,6 +97,13 @@ const categoryStyles: Record<
     lineGlow: "from-amber-500 via-orange-400 to-transparent",
     iconBg: "bg-amber-500/10 border-amber-500/25 text-amber-400",
   },
+  "IDEs & Store Release": {
+    icon: Rocket,
+    accentColor: "text-sky-400",
+    borderGlow: "group-hover:border-sky-500/40",
+    lineGlow: "from-sky-500 via-blue-400 to-transparent",
+    iconBg: "bg-sky-500/10 border-sky-500/25 text-sky-400",
+  },
   "IDEs, DevOps & Store Release": {
     icon: Rocket,
     accentColor: "text-sky-400",
@@ -268,7 +275,7 @@ export function SkillsSection() {
                 key={category.category}
                 variants={scaleIn}
                 transition={{ ...smoothTransition, delay: i * 0.06 }}
-                className={`group relative flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-[#121215]/95 backdrop-blur-md p-6 sm:p-7 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-[#15151a] ${style.borderGlow}`}
+                className={`group relative flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-[#121215]/95 backdrop-blur-md p-5 sm:p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-[#15151a] ${style.borderGlow}`}
               >
                 {/* Accent Top Line Glow */}
                 <div
@@ -277,15 +284,15 @@ export function SkillsSection() {
 
                 <div>
                   {/* Category Header */}
-                  <div className="mb-6 flex items-center justify-between gap-3">
+                  <div className="mb-5 flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <div
-                        className={`flex h-11 w-11 items-center justify-center rounded-xl border shadow-sm ${style.iconBg}`}
+                        className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl border shadow-sm ${style.iconBg}`}
                       >
                         <CategoryIcon className="h-5 w-5" />
                       </div>
                       <div>
-                        <h3 className="text-base font-bold text-white group-hover:text-white transition-colors">
+                        <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-white transition-colors">
                           {category.category}
                         </h3>
                         <span className="text-[11px] font-medium text-neutral-400">
@@ -305,12 +312,21 @@ export function SkillsSection() {
                           key={item}
                           className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.035] px-3 py-1.5 text-xs font-medium text-neutral-200 shadow-sm transition-all duration-200 hover:scale-[1.03] hover:border-white/20 hover:bg-white/[0.08] hover:text-white cursor-default"
                         >
-                          <IconComponent className="h-3.5 w-3.5 flex-shrink-0" />
+                          <IconComponent className="h-4 w-4 flex-shrink-0" />
                           <span>{item}</span>
                         </div>
                       );
                     })}
                   </div>
+                </div>
+
+                {/* Intentional Bottom Footer */}
+                <div className="mt-5 pt-3.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-neutral-400">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent/70" />
+                    Production Stack
+                  </span>
+                  <span className="font-mono text-neutral-500">Verified</span>
                 </div>
               </motion.div>
             );

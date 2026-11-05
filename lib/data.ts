@@ -100,7 +100,7 @@ export const siteData: SiteData = {
       ],
     },
     {
-      category: "IDEs, DevOps & Store Release",
+      category: "IDEs & Store Release",
       icon: "rocket",
       items: [
         "Xcode",

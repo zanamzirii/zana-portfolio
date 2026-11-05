@@ -76,6 +76,21 @@ export interface CreativeItem {
   linkLabel?: string;
   tags: string[];
   brand?: string;
+  brandId?: "crown-barber" | "virastack" | "zanarajab" | "bahdinan-cars";
+}
+
+export interface BrandProfile {
+  id: "crown-barber" | "virastack" | "zanarajab" | "bahdinan-cars";
+  name: string;
+  handle: string;
+  avatar: string;
+  badge: string;
+  category: string;
+  bio: string;
+  stats: { label: string; value: string }[];
+  link: string;
+  linkLabel: string;
+  accentColor: string;
 }
 
 export interface KYCStats {
@@ -141,6 +156,7 @@ export interface SiteData {
   skills: SkillCategory[];
   projects: Project[];
   creative: CreativeItem[];
+  brandProfiles: BrandProfile[];
   experience: ExperienceItem[];
   education: EducationItem[];
   certifications: Certification[];

@@ -56,6 +56,8 @@ export interface Project {
   links: ProjectLinks;
   images: string[];
   video?: string;
+  appLogo?: string;
+  qrCode?: string;
   highlights: string[];
   color: string;
 }

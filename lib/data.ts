@@ -175,6 +175,8 @@ export const siteData: SiteData = {
         "Multi-Role RBAC",
         "App Store Release",
       ],
+      appLogo: "/images/crown-barber/app_logo.png",
+      qrCode: "/images/crown-barber/qr-code.png",
       links: {
         website: "https://www.crownbarber.app/",
         appStore: "https://apps.apple.com/us/app/crown-barber/id6785096600",
@@ -184,6 +186,10 @@ export const siteData: SiteData = {
         "/images/crown-barber/mockup-1.png",
         "/images/crown-barber/mockup-2.png",
         "/images/crown-barber/mockup-3.png",
+        "/images/crown-barber/mockup-4.png",
+        "/images/crown-barber/mockup-5.png",
+        "/images/crown-barber/mockup-6.png",
+        "/images/crown-barber/mockup-7.png",
       ],
       video: "/images/crown-barber/booking-tutorial.mp4",
       highlights: [
@@ -193,7 +199,7 @@ export const siteData: SiteData = {
         "Trilingual localization (Kurdish, Arabic, and English)",
         "Full QA cycle: functional, regression, UAT, cross-device, and API testing",
       ],
-      color: "#6366F1",
+      color: "#F59E0B",
     },
     {
       id: "bahdinan-cars",
@@ -202,6 +208,7 @@ export const siteData: SiteData = {
       subtitle: "Enterprise Automotive Marketplace",
       badge: "Founder & Lead Developer",
       category: "Mobile",
+      appLogo: "/images/bahdinan-cars/app_icon.png",
       description: `Engineered an enterprise automotive marketplace serving verified dealerships and private car buyers across Iraq. Built natively across iOS, Android, and Web with real-time USD/IQD currency recalculation, dealer inventory management, and direct showroom routing via WhatsApp and phone.`,
       longDescription: `Architected from the ground up using Flutter with strict Clean Architecture principles, leveraging Riverpod, GoRouter, and Freezed for bulletproof predictability. Authored 2nd-generation Firebase Cloud Functions in TypeScript to power OTP authentication, automated vehicle listing lifecycles, and dealership tier subscriptions. Successfully passed rigorous Apple App Store Review for production release, meeting all security, compliance, and performance standards.`,
       tech: [
@@ -259,6 +266,7 @@ export const siteData: SiteData = {
       links: {
         website: "https://timecafezaxo.vercel.app/",
       },
+      qrCode: "/images/time-cafe/QR-code.jpeg",
       images: [
         "/images/time-cafe/phone/menu-iPhone_17_Pro_Max.png",
         "/images/time-cafe/phone/admin-dashboard-iPhone_17_Pro_Max.png",

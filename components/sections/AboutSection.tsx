@@ -152,7 +152,7 @@ export function AboutSection() {
               transition={{ ...smoothTransition, delay: 0.06 }}
               className="mb-6 text-3xl font-bold tracking-tight text-textPrimary md:text-5xl text-balance"
             >
-              Building things since I could touch a keyboard.
+              Crafting production software from first principles.
             </motion.h2>
 
             <motion.div

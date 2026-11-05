@@ -84,26 +84,11 @@ export function HeroSection() {
 
           {/* Left Column: Headline, Titles & Socials */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
-            
-            {/* Availability badge */}
-            <motion.div
-              variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/90 px-3.5 py-1.5 shadow-sm"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="text-xs font-medium text-textSecondary">
-                {personal.availabilityNote}
-              </span>
-            </motion.div>
 
             {/* Name */}
             <motion.h1
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.08 }}
+              transition={{ ...smoothTransition, delay: 0 }}
               className="mb-4 font-bold leading-tight tracking-tight text-textPrimary text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
             >
               Zana Rajab<br className="hidden sm:inline" /> Abdulrahman

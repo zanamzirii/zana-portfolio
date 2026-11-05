@@ -35,7 +35,13 @@ import type { CreativeItem, BrandProfile } from "@/lib/types";
 
 interface CreativeCardProps {
   item: CreativeItem;
-  onOpenLightbox: (src: string, alt: string, title?: string) => void;
+  onOpenLightbox: (
+    src: string,
+    alt: string,
+    title?: string,
+    images?: string[],
+    initialIndex?: number,
+  ) => void;
   onOpenVideo: (url: string, title: string, subtitle?: string) => void;
 }
 
@@ -109,7 +115,9 @@ function CreativeCard({ item, onOpenLightbox, onOpenVideo }: CreativeCardProps) 
             onOpenLightbox(
               currentImgSrc,
               item.title,
-              `${item.title} (Slide ${slideIndex + 1} of ${slides.length})`,
+              item.title,
+              slides,
+              slideIndex,
             );
           }
         }}
@@ -406,6 +414,8 @@ export function CreativeSection() {
     src: string;
     alt: string;
     title?: string;
+    images?: string[];
+    initialIndex?: number;
   } | null>(null);
   const [activeVideo, setActiveVideo] = useState<{
     url: string;
@@ -669,8 +679,8 @@ export function CreativeSection() {
               <CreativeCard
                 key={item.id}
                 item={item}
-                onOpenLightbox={(src, alt, title) =>
-                  setSelectedLightbox({ src, alt, title })
+                onOpenLightbox={(src, alt, title, images, initialIndex) =>
+                  setSelectedLightbox({ src, alt, title, images, initialIndex })
                 }
                 onOpenVideo={(url, title, subtitle) =>
                   setActiveVideo({ url, title, subtitle })
@@ -687,7 +697,7 @@ export function CreativeSection() {
         )}
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal with Full Fast Gallery Navigation */}
       {selectedLightbox && (
         <ImageLightbox
           isOpen={!!selectedLightbox}
@@ -695,6 +705,8 @@ export function CreativeSection() {
           src={selectedLightbox.src}
           alt={selectedLightbox.alt}
           title={selectedLightbox.title}
+          images={selectedLightbox.images}
+          initialIndex={selectedLightbox.initialIndex}
         />
       )}
 

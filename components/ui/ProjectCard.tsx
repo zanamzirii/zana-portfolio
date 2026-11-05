@@ -130,7 +130,7 @@ interface FeaturedProjectCardProps {
 }
 
 export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjectCardProps) {
-  const [lightboxImg, setLightboxImg] = useState<{ src: string; alt: string } | null>(null);
+  const [lightboxImg, setLightboxImg] = useState<{ src: string; alt: string; index?: number } | null>(null);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [qrModalOpen, setQrModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -409,6 +409,7 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
                         setLightboxImg({
                           src,
                           alt: `${project.title} screenshot ${i + 1}`,
+                          index: i,
                         })
                       }
                       className={cn(
@@ -465,7 +466,7 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal with Fast Flip & Gallery Controls */}
       {lightboxImg && (
         <ImageLightbox
           isOpen={!!lightboxImg}
@@ -473,7 +474,9 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
           src={lightboxImg.src}
           alt={lightboxImg.alt}
           title={project.title}
-          subtitle="Click anywhere outside or press Esc to close"
+          subtitle="Use arrows or swipe to flip between production screens"
+          images={project.images}
+          initialIndex={lightboxImg.index ?? 0}
         />
       )}
 

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, GraduationCap, Award, Globe, ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 import {
   fadeUp,
   fadeLeft,
@@ -39,6 +40,7 @@ const infoChips = [
 export function AboutSection() {
   const [photoIndex, setPhotoIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
   // Smooth auto-advance every 2.5s when not hovered or touched
@@ -102,7 +104,10 @@ export function AboutSection() {
                 onTouchEnd={handleTouchEnd}
                 className="relative overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl p-2 transition-transform duration-500 ease-out select-none cursor-pointer"
               >
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-elevated">
+                <div
+                  onClick={() => setLightboxOpen(true)}
+                  className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-elevated cursor-pointer"
+                >
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={photoIndex}
@@ -244,6 +249,20 @@ export function AboutSection() {
 
         </div>
       </div>
+
+      {/* Lightbox for Personal Photos with Fast Flip Arrows & Thumbnails */}
+      {lightboxOpen && (
+        <ImageLightbox
+          isOpen={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+          src={personalPhotos[photoIndex].src}
+          alt={personalPhotos[photoIndex].alt}
+          title="Zana Rajab Abdulrahman"
+          subtitle="Founder · Mobile App Developer · University of Duhok"
+          images={personalPhotos.map((p) => p.src)}
+          initialIndex={photoIndex}
+        />
+      )}
     </section>
   );
 }

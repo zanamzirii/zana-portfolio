@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, GraduationCap, Award, Globe, ChevronLeft, ChevronRight } from "lucide-react";
@@ -17,7 +17,7 @@ import {
 const personalPhotos = [
   {
     src: "/images/personal/zana-suit-full-body.jpg",
-    alt: "Zana Rajab Abdulrahman — Full-Body Suit Presence",
+    alt: "Zana Rajab Abdulrahman — Founder & Lead Engineer",
   },
   {
     src: "/images/personal/zana-gradation.jpeg",
@@ -25,7 +25,7 @@ const personalPhotos = [
   },
   {
     src: "/images/personal/zana-with-kurdish-flags.jpg",
-    alt: "Zana Rajab Abdulrahman — University Library Internship",
+    alt: "Zana Rajab Abdulrahman — University Library Technical Lead",
   },
 ];
 
@@ -38,14 +38,17 @@ const infoChips = [
 
 export function AboutSection() {
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
-  // Subtle auto-advance every 8 seconds if not interacted
+  // Smooth auto-advance every 2.5s when not hovered or touched
   useEffect(() => {
+    if (isHovered) return;
     const timer = setInterval(() => {
       setPhotoIndex((prev) => (prev + 1) % personalPhotos.length);
-    }, 8000);
+    }, 2500);
     return () => clearInterval(timer);
-  }, []);
+  }, [isHovered]);
 
   const nextPhoto = () => {
     setPhotoIndex((prev) => (prev + 1) % personalPhotos.length);
@@ -53,6 +56,24 @@ export function AboutSection() {
 
   const prevPhoto = () => {
     setPhotoIndex((prev) => (prev - 1 + personalPhotos.length) % personalPhotos.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    setIsHovered(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current !== null) {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX.current - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) nextPhoto(); // Swiped left -> next
+        else prevPhoto(); // Swiped right -> prev
+      }
+      touchStartX.current = null;
+    }
+    setTimeout(() => setIsHovered(false), 2000);
   };
 
   return (
@@ -74,7 +95,13 @@ export function AboutSection() {
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-accent/25 via-indigo-500/10 to-transparent opacity-50 blur-xl group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
 
               {/* Main Photo Frame */}
-              <div className="relative overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl p-2 transition-transform duration-500 ease-out">
+              <div
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                className="relative overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl p-2 transition-transform duration-500 ease-out select-none cursor-pointer"
+              >
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-elevated">
                   <AnimatePresence mode="wait">
                     <motion.div

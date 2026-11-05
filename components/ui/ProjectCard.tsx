@@ -133,6 +133,7 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
   const [lightboxImg, setLightboxImg] = useState<{ src: string; alt: string } | null>(null);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [qrModalOpen, setQrModalOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Device Showcase Carousel Controls
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -153,6 +154,25 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
     checkScroll();
     return () => el.removeEventListener("scroll", checkScroll);
   }, [project.images]);
+
+  // Smooth auto-scroll every 2.2s when not hovered or interacting
+  useEffect(() => {
+    if (isHovered || project.images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      if (!scrollRef.current) return;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+
+      if (scrollLeft >= maxScroll - 20) {
+        scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollRef.current.scrollBy({ left: 215, behavior: "smooth" });
+      }
+    }, 2200);
+
+    return () => clearInterval(interval);
+  }, [isHovered, project.images.length]);
 
   const scrollCarousel = (dir: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -375,7 +395,12 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
               {project.images.length > 0 ? (
                 <div
                   ref={scrollRef}
-                  className="flex gap-4 sm:gap-5 items-center overflow-x-auto no-scrollbar snap-x snap-mandatory py-2 px-1"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  onTouchStart={() => setIsHovered(true)}
+                  onTouchEnd={() => setTimeout(() => setIsHovered(false), 2000)}
+                  className="flex gap-4 sm:gap-5 items-center overflow-x-auto no-scrollbar snap-x snap-mandatory py-2 px-1 scroll-smooth select-none"
+                  style={{ WebkitOverflowScrolling: "touch" }}
                 >
                   {project.images.map((src, i) => (
                     <div

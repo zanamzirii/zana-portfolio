@@ -252,6 +252,7 @@ export const siteData: SiteData = {
       subtitle: "Smart QR Digital Menu & Live Admin Platform",
       badge: "Commercial Client Delivery · Live",
       category: "Web",
+      appLogo: "/images/time-cafe/QR-code.jpeg",
       description: `Engineered and deployed a modern QR-code-activated digital dining platform for Time Cafe in Zakho. Bridges digital software with physical table stands, backed by a real-time admin management suite for instant pricing and menu updates.`,
       longDescription: `Delivered end-to-end client solution from conceptual wireframing to production deployment and physical manufacturing. Built a responsive web app with zero friction for guests (no app download required), integrated a secure real-time admin dashboard, and personally designed and produced the custom physical QR table stands that connect customers directly to the menu.`,
       tech: [

@@ -454,9 +454,9 @@ export const siteData: SiteData = {
       images: [
         "/images/instagram-post-pages/crownbarber.,app/post-1-first-app-lunch-post/EN-lunch-post.png",
         "/images/instagram-post-pages/crownbarber.,app/post-1-first-app-lunch-post/KU-lunch-post.png",
-        "/images/instagram-post-pages/crownbarber.,app/post-5-explaning-app-with-animations-and-vido-Ai-ads/QR-code-download-EN-dark.png",
-        "/images/instagram-post-pages/crownbarber.,app/post-5-explaning-app-with-animations-and-vido-Ai-ads/QR-code-download-KU-dark.png",
-        "/images/instagram-post-pages/crownbarber.,app/post-5-explaning-app-with-animations-and-vido-Ai-ads/QR-code-download-KU-light.png",
+        "/images/instagram-post-pages/crownbarber.,app/QR-code-download-EN-dark.png",
+        "/images/instagram-post-pages/crownbarber.,app/QR-code-download-KU-dark.png",
+        "/images/instagram-post-pages/crownbarber.,app/QR-code-download-KU-light.png",
       ],
       link: "https://www.instagram.com/crownbarber.app",
       linkLabel: "Visit @crownbarber.app",

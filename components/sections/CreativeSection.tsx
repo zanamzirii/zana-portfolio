@@ -129,10 +129,19 @@ function CreativeCard({ item, onOpenLightbox, onOpenVideo }: CreativeCardProps) 
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
               className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-              priority={slideIndex === 0}
+              priority
+              loading="eager"
             />
           </motion.div>
         </AnimatePresence>
+
+        {/* Preload all slides in this card to prevent blank frames during transitions */}
+        <div className="hidden" aria-hidden="true">
+          {slides.map((s) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img key={s} src={s} alt="" loading="eager" />
+          ))}
+        </div>
 
         {/* Ambient Dark Gradient Vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/35 pointer-events-none" />

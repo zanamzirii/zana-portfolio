@@ -118,10 +118,19 @@ export function AboutSection() {
                         fill
                         sizes="(max-width: 768px) 100vw, 420px"
                         priority
+                        loading="eager"
                         className="object-cover object-top"
                       />
                     </motion.div>
                   </AnimatePresence>
+
+                  {/* Preload all personal photos */}
+                  <div className="hidden" aria-hidden="true">
+                    {personalPhotos.map((p) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img key={p.src} src={p.src} alt="" loading="eager" />
+                    ))}
+                  </div>
 
                   {/* Subtle bottom vignette */}
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />

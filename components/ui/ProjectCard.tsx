@@ -424,6 +424,8 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
                         fill
                         sizes="(max-width: 640px) 180px, (max-width: 1024px) 210px, 240px"
                         className="object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                        priority={i < 4}
+                        loading={i < 4 ? "eager" : "lazy"}
                       />
 
                       {/* Screen Step Badge */}

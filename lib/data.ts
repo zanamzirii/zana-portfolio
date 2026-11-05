@@ -110,7 +110,6 @@ export const siteData: SiteData = {
         "Google Play Console",
         "TestFlight Beta",
         "Git & GitHub Workflows",
-        "Codemagic CI/CD",
       ],
     },
     {

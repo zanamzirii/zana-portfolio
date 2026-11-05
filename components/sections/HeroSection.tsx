@@ -56,7 +56,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 pb-12 lg:pt-24 lg:pb-16 overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden"
     >
       {/* Subtle grid background */}
       <div
@@ -80,7 +80,7 @@ export function HeroSection() {
         animate="animate"
         className="relative z-10 mx-auto max-w-5xl w-full"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
           {/* Left Column: Headline, Titles & Socials */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
@@ -89,7 +89,7 @@ export function HeroSection() {
             <motion.h1
               variants={fadeUp}
               transition={{ ...smoothTransition, delay: 0 }}
-              className="mb-3 sm:mb-4 font-bold leading-tight tracking-tight text-textPrimary text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
+              className="mb-4 font-bold leading-tight tracking-tight text-textPrimary text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
             >
               Zana Rajab<br className="hidden sm:inline" /> Abdulrahman
             </motion.h1>
@@ -97,8 +97,8 @@ export function HeroSection() {
             {/* Cycling role */}
             <motion.div
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.12 }}
-              className="mb-3 sm:mb-4 w-full"
+              transition={{ ...smoothTransition, delay: 0.16 }}
+              className="mb-4 w-full"
             >
               <RoleCycler roles={personal.roles} />
             </motion.div>
@@ -106,8 +106,8 @@ export function HeroSection() {
             {/* Tagline */}
             <motion.p
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.18 }}
-              className="mb-4 sm:mb-6 max-w-lg text-xs sm:text-sm md:text-base leading-relaxed text-textSecondary"
+              transition={{ ...smoothTransition, delay: 0.22 }}
+              className="mb-6 max-w-lg text-sm text-textSecondary md:text-base leading-relaxed"
             >
               {personal.tagline}
             </motion.p>
@@ -115,8 +115,8 @@ export function HeroSection() {
             {/* Location Pill */}
             <motion.div
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.22 }}
-              className="mb-6 sm:mb-8 inline-flex items-center gap-2 text-xs text-textMuted"
+              transition={{ ...smoothTransition, delay: 0.26 }}
+              className="mb-8 inline-flex items-center gap-2 text-xs text-textMuted"
             >
               <MapPin className="h-3.5 w-3.5 text-accent" />
               <span>{personal.location}</span>
@@ -125,7 +125,7 @@ export function HeroSection() {
             {/* Social Icons Dock */}
             <motion.div
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.28 }}
+              transition={{ ...smoothTransition, delay: 0.32 }}
               className="flex items-center gap-5"
             >
               {socials.map(({ label, href, Icon, hoverColor }) => (
@@ -146,27 +146,27 @@ export function HeroSection() {
           {/* Right Column: High-Resolution Portrait Card */}
           <motion.div
             variants={fadeUp}
-            transition={{ ...smoothTransition, delay: 0.14 }}
+            transition={{ ...smoothTransition, delay: 0.18 }}
             className="lg:col-span-5 flex justify-center order-1 lg:order-2"
           >
-            <div className="relative group w-44 sm:w-52 md:w-64 lg:w-80">
+            <div className="relative group w-56 sm:w-64 md:w-72 lg:w-80">
               {/* Ambient purple/blue glow halo */}
               <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-accent/30 via-indigo-500/20 to-transparent opacity-60 blur-xl group-hover:opacity-90 transition-opacity duration-700 pointer-events-none" />
 
               {/* Card Container */}
-              <div className="relative overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl p-2 sm:p-2.5 transition-transform duration-500 group-hover:scale-[1.01]">
+              <div className="relative overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl p-2.5 transition-transform duration-500 group-hover:scale-[1.01]">
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-elevated">
                   <Image
                     src="/images/personal/zana.jpg"
                     alt="Zana Rajab Abdulrahman"
                     fill
-                    sizes="(max-width: 640px) 180px, (max-width: 1024px) 260px, 340px"
+                    sizes="(max-width: 768px) 260px, 340px"
                     priority
                     className="object-cover object-top"
                   />
                   {/* Subtle inner vignette */}
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl pointer-events-none" />
-                  <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                 </div>
               </div>
             </div>

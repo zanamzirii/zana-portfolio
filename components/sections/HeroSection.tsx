@@ -3,9 +3,19 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, ExternalLink, MessageCircle, ArrowDown, Instagram, MapPin } from "lucide-react";
+import { Github, Linkedin, Apple, ArrowDown, Instagram, MapPin } from "lucide-react";
 import { siteData } from "@/lib/data";
 import { fadeUp, fadeIn, staggerContainer, smoothTransition } from "@/lib/animations";
+
+// ─── Authentic WhatsApp Brand Icon ──────────────────────────────────────────
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.888 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.743.95 3.708 1.45 5.71 1.45h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  );
+}
 
 // ─── Role Cycler ─────────────────────────────────────────────────────────────
 
@@ -38,14 +48,39 @@ function RoleCycler({ roles }: { roles: string[] }) {
   );
 }
 
-// ─── Social Links ─────────────────────────────────────────────────────────────
+// ─── Real Branded Social Links ───────────────────────────────────────────────
 
 const socials = [
-  { label: "GitHub",    href: siteData.links.github,   Icon: Github,        hoverColor: "hover:text-white"       },
-  { label: "LinkedIn",  href: siteData.links.linkedin,  Icon: Linkedin,      hoverColor: "hover:text-[#0A66C2]"  },
-  { label: "Instagram", href: "https://www.instagram.com/zanarajab.builds", Icon: Instagram, hoverColor: "hover:text-[#E4405F]" },
-  { label: "App Store", href: siteData.links.appStore,  Icon: ExternalLink,  hoverColor: "hover:text-accent"     },
-  { label: "WhatsApp",  href: siteData.links.whatsapp,  Icon: MessageCircle, hoverColor: "hover:text-[#25D366]"  },
+  {
+    label: "GitHub",
+    href: siteData.links.github,
+    Icon: Github,
+    hoverBg: "hover:bg-white/10 hover:border-white/30 hover:text-white",
+  },
+  {
+    label: "LinkedIn",
+    href: siteData.links.linkedin,
+    Icon: Linkedin,
+    hoverBg: "hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/40 hover:text-[#0A66C2]",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/zanarajab.builds",
+    Icon: Instagram,
+    hoverBg: "hover:bg-[#E4405F]/20 hover:border-[#E4405F]/40 hover:text-[#E4405F]",
+  },
+  {
+    label: "Apple App Store",
+    href: siteData.links.appStore,
+    Icon: Apple,
+    hoverBg: "hover:bg-white/15 hover:border-white/40 hover:text-white",
+  },
+  {
+    label: "WhatsApp",
+    href: siteData.links.whatsapp,
+    Icon: WhatsAppIcon,
+    hoverBg: "hover:bg-[#25D366]/20 hover:border-[#25D366]/40 hover:text-[#25D366]",
+  },
 ];
 
 // ─── Hero Section ────────────────────────────────────────────────────────────
@@ -56,7 +91,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-16 sm:pt-20 lg:pt-24 pb-12 overflow-hidden"
     >
       {/* Subtle grid background */}
       <div
@@ -80,7 +115,7 @@ export function HeroSection() {
         animate="animate"
         className="relative z-10 mx-auto max-w-5xl w-full"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
 
           {/* Left Column: Headline, Titles & Socials */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
@@ -89,7 +124,7 @@ export function HeroSection() {
             <motion.h1
               variants={fadeUp}
               transition={{ ...smoothTransition, delay: 0 }}
-              className="mb-4 font-bold leading-tight tracking-tight text-textPrimary text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+              className="mb-3 sm:mb-4 font-bold leading-tight tracking-tight text-textPrimary text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
             >
               Zana Rajab<br className="hidden sm:inline" /> Abdulrahman
             </motion.h1>
@@ -97,8 +132,8 @@ export function HeroSection() {
             {/* Cycling role */}
             <motion.div
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.16 }}
-              className="mb-4 w-full"
+              transition={{ ...smoothTransition, delay: 0.12 }}
+              className="mb-3 sm:mb-4 w-full"
             >
               <RoleCycler roles={personal.roles} />
             </motion.div>
@@ -106,8 +141,8 @@ export function HeroSection() {
             {/* Tagline */}
             <motion.p
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.22 }}
-              className="mb-6 max-w-lg text-sm text-textSecondary md:text-base leading-relaxed"
+              transition={{ ...smoothTransition, delay: 0.18 }}
+              className="mb-5 max-w-lg text-sm text-textSecondary md:text-base leading-relaxed"
             >
               {personal.tagline}
             </motion.p>
@@ -115,29 +150,30 @@ export function HeroSection() {
             {/* Location Pill */}
             <motion.div
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.26 }}
-              className="mb-8 inline-flex items-center gap-2 text-xs text-textMuted"
+              transition={{ ...smoothTransition, delay: 0.22 }}
+              className="mb-6 sm:mb-8 inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/80 px-3 py-1 text-xs text-textSecondary"
             >
               <MapPin className="h-3.5 w-3.5 text-accent" />
               <span>{personal.location}</span>
             </motion.div>
 
-            {/* Social Icons Dock */}
+            {/* Real, High-Contrast Branded Social Buttons */}
             <motion.div
               variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.32 }}
-              className="flex items-center gap-5"
+              transition={{ ...smoothTransition, delay: 0.28 }}
+              className="flex items-center gap-3 sm:gap-4"
             >
-              {socials.map(({ label, href, Icon, hoverColor }) => (
+              {socials.map(({ label, href, Icon, hoverBg }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className={`text-textMuted transition-colors duration-200 ${hoverColor}`}
+                  title={label}
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-neutral-300 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95 shadow-sm ${hoverBg}`}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-5 w-5 transition-colors" />
                 </a>
               ))}
             </motion.div>
@@ -146,10 +182,10 @@ export function HeroSection() {
           {/* Right Column: High-Resolution Portrait Card */}
           <motion.div
             variants={fadeUp}
-            transition={{ ...smoothTransition, delay: 0.18 }}
+            transition={{ ...smoothTransition, delay: 0.14 }}
             className="lg:col-span-5 flex justify-center order-1 lg:order-2"
           >
-            <div className="relative group w-56 sm:w-64 md:w-72 lg:w-80">
+            <div className="relative group w-52 sm:w-60 md:w-72 lg:w-80">
               {/* Ambient purple/blue glow halo */}
               <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-accent/30 via-indigo-500/20 to-transparent opacity-60 blur-xl group-hover:opacity-90 transition-opacity duration-700 pointer-events-none" />
 
@@ -160,7 +196,7 @@ export function HeroSection() {
                     src="/images/personal/zana.jpg"
                     alt="Zana Rajab Abdulrahman"
                     fill
-                    sizes="(max-width: 768px) 260px, 340px"
+                    sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 340px"
                     priority
                     className="object-cover object-top"
                   />

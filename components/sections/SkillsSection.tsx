@@ -83,6 +83,13 @@ const categoryStyles: Record<
     lineGlow: "from-blue-500 via-indigo-400 to-transparent",
     iconBg: "bg-blue-500/10 border-blue-500/25 text-blue-400",
   },
+  "Cloud, Backend & Web": {
+    icon: Server,
+    accentColor: "text-amber-400",
+    borderGlow: "group-hover:border-amber-500/40",
+    lineGlow: "from-amber-500 via-orange-400 to-transparent",
+    iconBg: "bg-amber-500/10 border-amber-500/25 text-amber-400",
+  },
   "Backend & Cloud Systems": {
     icon: Server,
     accentColor: "text-amber-400",
@@ -144,7 +151,7 @@ function getTechIcon(name: string) {
   if (lower.includes("rtl")) return Languages;
 
   // Cloud & Backend
-  if (lower.includes("firebase")) return FirebaseIcon;
+  if (lower.includes("firebase") || lower.includes("cloud function")) return FirebaseIcon;
   if (lower.includes("typescript")) return TypeScriptIcon;
   if (lower.includes("node")) return NodeIcon;
   if (lower.includes("react")) return ReactIcon;

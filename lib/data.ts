@@ -100,16 +100,17 @@ export const siteData: SiteData = {
       ],
     },
     {
-      category: "DevOps & Store Release",
+      category: "IDEs, DevOps & Store Release",
       icon: "rocket",
       items: [
         "Apple App Store Connect",
         "Google Play Console",
         "TestFlight Beta Distribution",
-        "iOS Provisioning & Code Signing",
-        "Codemagic CI/CD Automation",
+        "VS Code",
+        "Xcode (iOS Build & Signing)",
+        "Android Studio",
         "Git & GitHub Workflows",
-        "Production Incident QA",
+        "Codemagic CI/CD Automation",
       ],
     },
     {

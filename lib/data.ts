@@ -33,7 +33,7 @@ export const siteData: SiteData = {
   links: {
     github: "https://github.com/zanamzirii",
     linkedin: "https://linkedin.com/in/zanarajab",
-    appStore: "https://apps.apple.com/us/app/crown-barber/id6785096600",
+    appStore: "https://apps.apple.com/us/developer/zana-abdulrahman/id6785096602",
     whatsapp: "https://wa.me/9647502144923",
   },
 

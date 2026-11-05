@@ -26,7 +26,7 @@ export const siteData: SiteData = {
     email: "zanarajababdulrahman@gmail.com",
     phone: "+964 750 214 49 23",
     available: true,
-    availabilityNote: "Open to international remote contracts & select full-time roles",
+    availabilityNote: "Available for Remote Work",
   },
 
   // ─── Links ──────────────────────────────────────────────────────────────────

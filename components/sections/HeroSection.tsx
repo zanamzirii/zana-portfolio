@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, ExternalLink, MessageCircle, ArrowDown, Instagram, Sparkles } from "lucide-react";
+import { Github, Linkedin, ExternalLink, MessageCircle, ArrowDown, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { siteData } from "@/lib/data";
 import { fadeUp, fadeIn, staggerContainer, smoothTransition } from "@/lib/animations";
@@ -15,23 +15,23 @@ function RoleCycler({ roles }: { roles: string[] }) {
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % roles.length);
-    }, 3000);
+    }, 2800);
     return () => clearInterval(id);
   }, [roles.length]);
 
   return (
-    <div className="relative h-9 md:h-11 overflow-hidden">
+    <div className="relative h-8 md:h-10 overflow-hidden w-full flex items-center justify-center">
       <AnimatePresence mode="wait">
         <motion.span
           key={index}
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-          className="absolute inset-0 flex items-center text-xl font-light text-textSecondary md:text-2xl"
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="text-lg font-light text-textSecondary md:text-2xl"
         >
           {roles[index]}
-          <span className="ml-1 inline-block h-5 w-0.5 animate-blink bg-accent align-middle" />
+          <span className="ml-1.5 inline-block h-4 md:h-5 w-0.5 animate-blink bg-accent align-middle" />
         </motion.span>
       </AnimatePresence>
     </div>
@@ -56,7 +56,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-16 overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-16 pb-12 overflow-hidden"
     >
       {/* Subtle grid background */}
       <div
@@ -84,7 +84,7 @@ export function HeroSection() {
         <motion.div
           variants={fadeUp}
           transition={{ ...smoothTransition, delay: 0 }}
-          className="mb-12 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2"
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-surface/90 px-3.5 py-1.5 shadow-sm"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -99,8 +99,8 @@ export function HeroSection() {
         <motion.h1
           variants={fadeUp}
           transition={{ ...smoothTransition, delay: 0.08 }}
-          className="mb-6 font-bold leading-none tracking-tight text-textPrimary"
-          style={{ fontSize: "clamp(2rem, 10vw, 7rem)" }}
+          className="mb-5 font-bold leading-none tracking-tight text-textPrimary"
+          style={{ fontSize: "clamp(2.5rem, 9vw, 6.5rem)" }}
         >
           {personal.name.split(" ").map((word, i) => (
             <span key={i} className="block">
@@ -113,7 +113,7 @@ export function HeroSection() {
         <motion.div
           variants={fadeUp}
           transition={{ ...smoothTransition, delay: 0.16 }}
-          className="mb-6 flex justify-center"
+          className="mb-5 flex justify-center"
         >
           <RoleCycler roles={personal.roles} />
         </motion.div>
@@ -122,16 +122,16 @@ export function HeroSection() {
         <motion.p
           variants={fadeUp}
           transition={{ ...smoothTransition, delay: 0.22 }}
-          className="mx-auto mb-12 max-w-lg text-base text-textSecondary md:text-lg"
+          className="mx-auto mb-8 max-w-lg text-sm text-textSecondary md:text-base leading-relaxed"
         >
           {personal.tagline}
         </motion.p>
 
-        {/* CTA buttons */}
+        {/* 2 Clean & Focused Action Buttons */}
         <motion.div
           variants={fadeUp}
           transition={{ ...smoothTransition, delay: 0.28 }}
-          className="mb-12 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
+          className="mb-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
         >
           <Button
             variant="primary"
@@ -140,20 +140,10 @@ export function HeroSection() {
               document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            Explore Shipped Apps
+            View My Work →
           </Button>
           <Button
             variant="outline"
-            size="lg"
-            onClick={() => {
-              document.getElementById("creative")?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            <Sparkles className="h-4 w-4 text-accent" />
-            Creative &amp; Design Studio
-          </Button>
-          <Button
-            variant="ghost"
             size="lg"
             onClick={() => {
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -207,7 +197,7 @@ function ScrollIndicator() {
       initial="initial"
       animate={visible ? "animate" : { opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
+      className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
     >
       <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-textMuted">
         scroll

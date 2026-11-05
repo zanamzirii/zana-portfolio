@@ -21,7 +21,7 @@ export const siteData: SiteData = {
       "Lead Mobile & Full-Stack Developer",
       "UI/UX & Product Designer",
     ],
-    bio: `Computer Science graduate from Duhok, Kurdistan Region, Iraq. I bridge technical engineering, creative brand production, and high-stakes operations. From engineering enterprise Flutter applications like Bahdinan Cars and shipping Crown Barber to the Apple App Store, to directing digital agencies and leading an 11-person field operation across 817 km², I turn complex visions into production software people love.`,
+    bio: `Computer Science graduate from Duhok, Kurdistan Region, Iraq. I bridge technical engineering, creative brand production, and high-stakes operations. From founding and engineering enterprise Flutter applications like Bahdinan Cars and shipping Crown Barber to the Apple App Store, to directing digital agencies and leading an 11-person field operation across 817 km², I turn complex visions into production software people love.`,
     location: "Duhok, Kurdistan Region, Iraq",
     email: "zanarajababdulrahman@gmail.com",
     phone: "+964 750 214 49 23",
@@ -160,7 +160,7 @@ export const siteData: SiteData = {
       featured: true,
       title: "Bahdinan Cars",
       subtitle: "Enterprise Automotive Marketplace",
-      badge: "Lead Engineer · In Store Review",
+      badge: "Founder & Lead Developer",
       category: "Mobile",
       description: `Engineered an enterprise automotive marketplace serving verified dealerships and private car buyers across Iraq. Built natively across iOS, Android, and Web with real-time USD/IQD currency recalculation, dealer inventory management, and direct showroom routing via WhatsApp and phone.`,
       longDescription: `Architected from the ground up using Flutter with strict Clean Architecture principles, leveraging Riverpod, GoRouter, and Freezed for bulletproof predictability. Authored 2nd-generation Firebase Cloud Functions in TypeScript to power OTP authentication, automated vehicle listing lifecycles, and dealership tier subscriptions. Successfully passed rigorous Apple App Store Review for production release, meeting all security, compliance, and performance standards.`,
@@ -424,11 +424,11 @@ export const siteData: SiteData = {
   // ─── Experience ─────────────────────────────────────────────────────────────
   experience: [
     {
-      title: "Lead Mobile & Full-Stack Developer",
+      title: "Founder & Lead Developer",
       company: "Bahdinan Cars",
       period: "October 2026 — Present",
       location: "Duhok Governorate, Iraq · Remote",
-      type: "full-time",
+      type: "founder",
       description: [
         "Designed and shipped an enterprise automotive marketplace serving verified dealerships and auto buyers across Iraq on iOS, Android, and Web.",
         "Engineered a scalable Flutter client using Riverpod, GoRouter, and Freezed adhering to strict Clean Architecture principles.",

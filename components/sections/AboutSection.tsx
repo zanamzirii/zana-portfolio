@@ -16,12 +16,16 @@ import {
 
 const personalPhotos = [
   {
-    src: "/images/personal/zana.jpg",
-    alt: "Zana Rajab Abdulrahman — Executive Portrait",
-  },
-  {
     src: "/images/personal/zana-suit-full-body.jpg",
     alt: "Zana Rajab Abdulrahman — Full-Body Suit Presence",
+  },
+  {
+    src: "/images/personal/zana-gradation.jpeg",
+    alt: "Zana Rajab Abdulrahman — University of Duhok Graduation",
+  },
+  {
+    src: "/images/personal/zana-with-kurdish-flags.jpg",
+    alt: "Zana Rajab Abdulrahman — University Library Internship",
   },
 ];
 

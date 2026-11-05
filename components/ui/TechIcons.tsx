@@ -6,7 +6,7 @@ interface IconProps {
 
 // ─── Authentic Technology & Tool Vectors ─────────────────────────────────────
 
-export function FlutterIcon({ className = "h-4 w-4" }: IconProps) {
+export function FlutterIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M14.314 0L2.3 12 6 15.7 21.684 0z" fill="#42A5F5" />
@@ -16,7 +16,7 @@ export function FlutterIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function DartIcon({ className = "h-4 w-4" }: IconProps) {
+export function DartIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M4.125 0L0 4.125v15.75L4.125 24H19.875L24 19.875V4.125L19.875 0H4.125z" fill="#0175C2" />
@@ -25,7 +25,15 @@ export function DartIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function FirebaseIcon({ className = "h-4 w-4" }: IconProps) {
+export function SwiftIcon({ className = "h-5 w-5" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="#F05138">
+      <path d="M7.508 0c-.287 0-.573 0-.86.002-.241.002-.483.003-.724.01-.132.003-.263.009-.395.015A9.154 9.154 0 0 0 4.348.15 5.492 5.492 0 0 0 2.85.645 5.04 5.04 0 0 0 .645 2.848c-.245.48-.4.972-.495 1.5-.093.52-.122 1.05-.136 1.576a35.2 35.2 0 0 0-.012.724C0 6.935 0 7.221 0 7.508v8.984c0 .287 0 .575.002.862.002.24.005.481.012.722.014.526.043 1.057.136 1.576.095.528.25 1.02.495 1.5a5.03 5.03 0 0 0 2.205 2.203c.48.244.97.4 1.498.495.52.093 1.05.124 1.576.138.241.007.483.009.724.01.287.002.573.002.86.002h8.984c.287 0 .573 0 .86-.002.241-.001.483-.003.724-.01a10.523 10.523 0 0 0 1.578-.138 5.322 5.322 0 0 0 1.498-.495 5.035 5.035 0 0 0 2.203-2.203c.245-.48.4-.972.495-1.5.093-.52.124-1.05.138-1.576.007-.241.009-.481.01-.722.002-.287.002-.575.002-.862V7.508c0-.287 0-.573-.002-.86a33.662 33.662 0 0 0-.01-.724 10.5 10.5 0 0 0-.138-1.576 5.328 5.328 0 0 0-.495-1.5A5.039 5.039 0 0 0 21.152.645 5.32 5.32 0 0 0 19.654.15a10.493 10.493 0 0 0-1.578-.138 34.98 34.98 0 0 0-.722-.01C17.067 0 16.779 0 16.492 0H7.508zm6.035 3.41c4.114 2.47 6.545 7.162 5.549 11.131-.024.093-.05.181-.076.272l.002.001c2.062 2.538 1.5 5.258 1.236 4.745-1.072-2.086-3.066-1.568-4.088-1.043a6.803 6.803 0 0 1-.281.158l-.02.012-.002.002c-2.115 1.123-4.957 1.205-7.812-.022a12.568 12.568 0 0 1-5.64-4.838c.649.48 1.35.902 2.097 1.252 3.019 1.414 6.051 1.311 8.197-.002C9.651 12.73 7.101 9.67 5.146 7.191a10.628 10.628 0 0 1-1.005-1.384c2.34 2.142 6.038 4.83 7.365 5.576C8.69 8.408 6.208 4.743 6.324 4.86c4.436 4.47 8.528 6.996 8.528 6.996.154.085.27.154.36.213.085-.215.16-.437.224-.668.708-2.588-.09-5.548-1.893-7.992z" />
+    </svg>
+  );
+}
+
+export function FirebaseIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M3.89 15.672L6.255.461a.542.542 0 011.015-.174l3.543 6.634-6.923 8.751z" fill="#FFC107" />
@@ -35,7 +43,7 @@ export function FirebaseIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function TypeScriptIcon({ className = "h-4 w-4" }: IconProps) {
+export function TypeScriptIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <rect width="24" height="24" rx="4" fill="#3178C6" />
@@ -44,7 +52,7 @@ export function TypeScriptIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function NodeIcon({ className = "h-4 w-4" }: IconProps) {
+export function NodeIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M12 1L2 6.8v11.4L12 24l10-5.8V6.8L12 1zm0 2.3l7.9 4.6v9.2L12 21.7 4.1 17.1V7.9L12 3.3z" fill="#5FA04E" />
@@ -52,7 +60,7 @@ export function NodeIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function ReactIcon({ className = "h-4 w-4" }: IconProps) {
+export function ReactIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <circle cx="12" cy="12" r="2" fill="#61DAFB" />
@@ -65,7 +73,7 @@ export function ReactIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function NextjsIcon({ className = "h-4 w-4" }: IconProps) {
+export function NextjsIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <circle cx="12" cy="12" r="11" fill="#000" stroke="#fff" strokeWidth="1" />
@@ -74,7 +82,7 @@ export function NextjsIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function FigmaIcon({ className = "h-4 w-4" }: IconProps) {
+export function FigmaIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M8 24c2.209 0 4-1.791 4-4v-4H8c-2.209 0-4 1.791-4 4s1.791 4 4 4z" fill="#0ACF83" />
@@ -86,43 +94,85 @@ export function FigmaIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function PremiereIcon({ className = "h-4 w-4" }: IconProps) {
+// ─── Official Adobe Creative Cloud Suite Vectors (High Contrast) ─────────────
+
+export function PremiereIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <rect width="24" height="24" rx="4" fill="#00005B" />
-      <path d="M6 6h4.5c2 0 3.5 1.2 3.5 3s-1.5 3-3.5 3H8v6H6V6zm2 4.5h2.5c.8 0 1.5-.5 1.5-1.5s-.7-1.5-1.5-1.5H8v3zM15 11h2v1.5c.5-1 1.5-1.5 2.5-1.5v2.2c-.3-.1-.7-.2-1-.2-1.2 0-2 1-2 2.5V18h-2v-7z" fill="#9999FF" />
+      <rect width="24" height="24" rx="5" fill="#000037" stroke="#9999FF" strokeWidth="1.8" />
+      <text
+        x="12"
+        y="16.5"
+        fill="#9999FF"
+        fontSize="11"
+        fontWeight="900"
+        fontFamily="system-ui, -apple-system, 'SF Pro Display', sans-serif"
+        textAnchor="middle"
+      >
+        Pr
+      </text>
     </svg>
   );
 }
 
-export function AfterEffectsIcon({ className = "h-4 w-4" }: IconProps) {
+export function AfterEffectsIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <rect width="24" height="24" rx="4" fill="#00005B" />
-      <path d="M5.5 18l3.8-12h2.2l3.8 12H13l-.8-2.8H8.8L8 18H5.5zm3.8-4.6h2.4L10.5 9l-1.2 4.4zM15.5 13.5c0-1.8 1.4-3.2 3.2-3.2 1.8 0 3.1 1.3 3.1 3.2v.6h-4.5c.1.9.8 1.6 1.8 1.6.7 0 1.2-.3 1.5-.7l1.3.8c-.6.9-1.6 1.4-2.8 1.4-2 0-3.6-1.5-3.6-3.7zm4.5-.8c-.1-.8-.7-1.4-1.5-1.4-.8 0-1.4.6-1.5 1.4h3z" fill="#D291FF" />
+      <rect width="24" height="24" rx="5" fill="#000037" stroke="#D291FF" strokeWidth="1.8" />
+      <text
+        x="12"
+        y="16.5"
+        fill="#D291FF"
+        fontSize="11"
+        fontWeight="900"
+        fontFamily="system-ui, -apple-system, 'SF Pro Display', sans-serif"
+        textAnchor="middle"
+      >
+        Ae
+      </text>
     </svg>
   );
 }
 
-export function IllustratorIcon({ className = "h-4 w-4" }: IconProps) {
+export function IllustratorIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <rect width="24" height="24" rx="4" fill="#330000" />
-      <path d="M5.5 18l3.8-12h2.2l3.8 12H13l-.8-2.8H8.8L8 18H5.5zm3.8-4.6h2.4L10.5 9l-1.2 4.4zM16.5 9h2v9h-2V9zm0-3h2v2h-2V6z" fill="#FF9A00" />
+      <rect width="24" height="24" rx="5" fill="#260000" stroke="#FF9A00" strokeWidth="1.8" />
+      <text
+        x="12"
+        y="16.5"
+        fill="#FF9A00"
+        fontSize="11"
+        fontWeight="900"
+        fontFamily="system-ui, -apple-system, 'SF Pro Display', sans-serif"
+        textAnchor="middle"
+      >
+        Ai
+      </text>
     </svg>
   );
 }
 
-export function PhotoshopIcon({ className = "h-4 w-4" }: IconProps) {
+export function PhotoshopIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <rect width="24" height="24" rx="4" fill="#001E36" />
-      <path d="M5.5 6h4.5c2.2 0 3.5 1.3 3.5 3.3s-1.3 3.3-3.5 3.3H7.5V18h-2V6zm2 5h2.5c1 0 1.5-.6 1.5-1.7s-.5-1.7-1.5-1.7H7.5V11zm9 3c0-1.8 1.3-2.5 2.5-2.8 1.2-.3 1.5-.6 1.5-1.1 0-.6-.5-1-1.3-1-.9 0-1.5.5-1.7 1.2l-1.6-.7c.4-1.3 1.7-2.1 3.3-2.1 2 0 3.3 1.1 3.3 2.7 0 1.6-1.2 2.3-2.6 2.7-1.1.3-1.4.6-1.4 1.1 0 .6.6 1.1 1.5 1.1 1 0 1.6-.5 1.9-1.2l1.6.7c-.5 1.4-1.8 2.2-3.5 2.2-2.1 0-3.5-1.2-3.5-2.9z" fill="#31A8FF" />
+      <rect width="24" height="24" rx="5" fill="#00182E" stroke="#31A8FF" strokeWidth="1.8" />
+      <text
+        x="12"
+        y="16.5"
+        fill="#31A8FF"
+        fontSize="11"
+        fontWeight="900"
+        fontFamily="system-ui, -apple-system, 'SF Pro Display', sans-serif"
+        textAnchor="middle"
+      >
+        Ps
+      </text>
     </svg>
   );
 }
 
-export function GitIcon({ className = "h-4 w-4" }: IconProps) {
+export function GitIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M23.546 10.93L13.067.452a1.505 1.505 0 00-2.128 0L8.881 2.51l3.003 3.003a1.777 1.777 0 012.185 2.185l3.228 3.229a1.773 1.773 0 011.83 2.784 1.775 1.775 0 01-2.502-2.502l-3.053-3.053v6.314a1.777 1.777 0 011.08 1.636 1.777 1.777 0 01-3.553 0c0-.65.35-1.218.868-1.531V7.935a1.77 1.77 0 01-.868-.277L8.033 10.69a1.775 1.775 0 01-2.484 2.484 1.775 1.775 0 012.484-2.484l2.97-2.97-2.98-2.98L.452 12.29a1.505 1.505 0 000 2.128l10.479 10.479a1.505 1.505 0 002.128 0l10.479-10.479a1.505 1.505 0 00.008-2.488z" fill="#F05032" />
@@ -130,7 +180,7 @@ export function GitIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function AndroidIcon({ className = "h-4 w-4" }: IconProps) {
+export function AndroidIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4128 13.8533 8.125 12 8.125s-3.5902.2878-5.1368.8247L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396" fill="#3DDC84" />
@@ -138,7 +188,7 @@ export function AndroidIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function GooglePlayIcon({ className = "h-4 w-4" }: IconProps) {
+export function GooglePlayIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M3.609 1.814L13.792 12 3.61 22.186a1.99 1.99 0 01-.61-1.424V3.238c0-.555.228-1.057.609-1.424z" fill="#00E676" />
@@ -149,7 +199,7 @@ export function GooglePlayIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function TestFlightIcon({ className = "h-4 w-4" }: IconProps) {
+export function TestFlightIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <circle cx="12" cy="12" r="11" fill="#0071E3" />
@@ -158,7 +208,7 @@ export function TestFlightIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function VSCodeIcon({ className = "h-4 w-4" }: IconProps) {
+export function VSCodeIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path d="M17.7 1.2L6.3 10.5 2.1 7.3.7 8.3v7.4l1.4 1 4.2-3.2 11.4 9.3 5.6-2.7V3.9l-5.6-2.7zm-11.4 12L2.7 16V8l3.6 2.8v2.4zm15 6l-3.9 1.8-6.1-5 6.1-5 3.9 1.8v6.4z" fill="#007ACC" />
@@ -166,7 +216,7 @@ export function VSCodeIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function PostmanIcon({ className = "h-4 w-4" }: IconProps) {
+export function PostmanIcon({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <circle cx="12" cy="12" r="11" fill="#FF6C37" />
@@ -175,30 +225,29 @@ export function PostmanIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function CapCutIcon({ className = "h-4 w-4" }: IconProps) {
+export function CapCutIcon({ className = "h-5 w-5" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <rect width="24" height="24" rx="5" fill="#111" stroke="#fff" strokeWidth="1" />
-      <path d="M6 8l6 4-6 4V8zm12 0l-6 4 6 4V8z" fill="#fff" />
+    <svg viewBox="0 0 25 24" className={className} aria-hidden="true" fill="#FFFFFF">
+      <path
+        fillRule="evenodd"
+        d="M24.189 6.442V2.671l-4.535 2.383V4.91c.002-1.505-1.078-2.411-2.638-2.411H2.64C.993 2.5 0 3.407 0 4.91V8.72L6.354 12 0 15.316v3.8C0 20.595 1 21.5 2.64 21.5h14.373c1.56 0 2.639-.907 2.639-2.382v-.197l4.536 2.409v-3.828L13.64 12 24.19 6.443zM9.982 13.873l7.797 4.083H2.157l7.825-4.083zm7.741-7.828l-7.742 4.057-7.825-4.057h15.567z"
+      />
     </svg>
   );
 }
 
-export function XcodeIcon({ className = "h-4 w-4" }: IconProps) {
+export function XcodeIcon({ className = "h-5 w-5" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <rect width="24" height="24" rx="5" fill="#147EFB" />
-      <path d="M16.5 6.5l1 1-6 6-1-1 6-6zm-4 4l1 1-6 6-1-1 6-6zm-4 4l1 1-2 2-1-1 2-2z" fill="#fff" />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="#147EFB">
+      <path d="M19.06 5.3327c.4517-.1936.7744-.2581 1.097-.1936.5163.1291.7744.5163.968.7098.1936.3872.9034.7744 1.2261.8389.2581.0645.7098-.6453 1.0325-1.2906.3227-.5808.5163-1.3552.4517-1.5488-.0645-.1936-.968-.5808-1.1616-.5808-.1291 0-.3872.1291-.8389.0645-.4517-.0645-.9034-.5808-1.1616-.968-.4517-.6453-1.097-1.0325-1.6778-1.3552-.6453-.3227-1.3552-.5163-2.065-.6453-1.0325-.2581-2.065-.4517-3.0975-.3227-.5808.0645-1.2906.1291-1.8069.3227-.0645 0-.1936.1936-.0645.1936s.5808.0645.5808.0645-.5807.1292-.5807.2583c0 .1291.0645.1291.1291.1291.0645 0 1.4842-.0645 2.065 0 .6453.1291 1.3552.4517 1.8069 1.2261.7744 1.4197.4517 2.7749.2581 3.2266-.968 2.1295-8.6472 15.2294-9.0344 16.1328-.3873.9034-.5163 1.4842.5807 2.065s1.6778.3227 2.0005-.0645c.3872-.5163 7.0339-17.1654 9.2925-18.2624zm-3.6138 8.7117h1.5488c1.0325 0 1.2261.5163 1.2261.7098.0645.5163-.1936 1.1616-1.2261 1.1616h-.968l.7744 1.2906c.4517.7744.2581 1.1616 0 1.4197-.3872.3872-1.2261.3872-1.6778-.4517l-.9034-1.5488c-.6453 1.4197-1.2906 2.9684-2.065 4.7753h4.0009c1.9359 0 3.5492-1.6133 3.5492-3.5492V6.5588c-.0645-.1291-.1936-.0645-.2581 0-.3872.4517-1.4842 2.0004-4.001 7.4856zm-9.8087 8.0019h-.3227c-2.3231 0-4.1945-1.8714-4.1945-4.1945V7.0105c0-2.3231 1.8714-4.1945 4.1945-4.1945h9.3571c-.1936-.1936-.968-.5163-1.7423-.4517-.3227 0-.968.1291-1.3552-.1291-.3872-.3227-.3227-.5163-.9034-.5163H4.9277c-2.6458 0-4.7753 2.1295-4.7753 4.7753v11.7447c0 2.6458 2.1295 4.7753 4.4527 4.7108.6452 0 .8388-.5162 1.0324-.9034zM20.4152 6.9459v10.9058c0 2.3231-1.8714 4.1945-4.1945 4.1945H11.897s-.3872 1.0325.8389 1.0325h3.8719c2.6458 0 4.7753-2.1295 4.7753-4.7753V8.8173c.0646-.9034-.7098-1.4842-.9679-1.8714zm-18.5851.0646v10.8413c0 1.9359 1.6133 3.5492 3.5492 3.5492h.5808c0-.0645.7744-1.4197 2.4522-4.2591.1936-.3872.4517-.7744.7098-1.2261H4.4114c-.5808 0-.9034-.3872-.968-.7098-.1291-.5163.1936-1.1616.9034-1.1616h2.3877l3.033-5.2916s-.7098-1.2906-.9034-1.6133c-.2582-.4517-.1291-.9034.129-1.1615.3872-.3872 1.0325-.5808 1.6778.4517l.2581.3872.2581-.3872c.5808-.8389.968-.7744 1.2906-.7098.5163.1291.8389.7098.3872 1.6133L8.864 14.0444h1.3552c.4517-.7744.9034-1.5488 1.3552-2.3877-.0645-.3227-.1291-.7098-.0645-1.0325.0645-.5163.3227-.968.6453-1.3552l.3872.6453c1.2261-2.1295 2.1295-3.9364 2.3877-4.6463.1291-.3872.3227-1.1616.1291-1.8069H5.3794c-2.0005.0001-3.5493 1.6134-3.5493 3.5494zM4.605 17.7872c0-.0645.7744-1.4197.7744-1.4197 1.2261-.3227 1.8069.4517 1.8714.5163 0 0-.8389 1.4842-1.097 1.7423s-.5808.3227-.9034.2581c-.5164-.129-.839-.6453-.6454-1.097z" />
     </svg>
   );
 }
 
-export function AndroidStudioIcon({ className = "h-4 w-4" }: IconProps) {
+export function AndroidStudioIcon({ className = "h-5 w-5" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <circle cx="12" cy="12" r="11" fill="#3DDC84" />
-      <circle cx="12" cy="12" r="7" fill="#2C3437" />
-      <path d="M12 7l1.5 3h3l-2.5 2 1 3-3-2-3 2 1-3-2.5-2h3L12 7z" fill="#3DDC84" />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="#3DDC84">
+      <path d="M19.2693 10.3368c-.3321 0-.6026.2705-.6026.6031v9.8324h-1.7379l-3.3355-6.9396c.476-.5387.6797-1.286.5243-2.0009a2.2862 2.2862 0 0 0-1.2893-1.6248v-.8124c.0121-.2871-.1426-.5787-.4043-.7407-.1391-.0825-.2884-.1234-.4402-.1234a.8478.8478 0 0 0-.4318.1182c-.2701.1671-.4248.4587-.4123.7662l-.0003.721c-1.0149.3668-1.6619 1.4153-1.4867 2.5197a2.282 2.282 0 0 0 .5916 1.2103l-3.2096 6.9064H4.0928c-1.0949-.007-1.9797-.8948-1.9832-1.9896V5.016c-.0055 1.1024.8836 2.0006 1.9859 2.0062a2.024 2.024 0 0 0 .1326-.0037h14.7453s2.5343-.2189 2.8619 1.5392c-.2491.0287-.4449.2321-.4449.4889 0 .7115-.5791 1.2901-1.3028 1.2901h-.8183zM17.222 22.5366c.2347.4837.0329 1.066-.4507 1.3007-.1296.0629-.2666.0895-.4018.0927a.9738.9738 0 0 1-.3194-.0455c-.024-.0078-.046-.0209-.0694-.0305a.9701.9701 0 0 1-.2277-.1321c-.0247-.0192-.0495-.038-.0724-.0598-.0825-.0783-.1574-.1672-.21-.2757l-1.2554-2.6143-1.5585-3.2452a.7725.7725 0 0 0-.6995-.4443h-.0024a.792.792 0 0 0-.7083.4443l-1.5109 3.2452-1.2321 2.6464a.9722.9722 0 0 1-.7985.5795c-.0626.0053-.1238-.0024-.185-.0087-.0344-.0036-.069-.0053-.1025-.0124-.0489-.0103-.0954-.0278-.142-.0452-.0301-.0113-.0613-.0197-.0901-.0339-.0496-.0244-.0948-.0565-.1397-.0889-.0217-.0156-.0457-.0275-.0662-.045a.9862.9862 0 0 1-.1695-.1844.9788.9788 0 0 1-.0708-.9852l.8469-1.8223 3.2676-7.0314a1.7964 1.7964 0 0 1-.7072-1.1637c-.1555-.9799.5129-1.9003 1.4928-2.0559V9.3946a.3542.3542 0 0 1 .1674-.3155.3468.3468 0 0 1 .3541 0 .354.354 0 0 1 .1674.3155v1.159l.0129.0064a1.8028 1.8028 0 0 1 1.2878 1.378 1.7835 1.7835 0 0 1-.6439 1.7836l3.3889 7.0507.8481 1.7643zM12.9841 12.306c.0042-.6081-.4854-1.1044-1.0935-1.1085a1.1204 1.1204 0 0 0-.7856.3219 1.101 1.101 0 0 0-.323.7716c-.0042.6081.4854 1.1044 1.0935 1.1085h.0077c.6046 0 1.0967-.488 1.1009-1.0935zm-1.027 5.2768c-.1119.0005-.2121.0632-.2571.1553l-1.4127 3.0342h3.3733l-1.4564-3.0328a.274.274 0 0 0-.2471-.1567zm8.1432-6.7459l-.0129-.0001h-.8177a.103.103 0 0 0-.103.103v12.9103a.103.103 0 0 0 .0966.103h.8435c.9861-.0035 1.7836-.804 1.7836-1.79V9.0468c0 .9887-.8014 1.7901-1.7901 1.7901zM2.6098 5.0161v.019c.0039.816.6719 1.483 1.4874 1.4869a12.061 12.061 0 0 1 .1309-.0034h1.1286c.1972-1.315.7607-2.525 1.638-3.4859H4.0993c-.9266.0031-1.6971.6401-1.9191 1.4975.2417.0355.4296.235.4296.4859zm6.3381-2.8977L7.9112.3284a.219.219 0 0 1 0-.2189A.2384.2384 0 0 1 8.098 0a.219.219 0 0 1 .1867.1094l1.0496 1.8158a6.4907 6.4907 0 0 1 5.3186 0L15.696.1094a.2189.2189 0 0 1 .3734.2189l-1.0302 1.79c1.6671.9125 2.7974 2.5439 3.0975 4.4018l-12.286-.0014c.3004-1.8572 1.4305-3.488 3.0972-4.4003zm5.3774 2.6202a.515.515 0 0 0 .5271.5028.515.515 0 0 0 .5151-.5151.5213.5213 0 0 0-.8885-.367.5151.5151 0 0 0-.1537.3793zm-5.7178-.0067a.5151.5151 0 0 0 .5207.5095.5086.5086 0 0 0 .367-.1481.5215.5215 0 1 0-.734-.7341.515.515 0 0 0-.1537.3727z" />
     </svg>
   );
 }

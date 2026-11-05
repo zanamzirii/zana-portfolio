@@ -43,6 +43,7 @@ import { AppleIcon } from "@/components/ui/BrandIcons";
 import {
   FlutterIcon,
   DartIcon,
+  SwiftIcon,
   FirebaseIcon,
   TypeScriptIcon,
   NodeIcon,
@@ -149,8 +150,10 @@ function getTechIcon(name: string) {
   // Mobile
   if (lower.includes("flutter")) return FlutterIcon;
   if (lower.includes("dart")) return DartIcon;
+  if (lower.includes("swift")) return SwiftIcon;
   if (lower.includes("apple") || lower.includes("ios") || lower.includes("app store"))
     return AppleIcon;
+  if (lower.includes("android studio")) return AndroidStudioIcon;
   if (lower.includes("android")) return AndroidIcon;
   if (lower.includes("google play")) return GooglePlayIcon;
   if (lower.includes("riverpod")) return Layers;
@@ -169,7 +172,7 @@ function getTechIcon(name: string) {
   if (lower.includes("api")) return PostmanIcon;
   if (lower.includes("otp") || lower.includes("auth")) return KeyRound;
 
-  // DevOps
+  // IDEs & Store Release
   if (lower.includes("testflight")) return TestFlightIcon;
   if (lower.includes("git")) return GitIcon;
   if (lower.includes("codemagic") || lower.includes("ci/cd")) return Workflow;
@@ -184,8 +187,9 @@ function getTechIcon(name: string) {
   if (lower.includes("photoshop")) return PhotoshopIcon;
   if (lower.includes("wirefram")) return Layout;
   if (lower.includes("prototype")) return Globe;
+  if (lower.includes("design system") || lower.includes("systems")) return Boxes;
   if (lower.includes("brand") || lower.includes("style")) return Sparkles;
-  if (lower.includes("visual kit") || lower.includes("canva")) return Palette;
+  if (lower.includes("visual") || lower.includes("canva")) return Palette;
 
   // Video
   if (lower.includes("premiere")) return PremiereIcon;
@@ -197,6 +201,7 @@ function getTechIcon(name: string) {
   if (lower.includes("voiceover") || lower.includes("audio")) return Mic;
 
   // QA & Operations
+  if (lower.includes("functional") || lower.includes("qa")) return ShieldCheck;
   if (lower.includes("regression") || lower.includes("security")) return ShieldCheck;
   if (lower.includes("matrix") || lower.includes("device")) return Smartphone;
   if (lower.includes("uat") || lower.includes("acceptance")) return CheckCircle2;
@@ -303,16 +308,16 @@ export function SkillsSection() {
                   </div>
 
                   {/* Skill Badges with Authentic Brand Icons */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 sm:gap-2.5">
                     {category.items.map((item) => {
                       const IconComponent = getTechIcon(item);
 
                       return (
                         <div
                           key={item}
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.035] px-3 py-1.5 text-xs font-medium text-neutral-200 shadow-sm transition-all duration-200 hover:scale-[1.03] hover:border-white/20 hover:bg-white/[0.08] hover:text-white cursor-default"
+                          className="inline-flex items-center gap-2.5 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3.5 py-2 text-xs sm:text-[13px] font-medium text-neutral-200 shadow-sm transition-all duration-200 hover:scale-[1.03] hover:border-white/20 hover:bg-white/[0.08] hover:text-white cursor-default"
                         >
-                          <IconComponent className="h-4 w-4 flex-shrink-0" />
+                          <IconComponent className="h-5 w-5 flex-shrink-0" />
                           <span>{item}</span>
                         </div>
                       );

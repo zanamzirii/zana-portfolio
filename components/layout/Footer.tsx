@@ -1,5 +1,6 @@
-import { Github, Linkedin, ExternalLink, MessageCircle, Instagram } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 import { siteData } from "@/lib/data";
+import { AppleIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 
 const socialLinks = [
   {
@@ -18,14 +19,14 @@ const socialLinks = [
     Icon:  Instagram,
   },
   {
-    label: "App Store",
+    label: "Apple Developer",
     href:  siteData.links.appStore,
-    Icon:  ExternalLink,
+    Icon:  AppleIcon,
   },
   {
     label: "WhatsApp",
     href:  siteData.links.whatsapp,
-    Icon:  MessageCircle,
+    Icon:  WhatsAppIcon,
   },
 ];
 

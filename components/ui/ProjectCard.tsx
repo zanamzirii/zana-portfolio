@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
-  ExternalLink,
   Github,
   CheckCircle2,
   Globe,
@@ -20,6 +19,7 @@ import { ImageLightbox } from "./ImageLightbox";
 import { VideoPlayerModal } from "./VideoPlayerModal";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/types";
+import { AppleIcon } from "@/components/ui/BrandIcons";
 
 // ─── Compact / Academic Project Card ─────────────────────────────────────────
 
@@ -101,7 +101,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           )}
           {project.links.appStore && project.links.appStore !== "#" && (
             <Button variant="ghost" size="sm" href={project.links.appStore} external>
-              <ExternalLink className="h-3.5 w-3.5" />
+              <AppleIcon className="h-3.5 w-3.5" />
               App Store
             </Button>
           )}
@@ -233,7 +233,7 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
                   href={project.links.appStore}
                   external
                 >
-                  <ExternalLink className="h-4 w-4" />
+                  <AppleIcon className="h-4 w-4" />
                   App Store
                 </Button>
               )}

@@ -230,7 +230,7 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
           )}
         >
           {/* Text / Specification Column */}
-          <div className="flex flex-col justify-between p-6 sm:p-8 lg:w-1/2 lg:p-10 xl:p-12">
+          <div className="flex flex-col justify-between p-5 sm:p-7 lg:w-1/2 lg:p-8 xl:p-10">
             <div className="space-y-6">
               {/* Badge Row */}
               <div className="flex flex-wrap items-center gap-2">
@@ -435,7 +435,7 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
           </div>
 
           {/* Device Showcase Column */}
-          <div className="relative flex flex-col justify-between bg-gradient-to-b from-[#16161b] to-[#0c0c0f] lg:w-1/2 p-6 sm:p-8 lg:p-10 border-t lg:border-t-0 lg:border-l border-white/[0.08]">
+          <div className="relative flex flex-col justify-between bg-gradient-to-b from-[#16161b] to-[#0c0c0f] lg:w-1/2 p-5 sm:p-7 lg:p-8 border-t lg:border-t-0 lg:border-l border-white/[0.08]">
             {/* Ambient Background Glow */}
             <div
               className="pointer-events-none absolute inset-0 opacity-25"

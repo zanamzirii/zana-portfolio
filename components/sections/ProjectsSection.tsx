@@ -13,7 +13,6 @@ import {
   Compass,
   ArrowDownRight,
   Coffee,
-  Laptop,
 } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AppleIcon } from "@/components/ui/BrandIcons";
@@ -29,7 +28,7 @@ import { cn } from "@/lib/utils";
 export function ProjectsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(1);
-  const totalSlides = 4;
+  const totalSlides = 3;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -109,7 +108,6 @@ export function ProjectsSection() {
   const crownBarber = siteData.projects[0];
   const bahdinanCars = siteData.projects[1];
   const timeCafe = siteData.projects[2];
-  const academicCapstone = siteData.projects[3];
 
   return (
     <section id="projects" className="relative bg-[#050505] text-textPrimary">
@@ -173,8 +171,8 @@ export function ProjectsSection() {
         </motion.div>
       </div>
 
-      {/* ── Horizontal Pin-Scroll Track (4 Flagship Projects) ─────────────── */}
-      <div ref={containerRef} className="relative h-[380vh] lg:h-[400vh]">
+      {/* ── Horizontal Pin-Scroll Track (3 Real Production Platforms) ──────── */}
+      <div ref={containerRef} className="relative h-[300vh] lg:h-[320vh]">
         <div
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -189,9 +187,7 @@ export function ProjectsSection() {
                   ? "radial-gradient(circle at 70% 50%, rgba(245,158,11,0.25) 0%, transparent 60%)"
                   : activeSlide === 2
                   ? "radial-gradient(circle at 70% 50%, rgba(59,130,246,0.25) 0%, transparent 60%)"
-                  : activeSlide === 3
-                  ? "radial-gradient(circle at 70% 50%, rgba(217,119,6,0.25) 0%, transparent 60%)"
-                  : "radial-gradient(circle at 70% 50%, rgba(139,92,246,0.25) 0%, transparent 60%)",
+                  : "radial-gradient(circle at 70% 50%, rgba(217,119,6,0.25) 0%, transparent 60%)",
             }}
             aria-hidden="true"
           />
@@ -199,7 +195,7 @@ export function ProjectsSection() {
           {/* Sliding Track */}
           <motion.div
             style={{ x }}
-            className="flex h-full w-[400vw] flex-shrink-0"
+            className="flex h-full w-[300vw] flex-shrink-0"
           >
             {/* ═══════════════════════════════════════════════════════════════
                 PROJECT 01: CROWN BARBER STUDIO (GOLD / AMBER)
@@ -226,25 +222,25 @@ export function ProjectsSection() {
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">4.9 ★ Rating</strong> on Apple App Store with verified users
+                      <strong className="text-white">Solo-Engineered Startup:</strong> Evaluated as &quot;Excellent&quot; graduation project, scaled to production
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Multi-Branch Architecture:</strong> Real-time slot locking &amp; dynamic waitlists
+                      <strong className="text-white">4.9 ★ Rating:</strong> Live on Apple App Store, Google Play Store, and Web
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Bilingual Localization:</strong> Complete Kurdish &amp; English UX
+                      <strong className="text-white">Multi-Role RBAC:</strong> Customers, barbers, branch owners, and system administrators
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Flutter &amp; Firebase:</strong> Realtime Database, Cloud Functions &amp; FCM alerts
+                      <strong className="text-white">Rigorous QA Cycle:</strong> Functional, regression, UAT, cross-device, and API testing
                     </span>
                   </div>
                 </div>
@@ -346,25 +342,25 @@ export function ProjectsSection() {
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Clean Architecture:</strong> Domain-driven separation with Riverpod
+                      <strong className="text-white">Clean Architecture:</strong> Riverpod, GoRouter, and Freezed for bulletproof predictability
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Cloud Functions:</strong> Automated multi-resolution image optimization
+                      <strong className="text-white">Cloud Functions v2:</strong> Automated vehicle lifecycle, OTP auth &amp; subscription tiers
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Interactive Showroom:</strong> Direct WhatsApp dealer inquiries &amp; specs comparator
+                      <strong className="text-white">App Store Reviewed:</strong> Successfully passed Apple App Store Review for production release
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Retina Multi-Screen:</strong> Engineered for iPhone &amp; iPad mini/Pro
+                      <strong className="text-white">Live Dealership Routing:</strong> USD/IQD currency engine &amp; direct WhatsApp inquiry
                     </span>
                   </div>
                 </div>
@@ -430,7 +426,7 @@ export function ProjectsSection() {
             </div>
 
             {/* ═══════════════════════════════════════════════════════════════
-                PROJECT 03: TIME CAFE PLATFORM (WARM BRONZE / ORANGE)
+                PROJECT 03: TIME CAFE ZAXO (WARM BRONZE / ORANGE)
                ═══════════════════════════════════════════════════════════════ */}
             <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-hidden bg-gradient-to-br from-[#170e04] via-[#0b0601] to-[#050300]">
               <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
@@ -442,7 +438,7 @@ export function ProjectsSection() {
                 <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
                   Time Cafe{" "}
                   <span className="bg-gradient-to-r from-orange-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                    Platform
+                    Zaxo
                   </span>
                 </h2>
 
@@ -454,30 +450,40 @@ export function ProjectsSection() {
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-orange-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">QR Digital Menu:</strong> Fast mobile-optimized catalog for guest tables
+                      <strong className="text-white">End-to-End Client Delivery:</strong> Built software infrastructure and custom physical QR stands
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-orange-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Kitchen Tablet Interface:</strong> Live order notifications for baristas
+                      <strong className="text-white">QR Digital Menu Web App:</strong> Fast mobile-optimized digital ordering for guests
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-orange-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Admin Management:</strong> Real-time pricing &amp; category item updates
+                      <strong className="text-white">Real-Time Admin Dashboard:</strong> Secure menu pricing, availability &amp; kitchen orders
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <CheckCircle2 className="h-4 w-4 text-orange-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Dual Language:</strong> Kurdish &amp; English with dark cafe aesthetic
+                      <strong className="text-white">Live in Duhok:</strong> Successfully deployed and operating in Zaxo
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                  <a
+                    href="https://timecafezaxo.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-black transition-all duration-200 hover:bg-orange-400 hover:scale-[1.02] shadow-lg shadow-orange-500/25"
+                  >
+                    <span>View Live Menu</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+
                   <a
                     href="#creative"
                     onClick={(e) => {
@@ -492,17 +498,9 @@ export function ProjectsSection() {
                         );
                       }
                     }}
-                    className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-black transition-all duration-200 hover:bg-orange-400 hover:scale-[1.02] shadow-lg shadow-orange-500/25"
-                  >
-                    <span>View Menu Showcase</span>
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-
-                  <a
-                    href="#creative"
                     className="inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-orange-200 hover:bg-orange-500/20 hover:border-orange-500/50 transition-all duration-200"
                   >
-                    <span>Admin Dashboard Details</span>
+                    <span>View QR Stand Collateral</span>
                   </a>
                 </div>
               </div>
@@ -531,104 +529,9 @@ export function ProjectsSection() {
                 </div>
               </div>
             </div>
-
-            {/* ═══════════════════════════════════════════════════════════════
-                PROJECT 04: ACADEMIC CAPSTONE & 3D SIMULATIONS (PURPLE)
-               ═══════════════════════════════════════════════════════════════ */}
-            <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-hidden bg-gradient-to-br from-[#120520] via-[#090310] to-[#05010a]">
-              <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-purple-300 w-fit backdrop-blur-md">
-                  <Laptop className="h-3 w-3 text-purple-400" />
-                  <span>RESEARCH &amp; 3D ENGINES</span>
-                </div>
-
-                <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
-                  Capstone &amp;{" "}
-                  <span className="bg-gradient-to-r from-purple-300 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    3D Builds
-                  </span>
-                </h2>
-
-                <p className="mb-5 text-sm sm:text-base font-medium text-purple-200/80">
-                  {academicCapstone?.subtitle || "AI Graduation Software & Interactive Three.js 3D Web Experiences"}
-                </p>
-
-                <div className="mb-6 space-y-2.5 max-w-lg">
-                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
-                    <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                    <span>
-                      <strong className="text-white">Awarded &apos;Excellent&apos;:</strong> AI-driven desktop graduation project
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
-                    <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                    <span>
-                      <strong className="text-white">3D Real-Time Footwear:</strong> Interactive 3D shoe customizer with Three.js
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
-                    <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                    <span>
-                      <strong className="text-white">FieldSync Pro:</strong> Offline-first field management mobile application
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
-                    <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                    <span>
-                      <strong className="text-white">Academic Integrity:</strong> University of Duhok College of Science
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
-                  <a
-                    href="#about"
-                    className="inline-flex items-center gap-2 rounded-xl bg-purple-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-white transition-all duration-200 hover:bg-purple-400 hover:scale-[1.02] shadow-lg shadow-purple-500/25"
-                  >
-                    <span>View Academic Record</span>
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-
-                  <a
-                    href={siteData.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl border border-purple-500/30 bg-purple-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-purple-200 hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-200"
-                  >
-                    <Code2 className="h-4 w-4 text-purple-400" />
-                    <span>GitHub Repositories</span>
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-              </div>
-
-              <div className="w-full lg:w-1/2 h-full relative flex items-center justify-center p-6 sm:p-10 lg:p-12 overflow-hidden">
-                <div
-                  className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-purple-500/[0.05] select-none tracking-tighter"
-                  aria-hidden="true"
-                >
-                  04
-                </div>
-
-                <div className="absolute w-72 h-72 rounded-full bg-purple-500/20 blur-3xl pointer-events-none" />
-
-                <div className="relative group w-52 sm:w-64 md:w-80 lg:w-[380px] aspect-[4/3] rounded-3xl border-2 border-purple-500/30 bg-[#140b22]/90 p-3 shadow-2xl shadow-purple-950/50 backdrop-blur-xl transition-transform duration-500 hover:scale-[1.02]">
-                  <div className="relative h-full w-full overflow-hidden rounded-2xl bg-black">
-                    <Image
-                      src="/images/instagram-post-pages/zanarajab.builds/post-6-3D-webstite-shoese-design-ui/3D-webstite-shoese-design-ui.jpeg"
-                      alt="3D Real-Time Footwear Customizer UI Design"
-                      fill
-                      sizes="(max-width: 640px) 240px, (max-width: 1024px) 340px, 420px"
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 ring-1 ring-inset ring-purple-500/20 rounded-2xl pointer-events-none" />
-                  </div>
-                </div>
-              </div>
-            </div>
           </motion.div>
 
-          {/* ── Luxury Floating Pin Controller Pill (Projects) ────────────── */}
+          {/* ── Luxury Floating Pin Controller Pill (Projects: 01 to 03) ─── */}
           <div className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 sm:gap-5 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-white/15 bg-black/80 backdrop-blur-2xl shadow-2xl z-30 pointer-events-auto">
             <span className="text-xs sm:text-sm font-mono font-bold text-white flex items-center gap-1.5">
               <span
@@ -637,7 +540,6 @@ export function ProjectsSection() {
                   activeSlide === 1 && "text-amber-400",
                   activeSlide === 2 && "text-blue-400",
                   activeSlide === 3 && "text-orange-400",
-                  activeSlide === 4 && "text-purple-400",
                 )}
               >
                 0{activeSlide}
@@ -647,7 +549,7 @@ export function ProjectsSection() {
             </span>
 
             <div className="flex items-center gap-1.5">
-              {[1, 2, 3, 4].map((i) => (
+              {[1, 2, 3].map((i) => (
                 <button
                   key={i}
                   onClick={() => scrollToSlide(i)}
@@ -659,7 +561,6 @@ export function ProjectsSection() {
                           i === 1 && "bg-amber-400 shadow-amber-400/50",
                           i === 2 && "bg-blue-400 shadow-blue-400/50",
                           i === 3 && "bg-orange-400 shadow-orange-400/50",
-                          i === 4 && "bg-purple-400 shadow-purple-400/50",
                         )
                       : "w-2 bg-white/20 hover:bg-white/40",
                   )}
@@ -671,7 +572,7 @@ export function ProjectsSection() {
             <div className="w-20 sm:w-36 h-1 bg-white/10 rounded-full overflow-hidden hidden xs:block">
               <motion.div
                 style={{ scaleX: smoothProgress, transformOrigin: "left" }}
-                className="h-full bg-gradient-to-r from-amber-400 via-blue-500 to-purple-500 rounded-full"
+                className="h-full bg-gradient-to-r from-amber-400 via-blue-500 to-orange-400 rounded-full"
               />
             </div>
 

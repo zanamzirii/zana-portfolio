@@ -142,7 +142,7 @@ export function ProjectsSection() {
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-indigo-300 w-fit backdrop-blur-md">
                     <Code2 className="h-3.5 w-3.5 text-indigo-400" />
-                    <span>SOFTWARE ENGINEERING &amp; PRODUCTION CODE</span>
+                    <span>SOFTWARE ENGINEERING PROJECTS</span>
                   </div>
 
                   <a
@@ -160,29 +160,41 @@ export function ProjectsSection() {
                   </a>
                 </div>
 
-                <h2 className="mb-3 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
-                  Shipped Products &amp;{" "}
-                  <span className="bg-gradient-to-r from-indigo-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                    Enterprise Platforms
-                  </span>
+                <h2 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tight text-white leading-none">
+                  PROJECTS
                 </h2>
 
-                <p className="mb-6 text-sm sm:text-base text-neutral-300 max-w-xl leading-relaxed">
-                  Production software engineered with Flutter, Dart, Riverpod, Next.js, and Firebase.
-                  Built with clean architectural separation, strict security, and live on the Apple App Store and Web.
+                <p className="mt-1 mb-4 text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                  Shipped Software Platforms
                 </p>
+
+                <p className="mb-5 text-sm sm:text-base text-neutral-300 max-w-xl leading-relaxed">
+                  A showcase of 3 complete production platforms I engineered from scratch — featuring Clean Architecture, multi-role databases, and live App Store deployments.
+                </p>
+
+                {/* Tech Stack Pills */}
+                <div className="flex flex-wrap items-center gap-1.5 mb-6">
+                  {["Flutter", "Dart", "Firebase Cloud", "Next.js 14", "Riverpod", "Clean Architecture"].map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.04] text-neutral-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
                 <div className="flex items-center gap-3.5 flex-wrap">
                   <button
                     onClick={() => scrollToSlide(2)}
-                    className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-xs sm:text-sm font-bold text-black transition-all duration-200 hover:bg-neutral-200 hover:scale-[1.02] shadow-lg shadow-white/10"
+                    className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-xs sm:text-sm font-bold text-black transition-all duration-200 hover:bg-neutral-200 hover:scale-[1.02] shadow-lg shadow-white/15"
                   >
-                    <span>Explore Shipped Apps</span>
+                    <span>Start With Crown Barber</span>
                     <ArrowRight className="h-4 w-4" />
                   </button>
 
                   <span className="text-xs font-mono text-neutral-400">
-                    3 Production Platforms · Slide 01 of 04
+                    Slide 01 of 04 · Horizontal Pin
                   </span>
                 </div>
               </div>
@@ -199,39 +211,43 @@ export function ProjectsSection() {
                 <div className="absolute w-72 h-72 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
 
                 <div className="relative w-full max-w-lg space-y-3 sm:space-y-4 z-10">
-                  {/* Card 01 -> Slide 2 */}
+                  {/* Card 01 -> Slide 2 (Crown Barber) */}
                   <div
                     onClick={() => scrollToSlide(2)}
                     className="group cursor-pointer rounded-2xl border border-amber-500/25 bg-[#120a02]/90 hover:bg-[#1a0e03] p-4 sm:p-5 backdrop-blur-xl transition-all duration-300 hover:border-amber-400/60 hover:scale-[1.02] shadow-xl shadow-amber-950/20"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-amber-400">02</span>
-                        <span className="h-1 w-1 rounded-full bg-amber-400/50" />
-                        <span className="text-xs font-mono font-semibold text-neutral-200 group-hover:text-amber-300 transition-colors">
+                        <span className="text-xs font-mono font-bold text-amber-400">[01]</span>
+                        <span className="text-xs font-mono font-bold text-white group-hover:text-amber-300 transition-colors">
                           CROWN BARBER STUDIO
                         </span>
                       </div>
                       <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-mono font-bold text-amber-300">
                         <Star className="h-2.5 w-2.5 fill-amber-400 text-amber-400" />
-                        4.9 ★ App Store
+                        4.9 ★ App Store Live
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug">
-                      Multi-Branch Mobile Barbershop Booking &amp; Queue Management Platform (Flutter + Firebase)
+                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug mb-2">
+                      Multi-Branch Mobile Barbershop Booking &amp; Queue Management Platform
                     </p>
+                    <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-1 border-t border-white/[0.06]">
+                      <span>Flutter · Dart · Firebase</span>
+                      <span className="text-amber-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        View Slide 02 <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Card 02 -> Slide 3 */}
+                  {/* Card 02 -> Slide 3 (Bahdinan Cars) */}
                   <div
                     onClick={() => scrollToSlide(3)}
                     className="group cursor-pointer rounded-2xl border border-blue-500/25 bg-[#030d1c]/90 hover:bg-[#06152b] p-4 sm:p-5 backdrop-blur-xl transition-all duration-300 hover:border-blue-400/60 hover:scale-[1.02] shadow-xl shadow-blue-950/20"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-blue-400">03</span>
-                        <span className="h-1 w-1 rounded-full bg-blue-400/50" />
-                        <span className="text-xs font-mono font-semibold text-neutral-200 group-hover:text-blue-300 transition-colors">
+                        <span className="text-xs font-mono font-bold text-blue-400">[02]</span>
+                        <span className="text-xs font-mono font-bold text-white group-hover:text-blue-300 transition-colors">
                           BAHDINAN CARS
                         </span>
                       </div>
@@ -240,21 +256,26 @@ export function ProjectsSection() {
                         Enterprise Marketplace
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug">
-                      Automotive Marketplace with Clean Riverpod Architecture &amp; Cloud Functions v2
+                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug mb-2">
+                      Automotive Marketplace with Clean Architecture &amp; Cloud Functions v2
                     </p>
+                    <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-1 border-t border-white/[0.06]">
+                      <span>Riverpod · Freezed · Firebase</span>
+                      <span className="text-blue-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        View Slide 03 <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Card 03 -> Slide 4 */}
+                  {/* Card 03 -> Slide 4 (Time Cafe) */}
                   <div
                     onClick={() => scrollToSlide(4)}
                     className="group cursor-pointer rounded-2xl border border-orange-500/25 bg-[#170e04]/90 hover:bg-[#211406] p-4 sm:p-5 backdrop-blur-xl transition-all duration-300 hover:border-orange-400/60 hover:scale-[1.02] shadow-xl shadow-orange-950/20"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-orange-400">04</span>
-                        <span className="h-1 w-1 rounded-full bg-orange-400/50" />
-                        <span className="text-xs font-mono font-semibold text-neutral-200 group-hover:text-orange-300 transition-colors">
+                        <span className="text-xs font-mono font-bold text-orange-400">[03]</span>
+                        <span className="text-xs font-mono font-bold text-white group-hover:text-orange-300 transition-colors">
                           TIME CAFE ZAXO
                         </span>
                       </div>
@@ -263,9 +284,15 @@ export function ProjectsSection() {
                         Live QR Dining
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug">
-                      Digital QR Menu Web Application with Live Barista &amp; Kitchen Tablet Administration
+                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug mb-2">
+                      Digital QR Menu Web Application with Live Barista Tablet Administration
                     </p>
+                    <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-1 border-t border-white/[0.06]">
+                      <span>Next.js 14 · Realtime DB · POS</span>
+                      <span className="text-orange-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        View Slide 04 <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

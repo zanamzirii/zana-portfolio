@@ -1,10 +1,22 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Code2, ArrowDownRight, Sparkles } from "lucide-react";
+import {
+  Code2,
+  ExternalLink,
+  Sparkles,
+  Star,
+  CheckCircle2,
+  Smartphone,
+  Compass,
+  ArrowDownRight,
+  Coffee,
+  Laptop,
+} from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { FeaturedProjectCard, ProjectCard } from "@/components/ui/ProjectCard";
+import { AppleIcon } from "@/components/ui/BrandIcons";
 import { siteData } from "@/lib/data";
 import {
   fadeUp,
@@ -15,12 +27,9 @@ import {
 import { cn } from "@/lib/utils";
 
 export function ProjectsSection() {
-  const featuredProjects = siteData.projects.filter((p) => p.featured);
-  const otherProjects = siteData.projects.filter((p) => !p.featured);
-
-  // Horizontal Pin-Scroll Controller (Ayman.krd Luxury Style)
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(1);
+  const totalSlides = 4;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -28,76 +37,103 @@ export function ProjectsSection() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 90,
+    stiffness: 85,
     damping: 24,
     restDelta: 0.001,
   });
 
-  // Calculate horizontal translation across all featured panels
-  const totalPanels = featuredProjects.length;
   const x = useTransform(
     smoothProgress,
     [0, 1],
-    ["0vw", `-${(totalPanels - 1) * 100}vw`],
+    ["0vw", `-${(totalSlides - 1) * 100}vw`],
   );
 
-  // Sync active slide index (1-based)
   useEffect(() => {
     return smoothProgress.on("change", (latest) => {
-      const step = 1 / totalPanels;
+      const step = 1 / totalSlides;
       const index = Math.min(
-        totalPanels,
+        totalSlides,
         Math.max(1, Math.floor(latest / step) + 1),
       );
       setActiveSlide(index);
     });
-  }, [smoothProgress, totalPanels]);
+  }, [smoothProgress, totalSlides]);
 
-  // Direct Jump to a specific slide
-  const scrollToSlide = (index: number) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const containerTop = window.scrollY + rect.top;
-    const totalScrollable = containerRef.current.offsetHeight - window.innerHeight;
-    const targetScroll = containerTop + ((index - 1) / (totalPanels - 1)) * totalScrollable;
+  const scrollToSlide = useCallback(
+    (index: number) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const containerTop = window.scrollY + rect.top;
+      const totalScrollable =
+        containerRef.current.offsetHeight - window.innerHeight;
+      const targetScroll =
+        containerTop + ((index - 1) / (totalSlides - 1)) * totalScrollable;
 
-    if (
-      typeof window !== "undefined" &&
-      (window as unknown as { __lenis?: { scrollTo: (y: number, opts?: object) => void } }).__lenis
-    ) {
-      (
-        window as unknown as { __lenis: { scrollTo: (y: number, opts?: object) => void } }
-      ).__lenis.scrollTo(targetScroll, { duration: 1.2 });
-    } else {
-      window.scrollTo({ top: targetScroll, behavior: "smooth" });
-    }
+      if (
+        typeof window !== "undefined" &&
+        (
+          window as unknown as {
+            __lenis?: { scrollTo: (y: number, opts?: object) => void };
+          }
+        ).__lenis
+      ) {
+        (
+          window as unknown as {
+            __lenis: { scrollTo: (y: number, opts?: object) => void };
+          }
+        ).__lenis.scrollTo(targetScroll, { duration: 1.2 });
+      } else {
+        window.scrollTo({ top: targetScroll, behavior: "smooth" });
+      }
+    },
+    [totalSlides],
+  );
+
+  const touchStartX = useRef<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
   };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX < 0 && activeSlide < totalSlides) {
+        scrollToSlide(activeSlide + 1);
+      } else if (deltaX > 0 && activeSlide > 1) {
+        scrollToSlide(activeSlide - 1);
+      }
+    }
+    touchStartX.current = null;
+  };
+
+  const crownBarber = siteData.projects[0];
+  const bahdinanCars = siteData.projects[1];
+  const timeCafe = siteData.projects[2];
+  const academicCapstone = siteData.projects[3];
 
   return (
     <section id="projects" className="relative bg-[#050505] text-textPrimary">
       {/* ── Section Header (Vertical Introduction) ───────────────────────── */}
-      <div className="mx-auto max-w-6xl px-6 pt-20 md:pt-32 pb-10">
+      <div className="mx-auto max-w-6xl px-6 pt-20 md:pt-28 pb-8">
         <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={viewportOnce}
-          className="mb-8"
+          className="mb-4"
         >
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
             <motion.div variants={fadeUp} transition={smoothTransition}>
-              <SectionLabel>Software Engineering &amp; Code</SectionLabel>
+              <SectionLabel>Software Engineering &amp; Production Code</SectionLabel>
             </motion.div>
 
             {/* Cross-Link Pill to Creative Studio */}
-            <motion.div variants={fadeUp} transition={{ ...smoothTransition, delay: 0.1 }}>
+            <motion.div
+              variants={fadeUp}
+              transition={{ ...smoothTransition, delay: 0.1 }}
+            >
               <a
                 href="#creative"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const el = document.getElementById("creative");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
                 className="inline-flex items-center gap-2 rounded-full border border-amber-500/25 bg-amber-500/10 px-3.5 py-1.5 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 hover:border-amber-500/40 transition-all duration-200 shadow-sm group"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
@@ -115,138 +151,537 @@ export function ProjectsSection() {
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 border border-blue-500/30 bg-blue-500/10 text-[11px] font-mono font-medium text-blue-300 mb-3"
           >
             <Code2 className="h-3 w-3 text-blue-400" />
-            <span>PRODUCTION CODE · CLEAN ARCHITECTURE · MULTI-ROLE BACKENDS</span>
+            <span>FLUTTER · CLEAN ARCHITECTURE · FIREBASE CLOUD · RETINA ASSETS</span>
           </motion.div>
 
           <motion.h2
             variants={fadeUp}
             transition={{ ...smoothTransition, delay: 0.06 }}
-            className="text-3xl font-bold tracking-tight text-white md:text-5xl"
+            className="text-3xl font-extrabold tracking-tight text-white md:text-5xl"
           >
             Shipped Products &amp; Enterprise Platforms
           </motion.h2>
+
           <motion.p
             variants={fadeUp}
             transition={{ ...smoothTransition, delay: 0.12 }}
-            className="mt-3 text-base text-neutral-400 max-w-2xl leading-relaxed"
+            className="mt-3 text-sm md:text-base text-neutral-400 max-w-2xl leading-relaxed"
           >
-            Production software engineered with Flutter, Dart, Riverpod, Next.js, and Firebase. Built from scratch with clean architectural separation, strict security, and live on the App Store and Web.
+            Production software engineered with Flutter, Dart, Riverpod, Next.js, and Firebase.
+            Built with clean architectural separation, strict security, and live on the Apple App Store and Web.
           </motion.p>
         </motion.div>
       </div>
 
-      {/* ── Horizontal Pin-Scroll Track (Ayman.krd Signature Scroll) ─────── */}
-      <div ref={containerRef} className="relative h-[320vh] lg:h-[350vh]">
-        {/* Sticky 100vh Viewport */}
-        <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-[#050505]">
-          
+      {/* ── Horizontal Pin-Scroll Track (4 Flagship Projects) ─────────────── */}
+      <div ref={containerRef} className="relative h-[380vh] lg:h-[400vh]">
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between bg-[#050505]"
+        >
           {/* Subtle Ambient Radial Glow */}
           <div
             className="pointer-events-none absolute inset-0 opacity-20"
             style={{
               background:
                 activeSlide === 1
-                  ? "radial-gradient(circle at 70% 50%, rgba(245,158,11,0.2) 0%, transparent 60%)"
+                  ? "radial-gradient(circle at 70% 50%, rgba(245,158,11,0.25) 0%, transparent 60%)"
                   : activeSlide === 2
-                  ? "radial-gradient(circle at 70% 50%, rgba(59,130,246,0.2) 0%, transparent 60%)"
-                  : "radial-gradient(circle at 70% 50%, rgba(234,179,8,0.2) 0%, transparent 60%)",
+                  ? "radial-gradient(circle at 70% 50%, rgba(59,130,246,0.25) 0%, transparent 60%)"
+                  : activeSlide === 3
+                  ? "radial-gradient(circle at 70% 50%, rgba(217,119,6,0.25) 0%, transparent 60%)"
+                  : "radial-gradient(circle at 70% 50%, rgba(139,92,246,0.25) 0%, transparent 60%)",
             }}
             aria-hidden="true"
           />
 
-          {/* Sliding Track of Flagship Project Panels */}
+          {/* Sliding Track */}
           <motion.div
             style={{ x }}
-            className="flex h-full items-center"
+            className="flex h-full w-[400vw] flex-shrink-0"
           >
-            {featuredProjects.map((project, idx) => (
-              <div
-                key={project.id}
-                className="w-screen h-full flex-shrink-0 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16"
-              >
-                <div className="w-full max-w-6xl max-h-[88vh] overflow-y-auto lg:overflow-visible no-scrollbar">
-                  <FeaturedProjectCard
-                    project={project}
-                    reverse={idx % 2 === 1}
-                  />
+            {/* ═══════════════════════════════════════════════════════════════
+                PROJECT 01: CROWN BARBER STUDIO (GOLD / AMBER)
+               ═══════════════════════════════════════════════════════════════ */}
+            <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-hidden bg-gradient-to-br from-[#120a02] via-[#080501] to-[#040200]">
+              <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-amber-300 w-fit backdrop-blur-md">
+                  <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+                  <span>SELF-FOUNDED APP · APP STORE LIVE</span>
+                </div>
+
+                <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                  Crown Barber{" "}
+                  <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent">
+                    Studio
+                  </span>
+                </h2>
+
+                <p className="mb-5 text-sm sm:text-base font-medium text-amber-200/80">
+                  {crownBarber?.subtitle || "Multi-Branch Mobile Barbershop Booking & Queue Management Platform"}
+                </p>
+
+                <div className="mb-6 space-y-2.5 max-w-lg">
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">4.9 ★ Rating</strong> on Apple App Store with verified users
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Multi-Branch Architecture:</strong> Real-time slot locking &amp; dynamic waitlists
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Bilingual Localization:</strong> Complete Kurdish &amp; English UX
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Flutter &amp; Firebase:</strong> Realtime Database, Cloud Functions &amp; FCM alerts
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                  {crownBarber?.links?.appStore && (
+                    <a
+                      href={crownBarber.links.appStore}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-amber-400 px-5 py-2.5 text-xs sm:text-sm font-bold text-black transition-all duration-200 hover:bg-amber-300 hover:scale-[1.02] shadow-lg shadow-amber-500/20"
+                    >
+                      <AppleIcon className="h-4 w-4 text-black" />
+                      <span>App Store Live</span>
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+
+                  {crownBarber?.links?.website && (
+                    <a
+                      href={crownBarber.links.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-amber-200 hover:bg-amber-500/20 hover:border-amber-500/50 transition-all duration-200"
+                    >
+                      <span>Web Platform</span>
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+
+                  <a
+                    href="#creative"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById("creative");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                      if (typeof window !== "undefined") {
+                        window.dispatchEvent(
+                          new CustomEvent("select-creative-brand", {
+                            detail: { brand: "crownbarber.app" },
+                          }),
+                        );
+                      }
+                    }}
+                    className="text-xs font-semibold text-amber-300/80 hover:text-amber-200 underline underline-offset-4"
+                  >
+                    View Figma &amp; Video Ads →
+                  </a>
                 </div>
               </div>
-            ))}
+
+              <div className="w-full lg:w-1/2 h-full relative flex items-center justify-center p-6 sm:p-10 lg:p-12 overflow-hidden">
+                <div
+                  className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-amber-500/[0.05] select-none tracking-tighter"
+                  aria-hidden="true"
+                >
+                  01
+                </div>
+
+                <div className="absolute w-72 h-72 rounded-full bg-amber-500/20 blur-3xl pointer-events-none" />
+
+                <div className="relative group w-52 sm:w-64 md:w-80 lg:w-[340px] aspect-[9/18] rounded-[2.5rem] border-2 border-amber-500/30 bg-gradient-to-b from-[#1a1204] to-[#0a0701] p-3 shadow-2xl shadow-amber-950/50 backdrop-blur-xl transition-transform duration-500 hover:scale-[1.02]">
+                  <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-black">
+                    <Image
+                      src="/images/crown-barber/mockup-1.png"
+                      alt="Crown Barber Studio App Store Mockup"
+                      fill
+                      sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 400px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-amber-500/20 rounded-[2rem] pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ═══════════════════════════════════════════════════════════════
+                PROJECT 02: BAHDINAN CARS (ELECTRIC BLUE / COBALT)
+               ═══════════════════════════════════════════════════════════════ */}
+            <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-hidden bg-gradient-to-br from-[#030d1c] via-[#020710] to-[#010408]">
+              <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-blue-300 w-fit backdrop-blur-md">
+                  <Smartphone className="h-3 w-3 text-blue-400" />
+                  <span>ENTERPRISE AUTOMOTIVE · IN STORE REVIEW</span>
+                </div>
+
+                <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                  Bahdinan{" "}
+                  <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent">
+                    Cars
+                  </span>
+                </h2>
+
+                <p className="mb-5 text-sm sm:text-base font-medium text-blue-200/80">
+                  {bahdinanCars?.subtitle || "Interactive Multi-Screen Showroom Marketplace & Vehicle Specs Engine"}
+                </p>
+
+                <div className="mb-6 space-y-2.5 max-w-lg">
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Clean Architecture:</strong> Domain-driven separation with Riverpod
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Cloud Functions:</strong> Automated multi-resolution image optimization
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Interactive Showroom:</strong> Direct WhatsApp dealer inquiries &amp; specs comparator
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Retina Multi-Screen:</strong> Engineered for iPhone &amp; iPad mini/Pro
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                  {bahdinanCars?.links?.website && (
+                    <a
+                      href={bahdinanCars.links.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-blue-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-white transition-all duration-200 hover:bg-blue-400 hover:scale-[1.02] shadow-lg shadow-blue-500/25"
+                    >
+                      <span>Explore Web App</span>
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+
+                  <a
+                    href="#creative"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById("creative");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                      if (typeof window !== "undefined") {
+                        window.dispatchEvent(
+                          new CustomEvent("select-creative-brand", {
+                            detail: { brand: "bahdinan-cars" },
+                          }),
+                        );
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 rounded-xl border border-blue-500/30 bg-blue-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-blue-200 hover:bg-blue-500/20 hover:border-blue-500/50 transition-all duration-200"
+                  >
+                    <Compass className="h-4 w-4 text-blue-400" />
+                    <span>Figma Design System</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2 h-full relative flex items-center justify-center p-6 sm:p-10 lg:p-12 overflow-hidden">
+                <div
+                  className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-blue-500/[0.05] select-none tracking-tighter"
+                  aria-hidden="true"
+                >
+                  02
+                </div>
+
+                <div className="absolute w-72 h-72 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
+
+                <div className="relative group w-52 sm:w-64 md:w-80 lg:w-[340px] aspect-[9/18] rounded-[2.5rem] border-2 border-blue-500/30 bg-gradient-to-b from-[#0a182e] to-[#030914] p-3 shadow-2xl shadow-blue-950/50 backdrop-blur-xl transition-transform duration-500 hover:scale-[1.02]">
+                  <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-black">
+                    <Image
+                      src="/images/bahdinan-cars/1_iPhone_Medium_1179x2556/1_Home.jpg"
+                      alt="Bahdinan Cars iOS App Screen"
+                      fill
+                      sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 400px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-blue-500/20 rounded-[2rem] pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ═══════════════════════════════════════════════════════════════
+                PROJECT 03: TIME CAFE PLATFORM (WARM BRONZE / ORANGE)
+               ═══════════════════════════════════════════════════════════════ */}
+            <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-hidden bg-gradient-to-br from-[#170e04] via-[#0b0601] to-[#050300]">
+              <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-orange-300 w-fit backdrop-blur-md">
+                  <Coffee className="h-3 w-3 text-orange-400" />
+                  <span>HOSPITALITY SYSTEM · LIVE PRODUCTION</span>
+                </div>
+
+                <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                  Time Cafe{" "}
+                  <span className="bg-gradient-to-r from-orange-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
+                    Platform
+                  </span>
+                </h2>
+
+                <p className="mb-5 text-sm sm:text-base font-medium text-orange-200/80">
+                  {timeCafe?.subtitle || "Digital QR Menu & Real-Time Tablet Order Administration System"}
+                </p>
+
+                <div className="mb-6 space-y-2.5 max-w-lg">
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-orange-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">QR Digital Menu:</strong> Fast mobile-optimized catalog for guest tables
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-orange-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Kitchen Tablet Interface:</strong> Live order notifications for baristas
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-orange-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Admin Management:</strong> Real-time pricing &amp; category item updates
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-orange-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Dual Language:</strong> Kurdish &amp; English with dark cafe aesthetic
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                  <a
+                    href="#creative"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById("creative");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                      if (typeof window !== "undefined") {
+                        window.dispatchEvent(
+                          new CustomEvent("select-creative-brand", {
+                            detail: { brand: "virastack.iq" },
+                          }),
+                        );
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-black transition-all duration-200 hover:bg-orange-400 hover:scale-[1.02] shadow-lg shadow-orange-500/25"
+                  >
+                    <span>View Menu Showcase</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+
+                  <a
+                    href="#creative"
+                    className="inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-orange-200 hover:bg-orange-500/20 hover:border-orange-500/50 transition-all duration-200"
+                  >
+                    <span>Admin Dashboard Details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2 h-full relative flex items-center justify-center p-6 sm:p-10 lg:p-12 overflow-hidden">
+                <div
+                  className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-orange-500/[0.05] select-none tracking-tighter"
+                  aria-hidden="true"
+                >
+                  03
+                </div>
+
+                <div className="absolute w-72 h-72 rounded-full bg-orange-500/20 blur-3xl pointer-events-none" />
+
+                <div className="relative group w-52 sm:w-64 md:w-80 lg:w-[340px] aspect-[9/18] rounded-[2.5rem] border-2 border-orange-500/30 bg-gradient-to-b from-[#1c1105] to-[#0a0601] p-3 shadow-2xl shadow-orange-950/50 backdrop-blur-xl transition-transform duration-500 hover:scale-[1.02]">
+                  <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-black">
+                    <Image
+                      src="/images/time-cafe/phone/menu-iPhone_17_Pro_Max.png"
+                      alt="Time Cafe Digital Menu Interface"
+                      fill
+                      sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 400px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-orange-500/20 rounded-[2rem] pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ═══════════════════════════════════════════════════════════════
+                PROJECT 04: ACADEMIC CAPSTONE & 3D SIMULATIONS (PURPLE)
+               ═══════════════════════════════════════════════════════════════ */}
+            <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-hidden bg-gradient-to-br from-[#120520] via-[#090310] to-[#05010a]">
+              <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-purple-300 w-fit backdrop-blur-md">
+                  <Laptop className="h-3 w-3 text-purple-400" />
+                  <span>RESEARCH &amp; 3D ENGINES</span>
+                </div>
+
+                <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                  Capstone &amp;{" "}
+                  <span className="bg-gradient-to-r from-purple-300 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    3D Builds
+                  </span>
+                </h2>
+
+                <p className="mb-5 text-sm sm:text-base font-medium text-purple-200/80">
+                  {academicCapstone?.subtitle || "AI Graduation Software & Interactive Three.js 3D Web Experiences"}
+                </p>
+
+                <div className="mb-6 space-y-2.5 max-w-lg">
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Awarded &apos;Excellent&apos;:</strong> AI-driven desktop graduation project
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">3D Real-Time Footwear:</strong> Interactive 3D shoe customizer with Three.js
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">FieldSync Pro:</strong> Offline-first field management mobile application
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Academic Integrity:</strong> University of Duhok College of Science
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                  <a
+                    href="#about"
+                    className="inline-flex items-center gap-2 rounded-xl bg-purple-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-white transition-all duration-200 hover:bg-purple-400 hover:scale-[1.02] shadow-lg shadow-purple-500/25"
+                  >
+                    <span>View Academic Record</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+
+                  <a
+                    href={siteData.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-purple-500/30 bg-purple-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-purple-200 hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-200"
+                  >
+                    <Code2 className="h-4 w-4 text-purple-400" />
+                    <span>GitHub Repositories</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2 h-full relative flex items-center justify-center p-6 sm:p-10 lg:p-12 overflow-hidden">
+                <div
+                  className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-purple-500/[0.05] select-none tracking-tighter"
+                  aria-hidden="true"
+                >
+                  04
+                </div>
+
+                <div className="absolute w-72 h-72 rounded-full bg-purple-500/20 blur-3xl pointer-events-none" />
+
+                <div className="relative group w-52 sm:w-64 md:w-80 lg:w-[380px] aspect-[4/3] rounded-3xl border-2 border-purple-500/30 bg-[#140b22]/90 p-3 shadow-2xl shadow-purple-950/50 backdrop-blur-xl transition-transform duration-500 hover:scale-[1.02]">
+                  <div className="relative h-full w-full overflow-hidden rounded-2xl bg-black">
+                    <Image
+                      src="/images/instagram-post-pages/zanarajab.builds/post-6-3D-webstite-shoese-design-ui/3D-webstite-shoese-design-ui.jpeg"
+                      alt="3D Real-Time Footwear Customizer UI Design"
+                      fill
+                      sizes="(max-width: 640px) 240px, (max-width: 1024px) 340px, 420px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-purple-500/20 rounded-2xl pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Luxury Floating Pin Controller Pill (Ayman.krd Agency Style) */}
+          {/* ── Luxury Floating Pin Controller Pill (Projects) ────────────── */}
           <div className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 sm:gap-5 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-white/15 bg-black/80 backdrop-blur-2xl shadow-2xl z-30 pointer-events-auto">
-            {/* Active Slide Counter */}
             <span className="text-xs sm:text-sm font-mono font-bold text-white flex items-center gap-1.5">
-              <span className="text-accent">0{activeSlide}</span>
+              <span
+                className={cn(
+                  "transition-colors duration-300",
+                  activeSlide === 1 && "text-amber-400",
+                  activeSlide === 2 && "text-blue-400",
+                  activeSlide === 3 && "text-orange-400",
+                  activeSlide === 4 && "text-purple-400",
+                )}
+              >
+                0{activeSlide}
+              </span>
               <span className="text-neutral-500">/</span>
-              <span className="text-neutral-400">0{totalPanels}</span>
+              <span className="text-neutral-400">0{totalSlides}</span>
             </span>
 
-            {/* Quick Interactive Slide Dots */}
             <div className="flex items-center gap-1.5">
-              {featuredProjects.map((_, i) => (
+              {[1, 2, 3, 4].map((i) => (
                 <button
                   key={i}
-                  onClick={() => scrollToSlide(i + 1)}
+                  onClick={() => scrollToSlide(i)}
                   className={cn(
                     "h-2 rounded-full transition-all duration-300",
-                    activeSlide === i + 1
-                      ? "w-6 bg-accent shadow-md shadow-accent/50"
+                    activeSlide === i
+                      ? cn(
+                          "w-6 shadow-md",
+                          i === 1 && "bg-amber-400 shadow-amber-400/50",
+                          i === 2 && "bg-blue-400 shadow-blue-400/50",
+                          i === 3 && "bg-orange-400 shadow-orange-400/50",
+                          i === 4 && "bg-purple-400 shadow-purple-400/50",
+                        )
                       : "w-2 bg-white/20 hover:bg-white/40",
                   )}
-                  aria-label={`Jump to project 0${i + 1}`}
+                  aria-label={`Jump to project 0${i}`}
                 />
               ))}
             </div>
 
-            {/* Smooth Track Progress Bar */}
             <div className="w-20 sm:w-36 h-1 bg-white/10 rounded-full overflow-hidden hidden xs:block">
               <motion.div
                 style={{ scaleX: smoothProgress, transformOrigin: "left" }}
-                className="h-full bg-gradient-to-r from-amber-400 via-blue-500 to-indigo-500 rounded-full"
+                className="h-full bg-gradient-to-r from-amber-400 via-blue-500 to-purple-500 rounded-full"
               />
             </div>
 
-            {/* Scroll Indicator Hint */}
-            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest text-neutral-400">
-              <Sparkles className="h-3 w-3 text-accent" />
-              Scroll to Slide
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-neutral-400">
+              <Sparkles className="h-3 w-3 text-amber-400" />
+              <span>Scroll or Drag →</span>
             </span>
           </div>
-
         </div>
       </div>
-
-      {/* ── Academic & 3D Projects (Resumes Normal Vertical Scroll) ─────── */}
-      {otherProjects.length > 0 && (
-        <div className="mx-auto max-w-6xl px-6 pt-16 pb-20 border-t border-white/[0.08]">
-          <div className="mb-8">
-            <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 flex items-center gap-2 mb-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              Research &amp; Specialized Builds
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Academic Research &amp; 3D Game Builds
-            </h3>
-            <p className="mt-2 text-sm text-neutral-400 max-w-xl">
-              Foundational computer science research, normalized relational database platforms, and real-time 3D simulation engines.
-            </p>
-          </div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={viewportOnce}
-            className="grid grid-cols-1 gap-6 md:grid-cols-2"
-          >
-            {otherProjects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
-            ))}
-          </motion.div>
-        </div>
-      )}
     </section>
   );
 }

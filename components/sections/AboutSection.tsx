@@ -1,268 +1,423 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, GraduationCap, Award, Globe, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import {
+  GraduationCap,
+  Award,
+  Sparkles,
+  ExternalLink,
+  Globe,
+} from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Button } from "@/components/ui/Button";
-import { ImageLightbox } from "@/components/ui/ImageLightbox";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { siteData } from "@/lib/data";
 import {
   fadeUp,
-  fadeLeft,
   staggerContainer,
   smoothTransition,
   viewportOnce,
 } from "@/lib/animations";
-
-const personalPhotos = [
-  {
-    src: "/images/personal/zana-suit-full-body.jpg",
-    alt: "Zana Rajab Abdulrahman — Founder & Lead Engineer",
-  },
-  {
-    src: "/images/personal/zana-gradation.jpeg",
-    alt: "Zana Rajab Abdulrahman — University of Duhok Graduation",
-  },
-  {
-    src: "/images/personal/zana-with-kurdish-flags.jpg",
-    alt: "Zana Rajab Abdulrahman — University Library Technical Lead",
-  },
-];
-
-const infoChips = [
-  { icon: MapPin,         text: "Duhok, Kurdistan Region, Iraq" },
-  { icon: GraduationCap,  text: "BSc Computer Science — Excellent Capstone" },
-  { icon: Award,          text: "Lead Mobile & Full-Stack Developer" },
-  { icon: Globe,          text: "Open to Remote & Relocation" },
-];
+import { cn } from "@/lib/utils";
 
 export function AboutSection() {
-  const [photoIndex, setPhotoIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const touchStartX = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeSlide, setActiveSlide] = useState(1);
+  const totalSlides = 2;
 
-  // Smooth auto-advance every 2.5s when not hovered or touched
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 85,
+    damping: 24,
+    restDelta: 0.001,
+  });
+
+  const x = useTransform(
+    smoothProgress,
+    [0, 1],
+    ["0vw", `-${(totalSlides - 1) * 100}vw`],
+  );
+
   useEffect(() => {
-    if (isHovered) return;
-    const timer = setInterval(() => {
-      setPhotoIndex((prev) => (prev + 1) % personalPhotos.length);
-    }, 2500);
-    return () => clearInterval(timer);
-  }, [isHovered]);
+    return smoothProgress.on("change", (latest) => {
+      const step = 1 / totalSlides;
+      const index = Math.min(
+        totalSlides,
+        Math.max(1, Math.floor(latest / step) + 1),
+      );
+      setActiveSlide(index);
+    });
+  }, [smoothProgress, totalSlides]);
 
-  const nextPhoto = () => {
-    setPhotoIndex((prev) => (prev + 1) % personalPhotos.length);
-  };
+  const scrollToSlide = useCallback(
+    (index: number) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const containerTop = window.scrollY + rect.top;
+      const totalScrollable =
+        containerRef.current.offsetHeight - window.innerHeight;
+      const targetScroll =
+        containerTop + ((index - 1) / (totalSlides - 1)) * totalScrollable;
 
-  const prevPhoto = () => {
-    setPhotoIndex((prev) => (prev - 1 + personalPhotos.length) % personalPhotos.length);
-  };
+      if (
+        typeof window !== "undefined" &&
+        (
+          window as unknown as {
+            __lenis?: { scrollTo: (y: number, opts?: object) => void };
+          }
+        ).__lenis
+      ) {
+        (
+          window as unknown as {
+            __lenis: { scrollTo: (y: number, opts?: object) => void };
+          }
+        ).__lenis.scrollTo(targetScroll, { duration: 1.2 });
+      } else {
+        window.scrollTo({ top: targetScroll, behavior: "smooth" });
+      }
+    },
+    [totalSlides],
+  );
 
+  const touchStartX = useRef<number | null>(null);
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
-    setIsHovered(true);
   };
-
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current !== null) {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX.current - touchEndX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) nextPhoto(); // Swiped left -> next
-        else prevPhoto(); // Swiped right -> prev
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX < 0 && activeSlide < totalSlides) {
+        scrollToSlide(activeSlide + 1);
+      } else if (deltaX > 0 && activeSlide > 1) {
+        scrollToSlide(activeSlide - 1);
       }
-      touchStartX.current = null;
     }
-    setTimeout(() => setIsHovered(false), 2000);
+    touchStartX.current = null;
   };
 
   return (
-    <section id="about" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
+    <section id="about" className="relative bg-[#050505] text-textPrimary">
+      {/* ── Section Header (Vertical Introduction) ───────────────────────── */}
+      <div className="mx-auto max-w-6xl px-6 pt-20 md:pt-28 pb-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={viewportOnce}
+          className="mb-4"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+            <motion.div variants={fadeUp} transition={smoothTransition}>
+              <SectionLabel>Education &amp; Background</SectionLabel>
+            </motion.div>
 
-          {/* ── Photo Gallery Card ─────────────────────────────────────────── */}
-          <motion.div
-            variants={fadeLeft}
-            initial="initial"
-            whileInView="animate"
-            viewport={viewportOnce}
-            transition={{ ...smoothTransition, delay: 0.1 }}
-            className="flex flex-col items-center lg:w-2/5 lg:items-start"
+            <motion.div
+              variants={fadeUp}
+              transition={{ ...smoothTransition, delay: 0.1 }}
+            >
+              <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/25 bg-purple-500/10 px-3.5 py-1.5 text-xs font-semibold text-purple-300 shadow-sm">
+                <GraduationCap className="h-4 w-4 text-purple-400" />
+                <span>BSc COMPUTER SCIENCE · UNIVERSITY OF DUHOK</span>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.h2
+            variants={fadeUp}
+            transition={{ ...smoothTransition, delay: 0.06 }}
+            className="text-3xl font-extrabold tracking-tight text-white md:text-5xl"
           >
-            <div className="group relative w-full max-w-sm">
-              {/* Subtle ambient glow behind card */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-accent/25 via-indigo-500/10 to-transparent opacity-50 blur-xl group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
+            Academic Foundation &amp; Story
+          </motion.h2>
 
-              {/* Main Photo Frame */}
-              <div
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-                className="relative overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl p-2 transition-transform duration-500 ease-out select-none cursor-pointer"
-              >
-                <div
-                  onClick={() => setLightboxOpen(true)}
-                  className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-elevated cursor-pointer"
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={photoIndex}
-                      initial={{ opacity: 0, scale: 1.03 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="absolute inset-0"
-                    >
-                      <Image
-                        src={personalPhotos[photoIndex].src}
-                        alt={personalPhotos[photoIndex].alt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 420px"
-                        priority
-                        loading="eager"
-                        className="object-cover object-top"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
+          <motion.p
+            variants={fadeUp}
+            transition={{ ...smoothTransition, delay: 0.12 }}
+            className="mt-3 text-sm md:text-base text-neutral-400 max-w-2xl leading-relaxed"
+          >
+            Four years of foundational computer science, algorithm design, and relational database systems combined with practical enterprise operations.
+          </motion.p>
+        </motion.div>
+      </div>
 
-                  {/* Preload all personal photos */}
-                  <div className="hidden" aria-hidden="true">
-                    {personalPhotos.map((p) => (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img key={p.src} src={p.src} alt="" loading="eager" />
-                    ))}
+      {/* ── Horizontal Pin-Scroll Track (2 About Panels) ──────────────────── */}
+      <div ref={containerRef} className="relative h-[220vh] lg:h-[240vh]">
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between bg-[#050505]"
+        >
+          {/* Subtle Ambient Radial Glow */}
+          <div
+            className="pointer-events-none absolute inset-0 opacity-20"
+            style={{
+              background:
+                activeSlide === 1
+                  ? "radial-gradient(circle at 70% 50%, rgba(139,92,246,0.25) 0%, transparent 60%)"
+                  : "radial-gradient(circle at 70% 50%, rgba(59,130,246,0.25) 0%, transparent 60%)",
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Sliding Track */}
+          <motion.div
+            style={{ x }}
+            className="flex h-full w-[200vw] flex-shrink-0"
+          >
+            {/* ═══════════════════════════════════════════════════════════════
+                ABOUT 01: ACADEMIC DEGREE & CAPSTONE (ROYAL PURPLE)
+               ═══════════════════════════════════════════════════════════════ */}
+            <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-hidden bg-gradient-to-br from-[#120520] via-[#090310] to-[#05010a]">
+              <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-purple-300 w-fit backdrop-blur-md">
+                  <GraduationCap className="h-3 w-3 text-purple-400" />
+                  <span>UNIVERSITY OF DUHOK · CLASS OF 2024</span>
+                </div>
+
+                <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                  BSc in{" "}
+                  <span className="bg-gradient-to-r from-purple-300 via-purple-400 to-violet-400 bg-clip-text text-transparent">
+                    Computer Science
+                  </span>
+                </h2>
+
+                <p className="mb-5 text-sm sm:text-base font-medium text-purple-200/80">
+                  Distinguished Academic Degree &amp; &apos;Excellent&apos; Capstone Project
+                </p>
+
+                <div className="mb-6 space-y-2.5 max-w-lg">
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <Award className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Awarded &apos;Excellent&apos; Grade:</strong> AI-driven desktop graduation project
+                    </span>
                   </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <Award className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">4-Year Curriculum (2020–2024):</strong> Algorithms, Data Structures, DB, OS &amp; Networks
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <Award className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Central University Library:</strong> Database administration &amp; enterprise network internship
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
+                    <Award className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    <span>
+                      <strong className="text-white">Enterprise Systems:</strong> Hardware diagnostics, backup automation &amp; catalog indexing
+                    </span>
+                  </div>
+                </div>
 
-                  {/* Subtle bottom vignette */}
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                  <a
+                    href={siteData.links.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-purple-500 px-5 py-2.5 text-xs sm:text-sm font-bold text-white transition-all duration-200 hover:bg-purple-400 hover:scale-[1.02] shadow-lg shadow-purple-500/25"
+                  >
+                    <span>Connect on LinkedIn</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
 
-                  {/* Hover navigation arrows */}
-                  <button
-                    onClick={prevPhoto}
-                    aria-label="Previous photo"
-                    className="absolute left-3 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 backdrop-blur-md text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all hover:bg-black/90 active:scale-95 z-20"
+                  <a
+                    href={siteData.links.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-purple-500/30 bg-purple-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-purple-200 hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-200"
                   >
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={nextPhoto}
-                    aria-label="Next photo"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 backdrop-blur-md text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all hover:bg-black/90 active:scale-95 z-20"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
+                    <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                    <span>WhatsApp Zana</span>
+                  </a>
                 </div>
               </div>
 
-              {/* Minimalist Indicator Dots (No text labels) */}
-              <div className="mt-4 flex items-center justify-center gap-2">
-                {personalPhotos.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setPhotoIndex(i)}
-                    aria-label={`Go to photo ${i + 1}`}
-                    className={`h-1.5 transition-all duration-300 rounded-full ${
-                      photoIndex === i
-                        ? "w-6 bg-accent"
-                        : "w-2 bg-border hover:bg-borderLight"
-                    }`}
-                  />
-                ))}
+              <div className="w-full lg:w-1/2 h-full relative flex items-center justify-center p-6 sm:p-10 lg:p-12 overflow-hidden">
+                <div
+                  className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-purple-500/[0.05] select-none tracking-tighter"
+                  aria-hidden="true"
+                >
+                  01
+                </div>
+
+                <div className="absolute w-72 h-72 rounded-full bg-purple-500/20 blur-3xl pointer-events-none" />
+
+                <div className="relative group w-48 sm:w-64 md:w-80 lg:w-[380px] aspect-[3/4] rounded-3xl border-2 border-purple-500/30 bg-[#160826]/90 p-3 shadow-2xl shadow-purple-950/50 backdrop-blur-xl transition-transform duration-500 hover:scale-[1.02]">
+                  <div className="relative h-full w-full overflow-hidden rounded-2xl bg-black">
+                    <Image
+                      src="/images/personal/zana-gradation.jpeg"
+                      alt="Zana Rajab Abdulrahman Graduation — University of Duhok"
+                      fill
+                      sizes="(max-width: 640px) 240px, (max-width: 1024px) 340px, 420px"
+                      className="object-cover object-top"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-purple-500/20 rounded-2xl pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+
+                    <div className="absolute bottom-3 left-3 right-3 rounded-xl border border-purple-400/20 bg-black/75 backdrop-blur-md px-3 py-2 flex items-center justify-between">
+                      <div>
+                        <p className="text-xs font-bold text-white">University of Duhok</p>
+                        <p className="text-[10px] text-purple-300">College of Science · Computer Science</p>
+                      </div>
+                      <span className="font-mono text-xs font-bold text-purple-400">2020–2024</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ═══════════════════════════════════════════════════════════════
+                ABOUT 02: STORY, VALUES & LANGUAGES (SLATE / GOLD)
+               ═══════════════════════════════════════════════════════════════ */}
+            <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-hidden bg-gradient-to-br from-[#0c0c14] via-[#06060a] to-[#020204]">
+              <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 text-xs font-mono font-semibold text-neutral-300 w-fit backdrop-blur-md">
+                  <Globe className="h-3 w-3 text-accent" />
+                  <span>IDENTITY, VALUES &amp; LANGUAGES</span>
+                </div>
+
+                <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                  Building Beyond{" "}
+                  <span className="bg-gradient-to-r from-amber-300 via-neutral-100 to-white bg-clip-text text-transparent">
+                    the Screen
+                  </span>
+                </h2>
+
+                <p className="mb-5 text-sm sm:text-base text-neutral-300/90 leading-relaxed max-w-lg">
+                  Born and based in Duhok, I have always believed that great engineers understand both the underlying code and the human operations around it. Whether leading 11 field agents or publishing on the App Store, I focus on reliability, clear communication, and high aesthetic finish.
+                </p>
+
+                {/* Languages Badges */}
+                <div className="mb-6 flex flex-wrap gap-2.5 max-w-lg">
+                  <div className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs text-emerald-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <span>Kurdish (Native / Mother Tongue)</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-xl border border-blue-500/20 bg-blue-500/10 px-3 py-1.5 text-xs text-blue-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                    <span>English (Professional Working B1)</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-xl border border-amber-500/20 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                    <span>Arabic (Professional Working)</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-xs sm:text-sm font-bold text-black transition-all duration-200 hover:bg-neutral-200 hover:scale-[1.02] shadow-lg shadow-white/10"
+                  >
+                    <span>Hire Zana Today</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+
+                  <a
+                    href={siteData.links.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 py-2.5 text-xs sm:text-sm font-semibold text-neutral-200 hover:bg-white/10 hover:border-white/30 transition-all duration-200"
+                  >
+                    <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                    <span>Direct Message</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2 h-full relative flex items-center justify-center p-6 sm:p-10 lg:p-12 overflow-hidden">
+                <div
+                  className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-white/[0.03] select-none tracking-tighter"
+                  aria-hidden="true"
+                >
+                  02
+                </div>
+
+                <div className="absolute w-72 h-72 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none" />
+
+                <div className="relative group w-48 sm:w-64 md:w-80 lg:w-[380px] aspect-[3/4] rounded-3xl border-2 border-white/15 bg-[#0e0e14]/90 p-3 shadow-2xl backdrop-blur-xl transition-transform duration-500 hover:scale-[1.02]">
+                  <div className="relative h-full w-full overflow-hidden rounded-2xl bg-black">
+                    <Image
+                      src="/images/personal/zana-with-kurdish-flags.jpg"
+                      alt="Zana Rajab Abdulrahman — Engineering Philosophy & Heritage"
+                      fill
+                      sizes="(max-width: 640px) 240px, (max-width: 1024px) 340px, 420px"
+                      className="object-cover object-top"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+
+                    <div className="absolute bottom-3 left-3 right-3 rounded-xl border border-white/15 bg-black/75 backdrop-blur-md px-3 py-2 flex items-center justify-between">
+                      <div>
+                        <p className="text-xs font-bold text-white">Zana Rajab</p>
+                        <p className="text-[10px] text-neutral-400">Duhok, Kurdistan Region, Iraq</p>
+                      </div>
+                      <span className="font-mono text-xs font-bold text-emerald-400">Available</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
 
-          {/* ── Story & Credential Details ─────────────────────────────────── */}
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={viewportOnce}
-            className="lg:w-3/5"
-          >
-            <motion.div variants={fadeUp} transition={smoothTransition}>
-              <SectionLabel className="mb-4">About Me</SectionLabel>
-            </motion.div>
-
-            <motion.h2
-              variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.06 }}
-              className="mb-6 text-3xl font-bold tracking-tight text-textPrimary md:text-5xl text-balance"
-            >
-              Crafting production software from first principles.
-            </motion.h2>
-
-            <motion.div
-              variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.12 }}
-              className="space-y-4 text-base text-textSecondary leading-relaxed"
-            >
-              <p>
-                I&rsquo;m a Computer Science graduate from Duhok, Kurdistan Region, Iraq. I build software from first principles — combining rigorous mobile engineering with human-centric UI/UX design, end-to-end video motion production, and high-stakes operational leadership.
-              </p>
-              <p>
-                As <span className="text-textPrimary font-semibold">Founder of Crown Barber</span>, I engineered a multi-role capstone platform from scratch and published it live to the Apple App Store, owning the entire product lifecycle from Figma wireframes to store approval. As <span className="text-textPrimary font-semibold">Founder &amp; Lead Developer of Bahdinan Cars</span>, I architected an enterprise automotive marketplace across iOS, Android, and Web using Flutter, Riverpod, and 2nd Gen Firebase Cloud Functions.
-              </p>
-              <p>
-                I also direct client deliveries like <span className="text-textPrimary font-semibold">Time Cafe Zaxo</span> (bilingual digital dining &amp; QR architecture) and coordinated 11 field agents across 817 km² on the Runaki Project with 18,000+ completed field visits. I work fast, obsess over quality, and ship software that performs in production.
-              </p>
-            </motion.div>
-
-            {/* Distinction chips */}
-            <motion.div
-              variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.18 }}
-              className="mt-8 flex flex-wrap gap-2.5"
-            >
-              {infoChips.map(({ icon: Icon, text }) => (
-                <div
-                  key={text}
-                  className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/80 backdrop-blur-sm px-4 py-2.5 shadow-sm"
-                >
-                  <Icon className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span className="text-xs md:text-sm font-medium text-textSecondary">{text}</span>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Contact CTA */}
-            <motion.div
-              variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.24 }}
-              className="mt-8 flex items-center gap-4"
-            >
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => {
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
+          {/* ── Luxury Floating Pin Controller Pill (About) ────────────────── */}
+          <div className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 sm:gap-5 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-white/15 bg-black/80 backdrop-blur-2xl shadow-2xl z-30 pointer-events-auto">
+            <span className="text-xs sm:text-sm font-mono font-bold text-white flex items-center gap-1.5">
+              <span
+                className={cn(
+                  "transition-colors duration-300",
+                  activeSlide === 1 && "text-purple-400",
+                  activeSlide === 2 && "text-white",
+                )}
               >
-                Let&rsquo;s Work Together →
-              </Button>
-            </motion.div>
-          </motion.div>
+                0{activeSlide}
+              </span>
+              <span className="text-neutral-500">/</span>
+              <span className="text-neutral-400">0{totalSlides}</span>
+            </span>
 
+            <div className="flex items-center gap-1.5">
+              {[1, 2].map((i) => (
+                <button
+                  key={i}
+                  onClick={() => scrollToSlide(i)}
+                  className={cn(
+                    "h-2 rounded-full transition-all duration-300",
+                    activeSlide === i
+                      ? cn(
+                          "w-6 shadow-md",
+                          i === 1 && "bg-purple-400 shadow-purple-400/50",
+                          i === 2 && "bg-white shadow-white/50",
+                        )
+                      : "w-2 bg-white/20 hover:bg-white/40",
+                  )}
+                  aria-label={`Jump to about slide 0${i}`}
+                />
+              ))}
+            </div>
+
+            <div className="w-20 sm:w-36 h-1 bg-white/10 rounded-full overflow-hidden hidden xs:block">
+              <motion.div
+                style={{ scaleX: smoothProgress, transformOrigin: "left" }}
+                className="h-full bg-gradient-to-r from-purple-400 to-white rounded-full"
+              />
+            </div>
+
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-neutral-400">
+              <Sparkles className="h-3 w-3 text-purple-400" />
+              <span>Scroll or Drag →</span>
+            </span>
+          </div>
         </div>
       </div>
-
-      {/* Lightbox for Personal Photos with Fast Flip Arrows & Thumbnails */}
-      {lightboxOpen && (
-        <ImageLightbox
-          isOpen={lightboxOpen}
-          onClose={() => setLightboxOpen(false)}
-          src={personalPhotos[photoIndex].src}
-          alt={personalPhotos[photoIndex].alt}
-          title="Zana Rajab Abdulrahman"
-          subtitle="Founder · Mobile App Developer · University of Duhok"
-          images={personalPhotos.map((p) => p.src)}
-          initialIndex={photoIndex}
-        />
-      )}
     </section>
   );
 }

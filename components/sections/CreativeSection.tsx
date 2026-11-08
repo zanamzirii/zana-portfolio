@@ -302,7 +302,7 @@ function BrandHeaderCard({ profile, itemCount }: BrandHeaderCardProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.3 }}
-      className="relative mb-8 rounded-3xl border border-white/10 bg-gradient-to-br from-[#131318]/95 via-[#0e0e12]/95 to-[#16161d]/95 p-6 md:p-8 backdrop-blur-xl shadow-2xl overflow-hidden"
+      className="relative mb-6 sm:mb-8 rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-br from-[#131318]/95 via-[#0e0e12]/95 to-[#16161d]/95 p-4 sm:p-6 md:p-8 backdrop-blur-xl shadow-2xl overflow-hidden"
     >
       {/* Ambient Radial Accent Glow */}
       <div
@@ -314,11 +314,11 @@ function BrandHeaderCard({ profile, itemCount }: BrandHeaderCardProps) {
         style={{ backgroundColor: profile.accentColor }}
       />
 
-      <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-6">
         {/* Left: Avatar & Identity Details */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        <div className="flex flex-row items-center sm:items-start lg:items-center gap-3.5 sm:gap-5">
           {/* Avatar Squircle */}
-          <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-white/20 bg-black/60 shadow-xl">
+          <div className="relative h-14 w-14 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl sm:rounded-2xl border-2 border-white/20 bg-black/60 shadow-xl">
             <Image
               src={profile.avatar}
               alt={profile.name}
@@ -327,56 +327,61 @@ function BrandHeaderCard({ profile, itemCount }: BrandHeaderCardProps) {
             />
             {/* Live Glow Ring */}
             <div
-              className="absolute inset-0 rounded-2xl border-2 opacity-60 pointer-events-none"
+              className="absolute inset-0 rounded-xl sm:rounded-2xl border-2 opacity-60 pointer-events-none"
               style={{ borderColor: profile.accentColor }}
             />
           </div>
 
           {/* Titles & Bio */}
-          <div className="space-y-1.5">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-0.5 text-[11px] font-semibold text-neutral-300">
-                <Sparkles className="h-3 w-3" style={{ color: profile.accentColor }} />
-                {profile.badge}
+          <div className="space-y-1 sm:space-y-1.5 min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/[0.06] px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-semibold text-neutral-300">
+                <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3" style={{ color: profile.accentColor }} />
+                <span>{profile.badge}</span>
               </span>
-              <span className="text-[11px] font-mono text-neutral-400">
-                {profile.category} · {itemCount} Works
+              <span className="text-[10px] sm:text-[11px] font-mono text-neutral-400">
+                {itemCount} Works
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
-              <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <h3 className="text-lg sm:text-2xl md:text-3xl font-extrabold tracking-tight text-white truncate">
                 {profile.name}
               </h3>
               {/* Blue Verified Badge */}
-              <span className="inline-flex items-center justify-center rounded-full bg-blue-500 text-white p-0.5 shadow-md shadow-blue-500/30">
-                <CheckCircle2 className="h-4 w-4 fill-blue-500 text-black stroke-[2.5]" />
+              <span className="inline-flex items-center justify-center rounded-full bg-blue-500 text-white p-0.5 shadow-md shadow-blue-500/30 flex-shrink-0">
+                <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 fill-blue-500 text-black stroke-[2.5]" />
               </span>
             </div>
 
-            <p className="text-xs font-mono text-neutral-400">
+            <p className="text-[11px] sm:text-xs font-mono text-neutral-400">
               {profile.handle}
             </p>
 
-            <p className="text-sm text-neutral-300 max-w-2xl leading-relaxed pt-1">
+            <p className="text-xs sm:text-sm text-neutral-300 max-w-2xl leading-relaxed pt-0.5 sm:pt-1 hidden sm:block">
               {profile.bio}
             </p>
           </div>
         </div>
 
+        {/* Bio for mobile screen */}
+        <p className="text-xs text-neutral-300 leading-relaxed sm:hidden">
+          {profile.bio}
+        </p>
+
         {/* Right: Stats & CTA Link */}
-        <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-between gap-4 border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-6">
+        <div className="flex flex-col sm:flex-row lg:flex-col items-stretch lg:items-end justify-between gap-3 sm:gap-4 border-t lg:border-t-0 lg:border-l border-white/10 pt-3 sm:pt-4 lg:pt-0 lg:pl-6">
           {/* Stats Bar */}
-          <div className="grid grid-cols-3 gap-2.5 w-full sm:w-auto">
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5 w-full sm:w-auto">
             {profile.stats.map((stat, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-center"
+                className="flex flex-col items-center justify-center rounded-lg sm:rounded-xl border border-white/[0.08] bg-white/[0.03] px-2 py-1.5 sm:px-3.5 sm:py-2 text-center"
               >
-                <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">
+                <span className="text-[9px] sm:text-[10px] font-mono text-neutral-400 uppercase tracking-wider truncate max-w-full">
                   {stat.label}
                 </span>
-                <span className="text-xs font-bold text-white mt-0.5 whitespace-nowrap">
+                <span className="text-xs sm:text-xs font-bold text-white mt-0.5 whitespace-nowrap">
                   {stat.value}
                 </span>
               </div>
@@ -384,7 +389,7 @@ function BrandHeaderCard({ profile, itemCount }: BrandHeaderCardProps) {
           </div>
 
           {/* Action Links */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
             {/* Direct Bridge to Software Projects */}
             <a
               href="#projects"
@@ -393,17 +398,17 @@ function BrandHeaderCard({ profile, itemCount }: BrandHeaderCardProps) {
                 const el = document.getElementById("projects");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.05] hover:bg-white/[0.1] px-3.5 py-2.5 text-xs font-semibold text-neutral-200 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-md"
+              className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.05] hover:bg-white/[0.1] px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs font-semibold text-neutral-200 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-md"
             >
               <Code2 className="h-3.5 w-3.5 text-blue-400" />
               <span>
                 {profile.id === "crown-barber"
-                  ? "View Flutter App (Projects)"
+                  ? "View Flutter App"
                   : profile.id === "bahdinan-cars"
-                  ? "View Marketplace App (Projects)"
+                  ? "View Marketplace App"
                   : profile.id === "virastack"
-                  ? "View Restaurant Web App (Projects)"
-                  : "View Software Engineering"}
+                  ? "View Web App"
+                  : "View Software Code"}
               </span>
             </a>
 
@@ -413,7 +418,7 @@ function BrandHeaderCard({ profile, itemCount }: BrandHeaderCardProps) {
                 href={profile.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-95 border border-white/15"
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-95 border border-white/15"
                 style={{
                   backgroundColor: profile.accentColor,
                   boxShadow: `0 8px 24px -6px ${profile.accentColor}55`,
@@ -524,9 +529,9 @@ export function CreativeSection() {
           initial="initial"
           whileInView="animate"
           viewport={viewportOnce}
-          className="mb-10"
+          className="mb-8 sm:mb-10"
         >
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <motion.div variants={fadeUp} transition={smoothTransition}>
               <SectionLabel>UI/UX &amp; Creative Studio</SectionLabel>
             </motion.div>
@@ -540,12 +545,13 @@ export function CreativeSection() {
                   const el = document.getElementById("projects");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-blue-500/25 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold text-blue-300 hover:bg-blue-500/20 hover:border-blue-500/40 transition-all duration-200 shadow-sm group"
+                className="inline-flex items-center gap-2 rounded-full border border-blue-500/25 bg-blue-500/10 px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs font-semibold text-blue-300 hover:bg-blue-500/20 hover:border-blue-500/40 transition-all duration-200 shadow-sm group"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
-                <span>Looking for Code &amp; Architecture?</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse flex-shrink-0" />
+                <span className="hidden sm:inline">Looking for Code &amp; Architecture?</span>
+                <span className="sm:hidden text-[11px]">Software Projects</span>
                 <span className="text-blue-400 font-bold group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
-                  Software Projects &uarr;
+                  &uarr;
                 </span>
               </a>
             </motion.div>
@@ -554,25 +560,26 @@ export function CreativeSection() {
           <motion.div
             variants={fadeUp}
             transition={{ ...smoothTransition, delay: 0.04 }}
-            className="inline-flex items-center gap-2 rounded-full px-3 py-1 border border-purple-500/30 bg-purple-500/10 text-[11px] font-mono font-medium text-purple-300 mb-3"
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 border border-purple-500/30 bg-purple-500/10 text-[10px] sm:text-[11px] font-mono font-medium text-purple-300 mb-3 max-w-full overflow-hidden"
           >
-            <Palette className="h-3 w-3 text-purple-400" />
-            <span>FIGMA PROTOTYPES · MOTION VIDEO ADS · MULTI-BRAND MARKETING DECKS</span>
+            <Palette className="h-3 w-3 text-purple-400 flex-shrink-0" />
+            <span className="hidden sm:inline">FIGMA PROTOTYPES · MOTION VIDEO ADS · MULTI-BRAND MARKETING DECKS</span>
+            <span className="sm:hidden truncate">FIGMA · MOTION &amp; MARKETING DECKS</span>
           </motion.div>
 
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 sm:gap-6">
             <div>
               <motion.h2
                 variants={fadeUp}
                 transition={{ ...smoothTransition, delay: 0.06 }}
-                className="text-3xl font-bold tracking-tight text-white md:text-5xl"
+                className="text-2xl sm:text-3xl font-bold tracking-tight text-white md:text-5xl"
               >
                 Brand Ecosystems &amp; Design Systems
               </motion.h2>
               <motion.p
                 variants={fadeUp}
                 transition={{ ...smoothTransition, delay: 0.12 }}
-                className="mt-3 text-base text-neutral-400 max-w-2xl leading-relaxed"
+                className="mt-2 sm:mt-3 text-sm sm:text-base text-neutral-400 max-w-2xl leading-relaxed"
               >
                 Figma design systems, motion video ads, and multi-slide Instagram brand carousels across Crown Barber, ViraStack, and Zana Rajab Builds. Select a brand below to inspect its dedicated profile and published creative decks.
               </motion.p>
@@ -580,8 +587,8 @@ export function CreativeSection() {
           </div>
         </motion.div>
 
-        {/* ── Brand Switcher Tab Bar ─────────────────────────────────────── */}
-        <div className="mb-8 flex flex-wrap items-center gap-3">
+        {/* ── Brand Switcher Tab Bar (Single Horizontal Swipe Bar on Mobile) ── */}
+        <div className="mb-6 flex flex-nowrap overflow-x-auto no-scrollbar gap-2 sm:gap-3 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap items-center">
           {brandProfiles.map((brand) => {
             const isSelected = selectedBrandId === brand.id;
             const count = siteData.creative.filter((item) => item.brandId === brand.id).length;
@@ -594,20 +601,20 @@ export function CreativeSection() {
                   setSubFilter("all");
                 }}
                 className={cn(
-                  "group relative flex items-center gap-3 rounded-2xl px-4 py-2.5 text-xs font-semibold transition-all duration-300",
-                  "border backdrop-blur-md shadow-lg",
+                  "group relative flex-shrink-0 flex items-center gap-2 sm:gap-3 rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-semibold transition-all duration-300",
+                  "border backdrop-blur-md shadow-md",
                   isSelected
                     ? "bg-[#181820] text-white shadow-xl scale-[1.02]"
                     : "border-white/10 bg-white/[0.03] text-neutral-400 hover:text-white hover:bg-white/[0.06]",
                 )}
                 style={{
                   borderColor: isSelected ? brand.accentColor : undefined,
-                  boxShadow: isSelected ? `0 10px 25px -8px ${brand.accentColor}40` : undefined,
+                  boxShadow: isSelected ? `0 8px 20px -6px ${brand.accentColor}40` : undefined,
                 }}
               >
                 {/* Brand Squircle Avatar Thumbnail */}
                 <div
-                  className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-lg border border-white/20 bg-black/60"
+                  className="relative h-6 w-6 sm:h-7 sm:w-7 flex-shrink-0 overflow-hidden rounded-lg border border-white/20 bg-black/60"
                   style={{ borderColor: isSelected ? brand.accentColor : undefined }}
                 >
                   <Image
@@ -619,10 +626,10 @@ export function CreativeSection() {
                 </div>
 
                 <div className="flex flex-col text-left">
-                  <span className="font-bold text-white leading-tight">
+                  <span className="font-bold text-white text-xs whitespace-nowrap leading-tight">
                     {brand.name}
                   </span>
-                  <span className="text-[10px] font-mono text-neutral-400">
+                  <span className="hidden sm:block text-[10px] font-mono text-neutral-400">
                     {brand.handle}
                   </span>
                 </div>
@@ -630,7 +637,7 @@ export function CreativeSection() {
                 {/* Count Badge */}
                 <span
                   className={cn(
-                    "ml-1 rounded-full px-2 py-0.5 text-[10px] font-mono",
+                    "ml-0.5 sm:ml-1 rounded-full px-1.5 sm:px-2 py-0.5 text-[10px] font-mono",
                     isSelected
                       ? "bg-white/15 text-white"
                       : "bg-white/[0.06] text-neutral-400 group-hover:text-white",
@@ -649,7 +656,7 @@ export function CreativeSection() {
               setSubFilter("all");
             }}
             className={cn(
-              "flex items-center gap-2 rounded-2xl px-4 py-2.5 text-xs font-semibold transition-all duration-300",
+              "flex-shrink-0 flex items-center gap-2 rounded-2xl px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs font-semibold transition-all duration-300 whitespace-nowrap",
               "border backdrop-blur-md",
               selectedBrandId === "all"
                 ? "border-accent bg-accent text-white shadow-xl shadow-accent/25 scale-[1.02]"
@@ -683,14 +690,14 @@ export function CreativeSection() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              className="mb-8 rounded-3xl border border-white/10 bg-[#121217]/90 p-6 md:p-8 backdrop-blur-xl shadow-2xl"
+              className="mb-6 sm:mb-8 rounded-2xl sm:rounded-3xl border border-white/10 bg-[#121217]/90 p-4 sm:p-6 md:p-8 backdrop-blur-xl shadow-2xl"
             >
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 sm:gap-4">
                 <div>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-mono text-accent uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-accent uppercase tracking-wider">
                     <Compass className="h-3.5 w-3.5" /> Complete Design Portfolio
                   </span>
-                  <h3 className="text-2xl font-bold text-white mt-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mt-0.5 sm:mt-1">
                     Multi-Brand Design Showcase
                   </h3>
                   <p className="text-xs text-neutral-300 mt-1 max-w-xl">
@@ -698,7 +705,7 @@ export function CreativeSection() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-mono text-neutral-300">
+                  <span className="rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs font-mono text-neutral-300">
                     4 Active Brands · {siteData.creative.length} Productions
                   </span>
                 </div>
@@ -708,19 +715,19 @@ export function CreativeSection() {
         </AnimatePresence>
 
         {/* ── Sub-Filter Bar (Within Active Brand) ────────────────────────── */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-white/[0.08] pb-4">
           <div className="flex items-center gap-1.5 text-xs text-neutral-400">
             <SlidersHorizontal className="h-3.5 w-3.5 text-accent" />
             <span>Filter Media:</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5">
+          <div className="flex flex-nowrap overflow-x-auto no-scrollbar gap-1.5 -mx-4 px-4 sm:mx-0 sm:px-0">
             {subFilterTabs.map(({ id, label, count }) => (
               <button
                 key={id}
                 onClick={() => setSubFilter(id)}
                 className={cn(
-                  "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200",
+                  "flex-shrink-0 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap",
                   subFilter === id
                     ? "bg-white/15 text-white border border-white/20 shadow-md"
                     : "text-neutral-400 hover:text-white hover:bg-white/[0.05]",

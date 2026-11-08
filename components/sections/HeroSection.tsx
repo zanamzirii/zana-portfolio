@@ -94,7 +94,7 @@ export function HeroSection() {
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-radial"
         style={{
-          background: "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 0%, #080808 70%)",
+          background: "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 0%, #050505 70%)",
         }}
         aria-hidden="true"
       />

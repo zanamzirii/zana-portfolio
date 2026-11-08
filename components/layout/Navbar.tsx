@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github, Linkedin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { siteData } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { AppleIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import {
   slideInRight,
   fastTransition,
@@ -202,45 +203,51 @@ export function Navbar() {
               exit="exit"
               transition={fastTransition}
               className="fixed inset-y-0 right-0 z-50 w-full max-w-xs
-                         bg-surface border-l border-border flex flex-col lg:hidden"
+                         bg-[#08080b]/98 backdrop-blur-2xl border-l border-white/10 flex flex-col lg:hidden shadow-2xl"
             >
               {/* Panel Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-border">
-                <span className="rounded-md bg-accent px-2 py-0.5 text-sm font-bold text-white">
+              <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+                <span className="rounded-lg bg-accent px-2.5 py-1 text-xs font-bold text-white shadow-md shadow-accent/25">
                   {siteData.personal.initials}
                 </span>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 rounded-lg text-textSecondary hover:text-textPrimary
-                             hover:bg-elevated transition-colors"
+                  className="p-2 rounded-xl text-neutral-400 hover:text-white hover:bg-white/[0.06] transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
-              {/* Nav Links */}
+              {/* Nav Links with Luxury Numbering */}
               <motion.ul
                 variants={staggerContainer}
                 initial="initial"
                 animate="animate"
-                className="flex-1 flex flex-col gap-1 px-4 py-6"
+                className="flex-1 flex flex-col gap-1.5 px-4 py-6 overflow-y-auto"
               >
-                {navLinks.map((link) => {
+                {navLinks.map((link, idx) => {
                   const isActive = active === link.href.slice(1);
                   return (
                     <motion.li key={link.href} variants={fadeUp}>
                       <button
                         onClick={() => handleNavClick(link.href)}
                         className={cn(
-                          "w-full text-left px-4 py-3.5 rounded-xl text-base font-medium",
-                          "transition-all duration-200",
+                          "w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200",
                           isActive
-                            ? "bg-accentMuted text-accent border border-accentBorder"
-                            : "text-textSecondary hover:text-textPrimary hover:bg-elevated",
+                            ? "bg-accent/15 text-white border border-accent/40 shadow-md shadow-accent/20"
+                            : "text-neutral-400 hover:text-white hover:bg-white/[0.05]",
                         )}
                       >
-                        {link.label}
+                        <span>{link.label}</span>
+                        <span
+                          className={cn(
+                            "text-[10px] font-mono",
+                            isActive ? "text-accent font-bold" : "text-neutral-600",
+                          )}
+                        >
+                          0{idx + 1}
+                        </span>
                       </button>
                     </motion.li>
                   );
@@ -248,39 +255,62 @@ export function Navbar() {
               </motion.ul>
 
               {/* Panel Footer */}
-              <div className="px-6 py-6 border-t border-border space-y-4">
+              <div className="px-6 py-6 border-t border-white/10 space-y-4">
                 <Button
                   variant="primary"
                   size="lg"
-                  className="w-full"
+                  className="w-full shadow-lg shadow-accent/25"
                   onClick={() => handleNavClick("#contact")}
                 >
                   Hire Me →
                 </Button>
-                <div className="flex justify-center gap-4">
+
+                {/* Branded Glass Social Icon Row (Ayman.krd Luxury Style) */}
+                <div className="flex items-center justify-center gap-2 pt-1">
+                  <a
+                    href={siteData.links.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-neutral-300 hover:text-[#25D366] hover:bg-[#25D366]/15 hover:border-[#25D366]/40 transition-all duration-200"
+                  >
+                    <WhatsAppIcon className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/zanarajab.builds"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-neutral-300 hover:text-[#E4405F] hover:bg-[#E4405F]/15 hover:border-[#E4405F]/40 transition-all duration-200"
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </a>
                   <a
                     href={siteData.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-textMuted hover:text-textPrimary transition-colors"
+                    aria-label="GitHub"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-neutral-300 hover:text-white hover:bg-white/15 hover:border-white/30 transition-all duration-200"
                   >
-                    GitHub
+                    <Github className="h-4 w-4" />
                   </a>
                   <a
                     href={siteData.links.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-textMuted hover:text-textPrimary transition-colors"
+                    aria-label="LinkedIn"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-neutral-300 hover:text-[#0A66C2] hover:bg-[#0A66C2]/15 hover:border-[#0A66C2]/40 transition-all duration-200"
                   >
-                    LinkedIn
+                    <Linkedin className="h-4 w-4" />
                   </a>
                   <a
-                    href={siteData.links.whatsapp}
+                    href={siteData.links.appStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-textMuted hover:text-textPrimary transition-colors"
+                    aria-label="Apple Developer"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-neutral-300 hover:text-white hover:bg-white/15 hover:border-white/30 transition-all duration-200"
                   >
-                    WhatsApp
+                    <AppleIcon className="h-4 w-4" />
                   </a>
                 </div>
               </div>

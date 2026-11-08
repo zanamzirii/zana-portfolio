@@ -39,9 +39,9 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       variants={scaleIn}
       transition={{ ...smoothTransition, delay: index * 0.08 }}
       className={cn(
-        "group relative flex flex-col justify-between rounded-2xl border border-border bg-card p-7",
+        "group relative flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-[#0c0c10]/95 p-7",
         "transition-all duration-300",
-        "hover:border-borderLight hover:bg-elevated/70 shadow-lg",
+        "hover:border-white/20 hover:bg-[#121217] shadow-xl backdrop-blur-xl",
         "overflow-hidden",
       )}
     >
@@ -50,6 +50,14 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         className="absolute inset-x-0 top-0 h-0.5 opacity-60"
         style={{ backgroundColor: project.color }}
       />
+
+      {/* Editorial Watermark Number */}
+      <div
+        className="pointer-events-none absolute top-3 right-5 font-black font-mono text-6xl text-white/[0.03] select-none z-0 tracking-tighter"
+        aria-hidden="true"
+      >
+        0{index + 4}
+      </div>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between gap-3">
@@ -187,11 +195,26 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
     <>
       <div
         className={cn(
-          "group relative rounded-3xl border border-white/[0.08] bg-[#111114]/95",
+          "group relative rounded-3xl border border-white/[0.08] bg-[#0c0c10]/95",
           "overflow-hidden transition-all duration-300",
-          "hover:border-white/20 shadow-2xl backdrop-blur-md",
+          "hover:border-white/20 shadow-2xl backdrop-blur-xl",
         )}
       >
+        {/* Soft Ambient Radial Background Glow */}
+        <div
+          className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full opacity-15 blur-3xl transition-opacity duration-500 group-hover:opacity-25"
+          style={{ backgroundColor: project.color }}
+          aria-hidden="true"
+        />
+
+        {/* Editorial Watermark Number (Luxury Agency Style) */}
+        <div
+          className="pointer-events-none absolute top-3 right-6 sm:top-5 sm:right-10 font-black font-mono text-7xl sm:text-8xl md:text-9xl text-white/[0.035] select-none z-0 tracking-tighter"
+          aria-hidden="true"
+        >
+          {project.id === "crown-barber" ? "01" : project.id === "bahdinan-cars" ? "02" : "03"}
+        </div>
+
         {/* Subtle accent glow at top */}
         <div
           className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"

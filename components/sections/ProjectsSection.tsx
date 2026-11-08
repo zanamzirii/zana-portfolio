@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Code2, ArrowDownRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FeaturedProjectCard, ProjectCard } from "@/components/ui/ProjectCard";
 import { siteData } from "@/lib/data";
@@ -27,9 +28,40 @@ export function ProjectsSection() {
           viewport={viewportOnce}
           className="mb-14"
         >
-          <motion.div variants={fadeUp} transition={smoothTransition} className="mb-4">
-            <SectionLabel>Production Software</SectionLabel>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <motion.div variants={fadeUp} transition={smoothTransition}>
+              <SectionLabel>Software Engineering &amp; Code</SectionLabel>
+            </motion.div>
+
+            {/* Cross-Link Pill to Creative Studio */}
+            <motion.div variants={fadeUp} transition={{ ...smoothTransition, delay: 0.1 }}>
+              <a
+                href="#creative"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById("creative");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-amber-500/25 bg-amber-500/10 px-3.5 py-1.5 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 hover:border-amber-500/40 transition-all duration-200 shadow-sm group"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                <span>UI/UX &amp; Marketing Decks?</span>
+                <span className="text-amber-400 font-bold group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                  Creative Studio <ArrowDownRight className="h-3 w-3" />
+                </span>
+              </a>
+            </motion.div>
+          </div>
+
+          <motion.div
+            variants={fadeUp}
+            transition={{ ...smoothTransition, delay: 0.04 }}
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 border border-blue-500/30 bg-blue-500/10 text-[11px] font-mono font-medium text-blue-300 mb-3"
+          >
+            <Code2 className="h-3 w-3 text-blue-400" />
+            <span>PRODUCTION CODE · CLEAN ARCHITECTURE · MULTI-ROLE BACKENDS</span>
           </motion.div>
+
           <motion.h2
             variants={fadeUp}
             transition={{ ...smoothTransition, delay: 0.06 }}
@@ -40,9 +72,9 @@ export function ProjectsSection() {
           <motion.p
             variants={fadeUp}
             transition={{ ...smoothTransition, delay: 0.12 }}
-            className="mt-3 text-base text-textSecondary max-w-2xl"
+            className="mt-3 text-base text-textSecondary max-w-2xl leading-relaxed"
           >
-            Real systems in the hands of real users: automotive marketplaces, booking ecosystems, and live commercial dining platforms.
+            Production software engineered with Flutter, Dart, Riverpod, Next.js, and Firebase. Built from scratch with clean architectural separation, strict security, and live on the App Store and Web.
           </motion.p>
         </motion.div>
 

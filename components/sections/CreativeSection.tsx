@@ -17,6 +17,8 @@ import {
   SlidersHorizontal,
   Compass,
   ArrowUpRight,
+  Palette,
+  Code2,
 } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ImageLightbox } from "@/components/ui/ImageLightbox";
@@ -381,22 +383,47 @@ function BrandHeaderCard({ profile, itemCount }: BrandHeaderCardProps) {
             ))}
           </div>
 
-          {/* Action Link Button */}
-          {profile.link && (
+          {/* Action Links */}
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Direct Bridge to Software Projects */}
             <a
-              href={profile.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-95 border border-white/15"
-              style={{
-                backgroundColor: profile.accentColor,
-                boxShadow: `0 8px 24px -6px ${profile.accentColor}55`,
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("projects");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.05] hover:bg-white/[0.1] px-3.5 py-2.5 text-xs font-semibold text-neutral-200 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-md"
             >
-              <span>{profile.linkLabel || "Visit Profile"}</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
+              <Code2 className="h-3.5 w-3.5 text-blue-400" />
+              <span>
+                {profile.id === "crown-barber"
+                  ? "View Flutter App (Projects)"
+                  : profile.id === "bahdinan-cars"
+                  ? "View Marketplace App (Projects)"
+                  : profile.id === "virastack"
+                  ? "View Restaurant Web App (Projects)"
+                  : "View Software Engineering"}
+              </span>
             </a>
-          )}
+
+            {/* External Profile Link */}
+            {profile.link && (
+              <a
+                href={profile.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-95 border border-white/15"
+                style={{
+                  backgroundColor: profile.accentColor,
+                  boxShadow: `0 8px 24px -6px ${profile.accentColor}55`,
+                }}
+              >
+                <span>{profile.linkLabel || "Visit Profile"}</span>
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -422,6 +449,19 @@ export function CreativeSection() {
     title: string;
     subtitle?: string;
   } | null>(null);
+
+  // Listen for brand switch requests from other tabs/sections
+  useEffect(() => {
+    const handleSelectBrand = (e: Event) => {
+      const custom = e as CustomEvent<string>;
+      if (custom.detail) {
+        setSelectedBrandId(custom.detail);
+        setSubFilter("all");
+      }
+    };
+    window.addEventListener("select-creative-brand", handleSelectBrand);
+    return () => window.removeEventListener("select-creative-brand", handleSelectBrand);
+  }, []);
 
   const brandProfiles = siteData.brandProfiles || [];
 
@@ -486,9 +526,40 @@ export function CreativeSection() {
           viewport={viewportOnce}
           className="mb-10"
         >
-          <motion.div variants={fadeUp} transition={smoothTransition} className="mb-4">
-            <SectionLabel>Creative &amp; Design Studio</SectionLabel>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <motion.div variants={fadeUp} transition={smoothTransition}>
+              <SectionLabel>UI/UX &amp; Creative Studio</SectionLabel>
+            </motion.div>
+
+            {/* Cross-Link Pill to Software Projects */}
+            <motion.div variants={fadeUp} transition={{ ...smoothTransition, delay: 0.1 }}>
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById("projects");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-blue-500/25 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold text-blue-300 hover:bg-blue-500/20 hover:border-blue-500/40 transition-all duration-200 shadow-sm group"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
+                <span>Looking for Code &amp; Architecture?</span>
+                <span className="text-blue-400 font-bold group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                  Software Projects &uarr;
+                </span>
+              </a>
+            </motion.div>
+          </div>
+
+          <motion.div
+            variants={fadeUp}
+            transition={{ ...smoothTransition, delay: 0.04 }}
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 border border-purple-500/30 bg-purple-500/10 text-[11px] font-mono font-medium text-purple-300 mb-3"
+          >
+            <Palette className="h-3 w-3 text-purple-400" />
+            <span>FIGMA PROTOTYPES · MOTION VIDEO ADS · MULTI-BRAND MARKETING DECKS</span>
           </motion.div>
+
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
               <motion.h2
@@ -503,7 +574,7 @@ export function CreativeSection() {
                 transition={{ ...smoothTransition, delay: 0.12 }}
                 className="mt-3 text-base text-neutral-400 max-w-2xl leading-relaxed"
               >
-                Interactive design portfolios and commercial social campaigns across Crown Barber, ViraStack, and Zana Rajab Builds. Select a brand below to inspect its dedicated profile and published creative decks.
+                Figma design systems, motion video ads, and multi-slide Instagram brand carousels across Crown Barber, ViraStack, and Zana Rajab Builds. Select a brand below to inspect its dedicated profile and published creative decks.
               </motion.p>
             </div>
           </div>

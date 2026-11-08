@@ -347,6 +347,67 @@ export function FeaturedProjectCard({ project, reverse = false }: FeaturedProjec
                   GitHub
                 </Button>
               )}
+
+              {/* Creative Studio Cross-Links */}
+              {project.id === "crown-barber" && (
+                <Button
+                  variant="outline"
+                  size="md"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(
+                        new CustomEvent("select-creative-brand", { detail: "crown-barber" })
+                      );
+                      const el = document.getElementById("creative");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="border-amber-500/30 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 hover:text-white"
+                >
+                  <Sparkles className="h-4 w-4 text-amber-400" />
+                  Creative &amp; Marketing Decks &rarr;
+                </Button>
+              )}
+
+              {project.id === "bahdinan-cars" && (
+                <Button
+                  variant="outline"
+                  size="md"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(
+                        new CustomEvent("select-creative-brand", { detail: "bahdinan-cars" })
+                      );
+                      const el = document.getElementById("creative");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="border-blue-500/30 bg-blue-500/10 text-blue-300 hover:bg-blue-500/20 hover:text-white"
+                >
+                  <Sparkles className="h-4 w-4 text-blue-400" />
+                  13″ iPad Design System &rarr;
+                </Button>
+              )}
+
+              {project.id === "time-cafe-zaxo" && (
+                <Button
+                  variant="outline"
+                  size="md"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(
+                        new CustomEvent("select-creative-brand", { detail: "virastack" })
+                      );
+                      const el = document.getElementById("creative");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="border-indigo-500/30 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20 hover:text-white"
+                >
+                  <Sparkles className="h-4 w-4 text-indigo-400" />
+                  Digital Menu Decks &rarr;
+                </Button>
+              )}
             </div>
           </div>
 

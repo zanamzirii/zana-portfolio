@@ -4,25 +4,16 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import {
-  Code2,
   ExternalLink,
   Sparkles,
   Star,
   CheckCircle2,
   Smartphone,
   Compass,
-  ArrowDownRight,
   Coffee,
 } from "lucide-react";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AppleIcon } from "@/components/ui/BrandIcons";
 import { siteData } from "@/lib/data";
-import {
-  fadeUp,
-  staggerContainer,
-  smoothTransition,
-  viewportOnce,
-} from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
 export function ProjectsSection() {
@@ -111,66 +102,6 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="relative bg-[#050505] text-textPrimary">
-      {/* ── Section Header (Vertical Introduction) ───────────────────────── */}
-      <div className="mx-auto max-w-6xl px-6 pt-20 md:pt-28 pb-8">
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={viewportOnce}
-          className="mb-4"
-        >
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
-            <motion.div variants={fadeUp} transition={smoothTransition}>
-              <SectionLabel>Software Engineering &amp; Production Code</SectionLabel>
-            </motion.div>
-
-            {/* Cross-Link Pill to Creative Studio */}
-            <motion.div
-              variants={fadeUp}
-              transition={{ ...smoothTransition, delay: 0.1 }}
-            >
-              <a
-                href="#creative"
-                className="inline-flex items-center gap-2 rounded-full border border-amber-500/25 bg-amber-500/10 px-3.5 py-1.5 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 hover:border-amber-500/40 transition-all duration-200 shadow-sm group"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-                <span>UI/UX &amp; Marketing Decks?</span>
-                <span className="text-amber-400 font-bold group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
-                  Creative Studio <ArrowDownRight className="h-3 w-3" />
-                </span>
-              </a>
-            </motion.div>
-          </div>
-
-          <motion.div
-            variants={fadeUp}
-            transition={{ ...smoothTransition, delay: 0.04 }}
-            className="inline-flex items-center gap-2 rounded-full px-3 py-1 border border-blue-500/30 bg-blue-500/10 text-[11px] font-mono font-medium text-blue-300 mb-3"
-          >
-            <Code2 className="h-3 w-3 text-blue-400" />
-            <span>FLUTTER · CLEAN ARCHITECTURE · FIREBASE CLOUD · RETINA ASSETS</span>
-          </motion.div>
-
-          <motion.h2
-            variants={fadeUp}
-            transition={{ ...smoothTransition, delay: 0.06 }}
-            className="text-3xl font-extrabold tracking-tight text-white md:text-5xl"
-          >
-            Shipped Products &amp; Enterprise Platforms
-          </motion.h2>
-
-          <motion.p
-            variants={fadeUp}
-            transition={{ ...smoothTransition, delay: 0.12 }}
-            className="mt-3 text-sm md:text-base text-neutral-400 max-w-2xl leading-relaxed"
-          >
-            Production software engineered with Flutter, Dart, Riverpod, Next.js, and Firebase.
-            Built with clean architectural separation, strict security, and live on the Apple App Store and Web.
-          </motion.p>
-        </motion.div>
-      </div>
-
       {/* ── Horizontal Pin-Scroll Track (3 Real Production Platforms) ──────── */}
       <div ref={containerRef} className="relative h-[300vh] lg:h-[320vh]">
         <div

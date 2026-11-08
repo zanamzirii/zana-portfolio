@@ -99,8 +99,8 @@ function CreativeCard({ item, onOpenLightbox, onOpenVideo }: CreativeCardProps) 
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.28 }}
       className={cn(
-        "group relative flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-[#111115]/95",
-        "overflow-hidden transition-all duration-300 hover:border-white/20 hover:bg-[#15151a] shadow-xl hover:shadow-2xl",
+        "group relative flex flex-col justify-between rounded-3xl border border-white/[0.08] bg-[#0c0c10]/95",
+        "overflow-hidden transition-all duration-300 hover:border-white/20 hover:bg-[#121217] hover:-translate-y-1.5 shadow-xl hover:shadow-2xl",
       )}
     >
       {/* ── Media Showcase Box ─────────────────────────────────────────── */}

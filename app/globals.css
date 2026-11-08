@@ -51,6 +51,23 @@ body {
   border-radius: 4px;
 }
 
+/* ─── Lenis Smooth Scroll ────────────────────────────────────── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 /* ─── Utility layers ─────────────────────────────────────────── */
 @layer utilities {
   .text-balance {
@@ -63,4 +80,31 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+/* ─── Micro-Animations (Ayman.krd Luxury Style) ──────────────── */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.8));
+  }
+}
+
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.animate-float-icon {
+  animation: floatIcon 3.5s ease-in-out infinite;
 }

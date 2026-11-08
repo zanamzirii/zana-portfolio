@@ -3,6 +3,7 @@ import { Space_Grotesk, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import "./globals.css";
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
@@ -107,10 +108,12 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background font-sans text-textPrimary antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <Analytics />
+        <SmoothScrollProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <Analytics />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

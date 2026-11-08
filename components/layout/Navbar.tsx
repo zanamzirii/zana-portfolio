@@ -68,7 +68,16 @@ function smoothScrollTo(href: string) {
   const id = href.replace("#", "");
   const el = document.getElementById(id);
   if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (
+      typeof window !== "undefined" &&
+      (window as unknown as { __lenis?: { scrollTo: (target: HTMLElement, options?: object) => void } }).__lenis
+    ) {
+      (
+        window as unknown as { __lenis: { scrollTo: (target: HTMLElement, options?: object) => void } }
+      ).__lenis.scrollTo(el, { offset: -40, duration: 1.2 });
+    } else {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 }
 

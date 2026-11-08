@@ -280,30 +280,36 @@ export function SkillsSection() {
                 key={category.category}
                 variants={scaleIn}
                 transition={{ ...smoothTransition, delay: i * 0.06 }}
-                className={`group relative flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-[#121215]/95 backdrop-blur-md p-5 sm:p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-[#15151a] ${style.borderGlow}`}
+                className={`group relative flex flex-col justify-between rounded-3xl border border-white/[0.08] bg-[#0c0c10]/95 backdrop-blur-xl p-6 sm:p-7 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:bg-[#121217] overflow-hidden ${style.borderGlow}`}
               >
+                {/* Editorial Watermark Number (Ayman.krd Luxury Style) */}
+                <div
+                  className="pointer-events-none absolute top-3 right-5 font-black font-mono text-7xl text-white/[0.035] select-none z-0 tracking-tighter"
+                  aria-hidden="true"
+                >
+                  0{i + 1}
+                </div>
+
                 {/* Accent Top Line Glow */}
                 <div
                   className={`absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r opacity-60 group-hover:opacity-100 transition-opacity duration-300 ${style.lineGlow}`}
                 />
 
-                <div>
-                  {/* Category Header */}
-                  <div className="mb-5 flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl border shadow-sm ${style.iconBg}`}
-                      >
-                        <CategoryIcon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-white transition-colors">
-                          {category.category}
-                        </h3>
-                        <span className="text-[11px] font-medium text-neutral-400">
-                          {category.items.length} core tools
-                        </span>
-                      </div>
+                <div className="relative z-10">
+                  {/* Category Header with Prominent Glowing Squircle Icon (Ayman.krd Style) */}
+                  <div className="mb-6 flex flex-col items-start gap-4">
+                    <div
+                      className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl border shadow-xl transition-transform duration-300 group-hover:scale-105 ${style.iconBg}`}
+                    >
+                      <CategoryIcon className="h-7 w-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-white transition-colors">
+                        {category.category}
+                      </h3>
+                      <span className="text-xs font-medium text-neutral-400">
+                        {category.items.length} verified tools &amp; frameworks
+                      </span>
                     </div>
                   </div>
 
@@ -326,12 +332,12 @@ export function SkillsSection() {
                 </div>
 
                 {/* Intentional Bottom Footer */}
-                <div className="mt-5 pt-3.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-neutral-400">
+                <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-neutral-400">
                   <span className="inline-flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent/70" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent/70 animate-pulse" />
                     Production Stack
                   </span>
-                  <span className="font-mono text-neutral-500">Verified</span>
+                  <span className="font-mono text-neutral-500 uppercase tracking-wider">Verified</span>
                 </div>
               </motion.div>
             );

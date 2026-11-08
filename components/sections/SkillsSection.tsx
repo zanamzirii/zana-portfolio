@@ -224,28 +224,30 @@ export function SkillsSection() {
 
       <div className="mx-auto max-w-6xl px-6">
 
-        {/* Section Header */}
+        {/* Section Header (Ayman.krd Service Header Style) */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={viewportOnce}
-          className="mb-14 text-center"
+          className="mb-12 text-center"
         >
           <motion.div
             variants={fadeUp}
             transition={smoothTransition}
-            className="mb-4 flex justify-center"
+            className="mb-3 flex justify-center"
           >
-            <SectionLabel>Technical &amp; Creative Stack</SectionLabel>
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-accent font-semibold">
+              WHAT CAN I BUILD FOR YOU?
+            </span>
           </motion.div>
 
           <motion.h2
             variants={fadeUp}
             transition={{ ...smoothTransition, delay: 0.06 }}
-            className="text-3xl font-bold tracking-tight text-white md:text-5xl"
+            className="text-3xl font-extrabold tracking-tight text-white md:text-5xl"
           >
-            Core Technologies &amp; Toolchain
+            Core Disciplines &amp; Capabilities
           </motion.h2>
 
           <motion.p
@@ -253,8 +255,132 @@ export function SkillsSection() {
             transition={{ ...smoothTransition, delay: 0.12 }}
             className="mt-3 text-sm md:text-base text-neutral-400 max-w-xl mx-auto leading-relaxed"
           >
-            Real production frameworks, official IDEs, creative design suites, and operational methodologies I use daily to build and ship software.
+            End-to-end engineering, full-stack cloud systems, and high-converting brand design systems shipped to real production standards.
           </motion.p>
+        </motion.div>
+
+        {/* ── 3 High-Impact Service Cards (Ayman.krd Exact Aesthetic) ── */}
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={viewportOnce}
+          className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-3"
+        >
+          {/* Card 1: Mobile Applications (Blue) */}
+          <motion.div
+            variants={scaleIn}
+            transition={smoothTransition}
+            className="group relative flex flex-col justify-between rounded-3xl border border-blue-500/25 bg-[#0a1526]/90 backdrop-blur-xl p-7 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/50 hover:bg-[#0d1c33]"
+          >
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-500/30 bg-blue-500/15 text-blue-400 shadow-lg shadow-blue-950/50 group-hover:scale-105 transition-transform">
+                <Smartphone className="h-8 w-8" />
+              </div>
+              <span className="font-mono text-xs font-bold text-blue-400/80 px-2.5 py-1 rounded-full border border-blue-500/20 bg-blue-500/10">
+                iOS &amp; Android
+              </span>
+            </div>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2.5">
+                Mobile Application Engineering
+              </h3>
+              <p className="text-sm text-neutral-300/90 leading-relaxed mb-4">
+                Engineering high-performance native and cross-platform mobile apps for iOS and Android using Flutter &amp; Dart. Shipped directly to the Apple App Store with clean architecture, real-time database syncing, and offline persistence.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-blue-500/15 flex items-center justify-between text-xs text-blue-300/80 font-medium">
+              <span>Flutter · Dart · Riverpod</span>
+              <a
+                href="#projects"
+                className="text-blue-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold"
+              >
+                Shipped Live →
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Card 2: Web & Cloud Systems (Amber / Gold) */}
+          <motion.div
+            variants={scaleIn}
+            transition={{ ...smoothTransition, delay: 0.08 }}
+            className="group relative flex flex-col justify-between rounded-3xl border border-amber-500/25 bg-[#171105]/90 backdrop-blur-xl p-7 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-amber-500/50 hover:bg-[#201807]"
+          >
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-500/15 text-amber-400 shadow-lg shadow-amber-950/50 group-hover:scale-105 transition-transform">
+                <Code2 className="h-8 w-8" />
+              </div>
+              <span className="font-mono text-xs font-bold text-amber-400/80 px-2.5 py-1 rounded-full border border-amber-500/20 bg-amber-500/10">
+                Full-Stack &amp; Cloud
+              </span>
+            </div>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2.5">
+                Web Platforms &amp; Cloud Systems
+              </h3>
+              <p className="text-sm text-neutral-300/90 leading-relaxed mb-4">
+                Building modern responsive web applications, robust REST &amp; serverless APIs, Firebase Cloud Functions, and high-performance databases with strict security rules, RBAC access control, and 99.9% uptime.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-amber-500/15 flex items-center justify-between text-xs text-amber-300/80 font-medium">
+              <span>Next.js · Node.js · Firebase</span>
+              <a
+                href="#projects"
+                className="text-amber-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold"
+              >
+                Explore Code →
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Card 3: Creative Direction & Brand Ecosystems (Purple) */}
+          <motion.div
+            variants={scaleIn}
+            transition={{ ...smoothTransition, delay: 0.16 }}
+            className="group relative flex flex-col justify-between rounded-3xl border border-purple-500/25 bg-[#160a26]/90 backdrop-blur-xl p-7 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-purple-500/50 hover:bg-[#1e0e33]"
+          >
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-purple-500/30 bg-purple-500/15 text-purple-400 shadow-lg shadow-purple-950/50 group-hover:scale-105 transition-transform">
+                <Sparkles className="h-8 w-8" />
+              </div>
+              <span className="font-mono text-xs font-bold text-purple-400/80 px-2.5 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">
+                Brand &amp; Motion
+              </span>
+            </div>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2.5">
+                UI/UX, Brand Systems &amp; Motion Ads
+              </h3>
+              <p className="text-sm text-neutral-300/90 leading-relaxed mb-4">
+                Crafting end-to-end digital brand ecosystems in Figma, multi-slide Instagram carousels, bilingual typography, and high-converting AI motion video commercials for consumer and enterprise brands.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-purple-500/15 flex items-center justify-between text-xs text-purple-300/80 font-medium">
+              <span>Figma · Premiere · AI Video</span>
+              <a
+                href="#creative"
+                className="text-purple-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold"
+              >
+                View Studio →
+              </a>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Detailed 6-Category Toolchain Header */}
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={viewportOnce}
+          className="mb-10 text-center"
+        >
+          <div className="mb-2 flex justify-center">
+            <SectionLabel>Verified Toolchain</SectionLabel>
+          </div>
+          <h3 className="text-2xl font-bold text-white sm:text-3xl">
+            Production Frameworks &amp; Technologies
+          </h3>
         </motion.div>
 
         {/* 6-Category Bento Grid */}

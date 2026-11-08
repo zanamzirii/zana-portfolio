@@ -177,7 +177,7 @@ export function AboutSection() {
               <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-purple-300 w-fit backdrop-blur-md">
                   <GraduationCap className="h-3 w-3 text-purple-400" />
-                  <span>UNIVERSITY OF DUHOK · CLASS OF 2024</span>
+                  <span>UNIVERSITY OF DUHOK · 2022 – JULY 2026</span>
                 </div>
 
                 <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
@@ -188,32 +188,32 @@ export function AboutSection() {
                 </h2>
 
                 <p className="mb-5 text-sm sm:text-base font-medium text-purple-200/80">
-                  Distinguished Academic Degree &amp; &apos;Excellent&apos; Capstone Project
+                  Completed All Degree Requirements in July 2026 · Academic Distinctions
                 </p>
 
                 <div className="mb-6 space-y-2.5 max-w-lg">
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <Award className="h-4 w-4 text-purple-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Awarded &apos;Excellent&apos; Grade:</strong> AI-driven desktop graduation project
+                      <strong className="text-white">Graduation Project — Excellent:</strong> Barber Shop Management Mobile App (Crown Barber)
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <Award className="h-4 w-4 text-purple-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">4-Year Curriculum (2020–2024):</strong> Algorithms, Data Structures, DB, OS &amp; Networks
+                      <strong className="text-white">Final-Year Internship — Very Good:</strong> University of Duhok Library (Feb–May 2026)
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <Award className="h-4 w-4 text-purple-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Central University Library:</strong> Database administration &amp; enterprise network internship
+                      <strong className="text-white">Web Design Coursework — Very Good:</strong> Dynamic responsive web systems
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200">
                     <Award className="h-4 w-4 text-purple-400 flex-shrink-0" />
                     <span>
-                      <strong className="text-white">Enterprise Systems:</strong> Hardware diagnostics, backup automation &amp; catalog indexing
+                      <strong className="text-white">Core Computer Science:</strong> Algorithms, Data Structures, Relational DB, OS, Networking
                     </span>
                   </div>
                 </div>
@@ -268,7 +268,7 @@ export function AboutSection() {
                         <p className="text-xs font-bold text-white">University of Duhok</p>
                         <p className="text-[10px] text-purple-300">College of Science · Computer Science</p>
                       </div>
-                      <span className="font-mono text-xs font-bold text-purple-400">2020–2024</span>
+                      <span className="font-mono text-xs font-bold text-purple-400">2022–2026</span>
                     </div>
                   </div>
                 </div>
@@ -304,11 +304,11 @@ export function AboutSection() {
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-xl border border-blue-500/20 bg-blue-500/10 px-3 py-1.5 text-xs text-blue-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
-                    <span>English (Professional Working B1)</span>
+                    <span>English: Working Proficiency — IELTS Academic 5.0 (CEFR B1), July 2024</span>
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-xl border border-amber-500/20 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                    <span>Arabic (Professional Working)</span>
+                    <span>Availability: Kurdistan Region &amp; Iraq, Remote &amp; Relocation</span>
                   </div>
                 </div>
 

@@ -44,7 +44,7 @@ const socials = [
 // ─── Contact Info Panel ────────────────────────────────────────────────────────
 
 function ContactInfo() {
-  const { email, phone, location, available, availabilityNote } = siteData.personal;
+  const { email, location, available, availabilityNote } = siteData.personal;
   const { copied, copy } = useCopyToClipboard(email);
 
   return (
@@ -80,23 +80,34 @@ function ContactInfo() {
             <Phone className="h-4 w-4 text-accent" />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-textMuted mb-0.5">Phone</p>
-            <div className="flex items-center gap-3">
-              <a
-                href={`tel:${siteData.personal.phone.replace(/\s/g, "")}`}
-                className="text-sm text-textPrimary hover:text-accent transition-colors"
-              >
-                {phone}
-              </a>
-              <a
-                href={siteData.links.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-[#25D366] hover:opacity-80 transition-opacity"
-              >
-                <WhatsAppIcon className="h-3 w-3" />
-                WhatsApp
-              </a>
+            <p className="text-xs text-textMuted mb-0.5">Phone Numbers (Direct &amp; WhatsApp)</p>
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center gap-3">
+                <a
+                  href="tel:+9647502144923"
+                  className="text-sm font-medium text-textPrimary hover:text-accent transition-colors"
+                >
+                  +964 750 214 49 23
+                </a>
+                <a
+                  href={siteData.links.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-[#25D366] hover:opacity-80 transition-opacity"
+                >
+                  <WhatsAppIcon className="h-3 w-3" />
+                  WhatsApp
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <a
+                  href="tel:+9647508524280"
+                  className="text-sm font-medium text-textSecondary hover:text-accent transition-colors"
+                >
+                  +964 750 852 42 80
+                </a>
+                <span className="text-[10px] text-textMuted font-mono">Secondary</span>
+              </div>
             </div>
           </div>
         </div>

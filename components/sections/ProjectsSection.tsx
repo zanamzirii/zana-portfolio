@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 export function ProjectsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(1);
-  const totalSlides = 3;
+  const totalSlides = 4;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -102,8 +102,8 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="relative bg-[#050505] text-textPrimary">
-      {/* ── Horizontal Pin-Scroll Track (3 Real Production Platforms) ──────── */}
-      <div ref={containerRef} className="relative h-[300vh] lg:h-[320vh]">
+      {/* ── Horizontal Pin-Scroll Track (Title Slide + 3 Real Platforms) ───── */}
+      <div ref={containerRef} className="relative h-[400vh] lg:h-[420vh]">
         <div
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -115,8 +115,10 @@ export function ProjectsSection() {
             style={{
               background:
                 activeSlide === 1
-                  ? "radial-gradient(circle at 70% 50%, rgba(245,158,11,0.25) 0%, transparent 60%)"
+                  ? "radial-gradient(circle at 50% 50%, rgba(59,130,246,0.2) 0%, transparent 60%)"
                   : activeSlide === 2
+                  ? "radial-gradient(circle at 70% 50%, rgba(245,158,11,0.25) 0%, transparent 60%)"
+                  : activeSlide === 3
                   ? "radial-gradient(circle at 70% 50%, rgba(59,130,246,0.25) 0%, transparent 60%)"
                   : "radial-gradient(circle at 70% 50%, rgba(217,119,6,0.25) 0%, transparent 60%)",
             }}
@@ -126,8 +128,54 @@ export function ProjectsSection() {
           {/* Sliding Track */}
           <motion.div
             style={{ x }}
-            className="flex h-full w-[300vw] flex-shrink-0"
+            className="flex h-full w-[400vw] flex-shrink-0"
           >
+            {/* ═══════════════════════════════════════════════════════════════
+                SLIDE 01: CINEMATIC TITLE SLIDE (AYMAN.KRD STYLE)
+               ═══════════════════════════════════════════════════════════════ */}
+            <div className="w-screen h-full flex-shrink-0 relative flex items-center justify-center overflow-hidden bg-black">
+              {/* Background Moody Workspace Image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/workspace-bg.jpg"
+                  alt="Developer Workspace"
+                  fill
+                  priority
+                  className="object-cover opacity-20 filter blur-[2px] scale-105"
+                />
+                {/* Dark Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/75" />
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+              </div>
+
+              {/* Centered Content */}
+              <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center justify-center">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1 text-xs font-mono font-semibold text-blue-300 backdrop-blur-md">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
+                  <span>PRODUCTION SYSTEMS &amp; SOFTWARE ARCHITECTURE</span>
+                </div>
+
+                <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white mb-5 select-none">
+                  My <span className="text-blue-500">Projects</span>
+                </h2>
+
+                <p className="max-w-2xl text-center text-sm sm:text-base md:text-lg text-neutral-300 leading-relaxed font-normal mb-8">
+                  Proudly engineered production platforms for startups, enterprises, and local businesses.
+                  Every project is built with precision, Clean Architecture, and shipped to the highest standards.
+                </p>
+
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => scrollToSlide(2)}
+                    className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-500 px-6 py-3 text-xs sm:text-sm font-bold text-white transition-all duration-200 hover:scale-[1.02] shadow-lg shadow-blue-600/30"
+                  >
+                    <span>View Projects</span>
+                    <span className="text-blue-200">→</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
             {/* ═══════════════════════════════════════════════════════════════
                 PROJECT 01: CROWN BARBER STUDIO (GOLD / AMBER)
                ═══════════════════════════════════════════════════════════════ */}
@@ -135,7 +183,7 @@ export function ProjectsSection() {
               <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-amber-300 w-fit backdrop-blur-md">
                   <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                  <span>SELF-FOUNDED APP · APP STORE LIVE</span>
+                  <span>PROJECT 01 · APP STORE LIVE</span>
                 </div>
 
                 <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
@@ -228,7 +276,7 @@ export function ProjectsSection() {
                   className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-amber-500/[0.05] select-none tracking-tighter"
                   aria-hidden="true"
                 >
-                  01
+                  02
                 </div>
 
                 <div className="absolute w-72 h-72 rounded-full bg-amber-500/20 blur-3xl pointer-events-none" />
@@ -336,7 +384,7 @@ export function ProjectsSection() {
                   className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-blue-500/[0.05] select-none tracking-tighter"
                   aria-hidden="true"
                 >
-                  02
+                  03
                 </div>
 
                 <div className="absolute w-72 h-72 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
@@ -441,7 +489,7 @@ export function ProjectsSection() {
                   className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-orange-500/[0.05] select-none tracking-tighter"
                   aria-hidden="true"
                 >
-                  03
+                  04
                 </div>
 
                 <div className="absolute w-72 h-72 rounded-full bg-orange-500/20 blur-3xl pointer-events-none" />
@@ -462,15 +510,16 @@ export function ProjectsSection() {
             </div>
           </motion.div>
 
-          {/* ── Luxury Floating Pin Controller Pill (Projects: 01 to 03) ─── */}
+          {/* ── Luxury Floating Pin Controller Pill (Projects: 01 to 04) ─── */}
           <div className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 sm:gap-5 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-white/15 bg-black/80 backdrop-blur-2xl shadow-2xl z-30 pointer-events-auto">
             <span className="text-xs sm:text-sm font-mono font-bold text-white flex items-center gap-1.5">
               <span
                 className={cn(
                   "transition-colors duration-300",
-                  activeSlide === 1 && "text-amber-400",
-                  activeSlide === 2 && "text-blue-400",
-                  activeSlide === 3 && "text-orange-400",
+                  activeSlide === 1 && "text-blue-400",
+                  activeSlide === 2 && "text-amber-400",
+                  activeSlide === 3 && "text-blue-400",
+                  activeSlide === 4 && "text-orange-400",
                 )}
               >
                 0{activeSlide}
@@ -480,7 +529,7 @@ export function ProjectsSection() {
             </span>
 
             <div className="flex items-center gap-1.5">
-              {[1, 2, 3].map((i) => (
+              {[1, 2, 3, 4].map((i) => (
                 <button
                   key={i}
                   onClick={() => scrollToSlide(i)}
@@ -489,13 +538,18 @@ export function ProjectsSection() {
                     activeSlide === i
                       ? cn(
                           "w-6 shadow-md",
-                          i === 1 && "bg-amber-400 shadow-amber-400/50",
-                          i === 2 && "bg-blue-400 shadow-blue-400/50",
-                          i === 3 && "bg-orange-400 shadow-orange-400/50",
+                          i === 1 && "bg-blue-400 shadow-blue-400/50",
+                          i === 2 && "bg-amber-400 shadow-amber-400/50",
+                          i === 3 && "bg-blue-400 shadow-blue-400/50",
+                          i === 4 && "bg-orange-400 shadow-orange-400/50",
                         )
                       : "w-2 bg-white/20 hover:bg-white/40",
                   )}
-                  aria-label={`Jump to project 0${i}`}
+                  aria-label={
+                    i === 1
+                      ? "Jump to Projects Overview"
+                      : `Jump to Project 0${i - 1}`
+                  }
                 />
               ))}
             </div>
@@ -503,7 +557,7 @@ export function ProjectsSection() {
             <div className="w-20 sm:w-36 h-1 bg-white/10 rounded-full overflow-hidden hidden xs:block">
               <motion.div
                 style={{ scaleX: smoothProgress, transformOrigin: "left" }}
-                className="h-full bg-gradient-to-r from-amber-400 via-blue-500 to-orange-400 rounded-full"
+                className="h-full bg-gradient-to-r from-blue-500 via-amber-400 via-blue-500 to-orange-400 rounded-full"
               />
             </div>
 

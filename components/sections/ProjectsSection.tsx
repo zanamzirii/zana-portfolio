@@ -4,9 +4,6 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import {
-  Code2,
-  ArrowRight,
-  ArrowDownRight,
   ExternalLink,
   Sparkles,
   Star,
@@ -22,7 +19,7 @@ import { cn } from "@/lib/utils";
 export function ProjectsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(1);
-  const totalSlides = 4;
+  const totalSlides = 3;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -105,8 +102,8 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="relative bg-[#050505] text-textPrimary">
-      {/* ── Horizontal Pin-Scroll Track (Title Overview + 3 Real Platforms) ─── */}
-      <div ref={containerRef} className="relative h-[400vh] lg:h-[420vh]">
+      {/* ── Horizontal Pin-Scroll Track (3 Real Production Platforms) ──────── */}
+      <div ref={containerRef} className="relative h-[300vh] lg:h-[320vh]">
         <div
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -118,10 +115,8 @@ export function ProjectsSection() {
             style={{
               background:
                 activeSlide === 1
-                  ? "radial-gradient(circle at 60% 50%, rgba(99,102,241,0.22) 0%, transparent 60%)"
-                  : activeSlide === 2
                   ? "radial-gradient(circle at 70% 50%, rgba(245,158,11,0.25) 0%, transparent 60%)"
-                  : activeSlide === 3
+                  : activeSlide === 2
                   ? "radial-gradient(circle at 70% 50%, rgba(59,130,246,0.25) 0%, transparent 60%)"
                   : "radial-gradient(circle at 70% 50%, rgba(217,119,6,0.25) 0%, transparent 60%)",
             }}
@@ -131,173 +126,8 @@ export function ProjectsSection() {
           {/* Sliding Track */}
           <motion.div
             style={{ x }}
-            className="flex h-full w-[400vw] flex-shrink-0"
+            className="flex h-full w-[300vw] flex-shrink-0"
           >
-            {/* ═══════════════════════════════════════════════════════════════
-                SLIDE 01: PROJECTS TITLE & DIRECTORY OVERVIEW (INDIGO / COBALT)
-               ═══════════════════════════════════════════════════════════════ */}
-            <div className="w-screen h-full flex-shrink-0 relative flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden bg-gradient-to-br from-[#0c0c16] via-[#07070d] to-[#040407]">
-              {/* Left Column: Big Title & Architectural Scope */}
-              <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-indigo-300 w-fit backdrop-blur-md">
-                    <Code2 className="h-3.5 w-3.5 text-indigo-400" />
-                    <span>SOFTWARE ENGINEERING PROJECTS</span>
-                  </div>
-
-                  <a
-                    href="#creative"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById("creative");
-                      if (el) el.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/25 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 transition-all duration-200"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-                    <span>UI/UX &amp; Creative?</span>
-                    <ArrowDownRight className="h-3 w-3 text-amber-400" />
-                  </a>
-                </div>
-
-                <h2 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tight text-white leading-none">
-                  PROJECTS
-                </h2>
-
-                <p className="mt-1 mb-4 text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                  Shipped Software Platforms
-                </p>
-
-                <p className="mb-5 text-sm sm:text-base text-neutral-300 max-w-xl leading-relaxed">
-                  A showcase of 3 complete production platforms I engineered from scratch — featuring Clean Architecture, multi-role databases, and live App Store deployments.
-                </p>
-
-                {/* Tech Stack Pills */}
-                <div className="flex flex-wrap items-center gap-1.5 mb-6">
-                  {["Flutter", "Dart", "Firebase Cloud", "Next.js 14", "Riverpod", "Clean Architecture"].map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.04] text-neutral-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-3.5 flex-wrap">
-                  <button
-                    onClick={() => scrollToSlide(2)}
-                    className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-xs sm:text-sm font-bold text-black transition-all duration-200 hover:bg-neutral-200 hover:scale-[1.02] shadow-lg shadow-white/15"
-                  >
-                    <span>Start With Crown Barber</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-
-                  <span className="text-xs font-mono text-neutral-400">
-                    Slide 01 of 04 · Horizontal Pin
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Interactive 3-Card Platform Directory */}
-              <div className="w-full lg:w-1/2 h-full relative flex items-center justify-center p-6 sm:p-10 lg:p-12 overflow-hidden">
-                <div
-                  className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-indigo-500/[0.05] select-none tracking-tighter"
-                  aria-hidden="true"
-                >
-                  01
-                </div>
-
-                <div className="absolute w-72 h-72 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
-
-                <div className="relative w-full max-w-lg space-y-3 sm:space-y-4 z-10">
-                  {/* Card 01 -> Slide 2 (Crown Barber) */}
-                  <div
-                    onClick={() => scrollToSlide(2)}
-                    className="group cursor-pointer rounded-2xl border border-amber-500/25 bg-[#120a02]/90 hover:bg-[#1a0e03] p-4 sm:p-5 backdrop-blur-xl transition-all duration-300 hover:border-amber-400/60 hover:scale-[1.02] shadow-xl shadow-amber-950/20"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-amber-400">[01]</span>
-                        <span className="text-xs font-mono font-bold text-white group-hover:text-amber-300 transition-colors">
-                          CROWN BARBER STUDIO
-                        </span>
-                      </div>
-                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-mono font-bold text-amber-300">
-                        <Star className="h-2.5 w-2.5 fill-amber-400 text-amber-400" />
-                        4.9 ★ App Store Live
-                      </span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug mb-2">
-                      Multi-Branch Mobile Barbershop Booking &amp; Queue Management Platform
-                    </p>
-                    <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-1 border-t border-white/[0.06]">
-                      <span>Flutter · Dart · Firebase</span>
-                      <span className="text-amber-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        View Slide 02 <ArrowRight className="h-3 w-3" />
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Card 02 -> Slide 3 (Bahdinan Cars) */}
-                  <div
-                    onClick={() => scrollToSlide(3)}
-                    className="group cursor-pointer rounded-2xl border border-blue-500/25 bg-[#030d1c]/90 hover:bg-[#06152b] p-4 sm:p-5 backdrop-blur-xl transition-all duration-300 hover:border-blue-400/60 hover:scale-[1.02] shadow-xl shadow-blue-950/20"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-blue-400">[02]</span>
-                        <span className="text-xs font-mono font-bold text-white group-hover:text-blue-300 transition-colors">
-                          BAHDINAN CARS
-                        </span>
-                      </div>
-                      <span className="inline-flex items-center gap-1 rounded-full border border-blue-500/30 bg-blue-500/15 px-2.5 py-0.5 text-[10px] font-mono font-bold text-blue-300">
-                        <Smartphone className="h-2.5 w-2.5 text-blue-400" />
-                        Enterprise Marketplace
-                      </span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug mb-2">
-                      Automotive Marketplace with Clean Architecture &amp; Cloud Functions v2
-                    </p>
-                    <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-1 border-t border-white/[0.06]">
-                      <span>Riverpod · Freezed · Firebase</span>
-                      <span className="text-blue-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        View Slide 03 <ArrowRight className="h-3 w-3" />
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Card 03 -> Slide 4 (Time Cafe) */}
-                  <div
-                    onClick={() => scrollToSlide(4)}
-                    className="group cursor-pointer rounded-2xl border border-orange-500/25 bg-[#170e04]/90 hover:bg-[#211406] p-4 sm:p-5 backdrop-blur-xl transition-all duration-300 hover:border-orange-400/60 hover:scale-[1.02] shadow-xl shadow-orange-950/20"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-orange-400">[03]</span>
-                        <span className="text-xs font-mono font-bold text-white group-hover:text-orange-300 transition-colors">
-                          TIME CAFE ZAXO
-                        </span>
-                      </div>
-                      <span className="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/15 px-2.5 py-0.5 text-[10px] font-mono font-bold text-orange-300">
-                        <Coffee className="h-2.5 w-2.5 text-orange-400" />
-                        Live QR Dining
-                      </span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-neutral-300 leading-snug mb-2">
-                      Digital QR Menu Web Application with Live Barista Tablet Administration
-                    </p>
-                    <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-1 border-t border-white/[0.06]">
-                      <span>Next.js 14 · Realtime DB · POS</span>
-                      <span className="text-orange-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        View Slide 04 <ArrowRight className="h-3 w-3" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* ═══════════════════════════════════════════════════════════════
                 PROJECT 01: CROWN BARBER STUDIO (GOLD / AMBER)
                ═══════════════════════════════════════════════════════════════ */}
@@ -305,7 +135,7 @@ export function ProjectsSection() {
               <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-amber-300 w-fit backdrop-blur-md">
                   <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                  <span>PROJECT 01 · APP STORE LIVE</span>
+                  <span>SELF-FOUNDED APP · APP STORE LIVE</span>
                 </div>
 
                 <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
@@ -398,7 +228,7 @@ export function ProjectsSection() {
                   className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-amber-500/[0.05] select-none tracking-tighter"
                   aria-hidden="true"
                 >
-                  02
+                  01
                 </div>
 
                 <div className="absolute w-72 h-72 rounded-full bg-amber-500/20 blur-3xl pointer-events-none" />
@@ -425,7 +255,7 @@ export function ProjectsSection() {
               <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-blue-300 w-fit backdrop-blur-md">
                   <Smartphone className="h-3 w-3 text-blue-400" />
-                  <span>PROJECT 02 · ENTERPRISE AUTOMOTIVE</span>
+                  <span>ENTERPRISE AUTOMOTIVE · IN STORE REVIEW</span>
                 </div>
 
                 <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
@@ -506,7 +336,7 @@ export function ProjectsSection() {
                   className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-blue-500/[0.05] select-none tracking-tighter"
                   aria-hidden="true"
                 >
-                  03
+                  02
                 </div>
 
                 <div className="absolute w-72 h-72 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
@@ -533,7 +363,7 @@ export function ProjectsSection() {
               <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 pt-20 lg:pt-0 z-10">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-3.5 py-1 text-xs font-mono font-semibold text-orange-300 w-fit backdrop-blur-md">
                   <Coffee className="h-3 w-3 text-orange-400" />
-                  <span>PROJECT 03 · HOSPITALITY SYSTEM</span>
+                  <span>HOSPITALITY SYSTEM · LIVE PRODUCTION</span>
                 </div>
 
                 <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight">
@@ -611,7 +441,7 @@ export function ProjectsSection() {
                   className="pointer-events-none absolute right-6 top-10 font-black font-mono text-8xl lg:text-9xl text-orange-500/[0.05] select-none tracking-tighter"
                   aria-hidden="true"
                 >
-                  04
+                  03
                 </div>
 
                 <div className="absolute w-72 h-72 rounded-full bg-orange-500/20 blur-3xl pointer-events-none" />
@@ -632,16 +462,15 @@ export function ProjectsSection() {
             </div>
           </motion.div>
 
-          {/* ── Luxury Floating Pin Controller Pill (Projects: 01 to 04) ─── */}
+          {/* ── Luxury Floating Pin Controller Pill (Projects: 01 to 03) ─── */}
           <div className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 sm:gap-5 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-white/15 bg-black/80 backdrop-blur-2xl shadow-2xl z-30 pointer-events-auto">
             <span className="text-xs sm:text-sm font-mono font-bold text-white flex items-center gap-1.5">
               <span
                 className={cn(
                   "transition-colors duration-300",
-                  activeSlide === 1 && "text-indigo-400",
-                  activeSlide === 2 && "text-amber-400",
-                  activeSlide === 3 && "text-blue-400",
-                  activeSlide === 4 && "text-orange-400",
+                  activeSlide === 1 && "text-amber-400",
+                  activeSlide === 2 && "text-blue-400",
+                  activeSlide === 3 && "text-orange-400",
                 )}
               >
                 0{activeSlide}
@@ -651,7 +480,7 @@ export function ProjectsSection() {
             </span>
 
             <div className="flex items-center gap-1.5">
-              {[1, 2, 3, 4].map((i) => (
+              {[1, 2, 3].map((i) => (
                 <button
                   key={i}
                   onClick={() => scrollToSlide(i)}
@@ -660,18 +489,13 @@ export function ProjectsSection() {
                     activeSlide === i
                       ? cn(
                           "w-6 shadow-md",
-                          i === 1 && "bg-indigo-400 shadow-indigo-400/50",
-                          i === 2 && "bg-amber-400 shadow-amber-400/50",
-                          i === 3 && "bg-blue-400 shadow-blue-400/50",
-                          i === 4 && "bg-orange-400 shadow-orange-400/50",
+                          i === 1 && "bg-amber-400 shadow-amber-400/50",
+                          i === 2 && "bg-blue-400 shadow-blue-400/50",
+                          i === 3 && "bg-orange-400 shadow-orange-400/50",
                         )
                       : "w-2 bg-white/20 hover:bg-white/40",
                   )}
-                  aria-label={
-                    i === 1
-                      ? "Jump to Projects Overview"
-                      : `Jump to Project 0${i - 1}`
-                  }
+                  aria-label={`Jump to project 0${i}`}
                 />
               ))}
             </div>
@@ -679,7 +503,7 @@ export function ProjectsSection() {
             <div className="w-20 sm:w-36 h-1 bg-white/10 rounded-full overflow-hidden hidden xs:block">
               <motion.div
                 style={{ scaleX: smoothProgress, transformOrigin: "left" }}
-                className="h-full bg-gradient-to-r from-indigo-400 via-amber-400 via-blue-500 to-orange-400 rounded-full"
+                className="h-full bg-gradient-to-r from-amber-400 via-blue-500 to-orange-400 rounded-full"
               />
             </div>
 

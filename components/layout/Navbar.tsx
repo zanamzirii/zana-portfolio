@@ -15,11 +15,11 @@ import {
 
 const navLinks = [
   { label: "Home",       href: "#home"       },
-  { label: "About",      href: "#about"      },
-  { label: "Skills",     href: "#skills"     },
   { label: "Projects",   href: "#projects"   },
   { label: "Creative",   href: "#creative"   },
   { label: "Experience", href: "#experience" },
+  { label: "Skills",     href: "#skills"     },
+  { label: "About",      href: "#about"      },
   { label: "Contact",    href: "#contact"    },
 ];
 
